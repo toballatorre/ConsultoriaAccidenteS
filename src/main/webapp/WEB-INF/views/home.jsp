@@ -6,9 +6,10 @@
 </head>
 <body>
 <h1>
-	Hello world!  
+	Hola ${nombre}!  
 </h1>
 
-<P>  The time on the server is ${serverTime}. </P>
+<P>  la hora del servidor es ${serverTime}. </P>
+<p> <c:out value="${nombre}${apellido} Edad: ${edad}"/> </p>
 </body>
 </html>

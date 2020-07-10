@@ -11,5 +11,7 @@
 
 <P>  la hora del servidor es ${serverTime}. </P>
 <p> <c:out value="${nombre}${apellido} Edad: ${edad}"/> </p>
+
+<a href="/capacitacion">Detalle Capacitacion</a>
 </body>
 </html>

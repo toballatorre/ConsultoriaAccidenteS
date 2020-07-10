@@ -8,5 +8,17 @@
 		<property name="apellido" value="Guzmán"></property>
 		<property name="edad" value="38"></property>
 	</bean>
-
+	
+	<!-- BEAN CAPACITACION -->
+	<bean id="capacitacion" class="cl.tinyprro.beans.Capacitacion">
+		<property name="id" value="1" />
+		<property name="idCliente" value="2" />
+		<property name="tema" value="Derecho a Saber" />
+		<property name="objetivos" value="Informar a sus colaboradores sobre los peligros y riesgos que están presentes en sus labores" />
+		<property name="contenidos" value="* Introduccion *Riesgos *Desarrollo * Preguntas *Cierre" />
+		<property name="recursos" value="Sala, Computador, Notebook" />
+		<property name="fecha" value="01/05/20" />
+		<property name="idUsuarioPro" value="7" />
+	</bean>
+	
 </beans>

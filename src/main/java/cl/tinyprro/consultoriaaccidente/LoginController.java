@@ -13,11 +13,24 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class LoginController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@RequestMapping(value = "/AreaAdmin", method = RequestMethod.GET)
 	public String login(Locale locale, Model model) {
-		logger.info("estamos en LoginController", locale);
+		logger.info("estamos en AreaAdmin", locale);
 	
 		
 		return "AreaAdmin";
+	}
+	
+	@RequestMapping(value="/AreaCliente", method = RequestMethod.GET)
+	public String areacliente(Model model) {
+		logger.info("estamos en AreaClienteController");
+		
+		return "AreaCliente";
+	}
+	@RequestMapping(value="/AreaProfesional", method = RequestMethod.GET)
+	public String areaprofesional(Model model) {
+		logger.info("estamos en AreaProfesionalController");
+		
+		return "AreaProfesional";
 	}
 }

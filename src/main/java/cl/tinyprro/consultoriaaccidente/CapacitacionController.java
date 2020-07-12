@@ -35,6 +35,6 @@ public class CapacitacionController {
 			model.addAttribute("fecha", c.getFecha());
 			model.addAttribute("idUsuarioPro", c.getIdUsuarioPro());
 			
-		return "detalleCapacitacion";
+		return "profesional/detalleCapacitacion";
 	}
 }

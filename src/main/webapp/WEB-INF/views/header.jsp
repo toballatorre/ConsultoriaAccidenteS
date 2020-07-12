@@ -6,6 +6,11 @@
 	</div>
 	
 	<div class="areaLogin">
-		jsp:include page="ValidaUsuario.jsp" /
+		<!-- jsp:include page="ValidaUsuario.jsp" /> -->
+		<a href="/consultoriaaccidente"><i class="fas fa-home"></i></a>
+		
+		Hola ${nombre}! - 
+		${serverTime}
+		<input type="text" placeholder="Usuario"><input type="text" placeholder="Password"><input type="submit" value="Login">
 	</div>
 </header>

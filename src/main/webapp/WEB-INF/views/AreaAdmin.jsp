@@ -10,9 +10,9 @@
 </head>
 <body>
 	<jsp:include page="header.jsp" />
-	<jsp:include page="MenuAdmin.jsp" />
 	<div class="contenido">
-	<h1>Vista Administrador</h1>
+	<jsp:include page="MenuAdmin.jsp" />
+	<br><h1>Vista Administrador</h1>
 	</div>
 	<jsp:include page="footer.jsp" />
 </body>

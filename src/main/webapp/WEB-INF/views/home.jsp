@@ -10,16 +10,12 @@
 <jsp:include page="header.jsp" />
 
 <div class="contenido">
-	<h1>
-		Hola ${nombre}!  
-	</h1>
 	
-	<P>  la hora del servidor es ${serverTime}. </P>
 	<p> <c:out value="${nombre}${apellido} Edad: ${edad}"/> </p>
 	
 	<a href="capacitacion">Detalle Capacitacion</a>
 
-	<p>Menu provisional</p>
+	<h2>Menu provisional</h2>
 	<a href="AreaAdmin">Vista Admin</a>
 	<a href="AreaCliente">Vista Cliente</a>
 	<a href="AreaProfesional">Vista Profesional</a>
@@ -35,8 +31,8 @@
 			<br>
 		<h2>No más Accidentabilidad</h2>
 		<h3>Integrantes</h3>
-			<p>Takeshi Kita - <a target="_blank" href="https://github.com/takeshidev">takeshidev</a></p>
-			<p>Cristóbal Latorre - <a target="_blank" href="https://github.com/toballatorre">toballatorre</a></p>
+			<p>Takeshi Kita - <a target="_blank" href="https://github.com/takeshidev"><i class="fab fa-github"></i>takeshidev</a></p>
+			<p>Cristóbal Latorre - <a target="_blank" href="https://github.com/toballatorre"><i class="fab fa-github"></i>toballatorre</a></p>
 			<br>
 		<h3>Tema:</h3>
 		<p>Construir aplicaciones web dinámicas utilizando el entorno de desarrollo Java.</p>

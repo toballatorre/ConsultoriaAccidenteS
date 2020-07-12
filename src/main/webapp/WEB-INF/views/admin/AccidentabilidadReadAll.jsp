@@ -5,15 +5,20 @@
 <html>
 <head>
 	<meta charset="ISO-8859-1">
-	<title>Area Profesional</title>
+	<title>Revisar Accidentabilidad</title>
 	<link rel="stylesheet" href="<c:url value="/resources/css/estilo.css"></c:url>">
 </head>
 <body>
-	<jsp:include page="header.jsp" />
+	<jsp:include page="../header.jsp" />
 	<div class="contenido">
-	<jsp:include page="MenuProfesional.jsp" />
-	<br><br/><h1>Vista Profesional</h1>
+	<jsp:include page="../MenuCliente.jsp" />
+	<br><h1>Vista Administrador</h1>
+	<h2>Ver Accidentabilidad</h2>
+	
+	
+	
+	
 	</div>
-	<jsp:include page="footer.jsp" />
+	<jsp:include page="../footer.jsp" />
 </body>
 </html>

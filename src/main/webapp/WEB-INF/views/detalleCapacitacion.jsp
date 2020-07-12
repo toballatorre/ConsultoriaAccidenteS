@@ -8,6 +8,7 @@
 <meta charset="ISO-8859-1">
 <title>Detalle Capacitacion <c:out value="${id}"/> </title>
 </head>
+<link rel="stylesheet" href="<c:url value="/resources/css/estilo.css"></c:url>">
 <body>
 	<h1>Detalle Capacitacion <c:out value="${id}"/></h1>
 	<table>

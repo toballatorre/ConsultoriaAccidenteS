@@ -10,13 +10,7 @@
 <jsp:include page="header.jsp" />
 
 <div class="contenido">
-	<h1>
-		Hola ${nombre}!  
-	</h1>
-	
-	<P>  la hora del servidor es ${serverTime}. </P>
-	<p> <c:out value="${nombre}${apellido} Edad: ${edad}"/> </p>
-	
+		
 	<a href="capacitacion">Detalle Capacitacion</a>
 
 	<p>Menu provisional</p>
@@ -62,20 +56,20 @@
 		<br>
 		<h3>Preparación del proyecto</h3>
 		<p>1. Iniciamos diseñando el diagrama de casos de uso que se proveyó en la asignación del proyecto.</p>
-		<img src="/resources/img/DiagramasModelos/CasosDeUso.jpg">
+		<img src= <c:url value="/resources/img/DiagramasModelos/CasosDeUso.jpg"></c:url>>
 		
 		<p>2. Creamos el diagrama de casos</p>
-		<img src="/resources/img/DiagramasModelos/DiagramaCasodeUso.jpeg" width="90%">
+		<img src= <c:url value="/resources/img/DiagramasModelos/DiagramaCasodeUso.jpeg"></c:url> width=70%>
 		
 		<p>3. Modelo de Datos</p>
 		<p><a target="_blank" href="SQL/ScriptUnico.sql">Ver script base de datos</a></p>
 		
-		<img src="/resources/img/DiagramasModelos/Relational_1.png" width="90%">
+		<img src= <c:url value="/resources/img/DiagramasModelos/Relational_1.png"></c:url> width=70%>
 		
 		<p>4. Secuencias</p>
-		<img src="/resources/img/DiagramasModelos/SecuanciaAdmin.jpg" width="90%">
-		<img src="/resources/img/DiagramasModelos/SecuenciaCliente.jpg" width="90%">
-		<img src="/resources/img/DiagramasModelos/SecuenciaProfesional.jpg" width="90%">
+		<img src= <c:url value="/resources/img/DiagramasModelos/SecuanciaAdmin.jpg"></c:url> width=70%>
+		<img src= <c:url value="/resources/img/DiagramasModelos/SecuenciaCliente.jpg"></c:url> width=70%>
+		<img src= <c:url value="/resources/img/DiagramasModelos/SecuenciaProfesional.jpg"></c:url> width=70%>
 		
 		<h3>GitHub</h3>
 		<p><a target="blank" href="https://github.com/toballatorre/ConsultoriaAccidente.git">https://github.com/toballatorre/ConsultoriaAccidente.git</a></p>

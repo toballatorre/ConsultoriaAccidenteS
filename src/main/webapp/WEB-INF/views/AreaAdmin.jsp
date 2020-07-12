@@ -6,7 +6,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Area Administrador</title>
-<link rel="stylesheet" href="css/estilo.css">
+<link rel="stylesheet" href="<c:url value="/resources/css/estilo.css"></c:url>">
 </head>
 <body>
 	<jsp:include page="header.jsp" />

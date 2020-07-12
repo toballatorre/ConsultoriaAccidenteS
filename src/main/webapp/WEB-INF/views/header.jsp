@@ -6,6 +6,6 @@
 	</div>
 	
 	<div class="areaLogin">
-		jsp:include page="ValidaUsuario.jsp" /
+		<!-- jsp:include page="ValidaUsuario.jsp" / -->
 	</div>
 </header>

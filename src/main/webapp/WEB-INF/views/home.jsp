@@ -11,8 +11,6 @@
 
 <div class="contenido">
 	
-	<p> <c:out value="${nombre}${apellido} Edad: ${edad}"/> </p>
-	
 	<a href="capacitacion">Detalle Capacitacion</a>
 
 	<h2>Menu provisional</h2>

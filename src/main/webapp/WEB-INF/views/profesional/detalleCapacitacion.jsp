@@ -14,37 +14,37 @@
 	<div class="contenido">
 	<jsp:include page="../MenuProfesional.jsp" />
 	<br><h1>Vista Profesional</h1>	
-		<h2>Detalle Capacitacion <c:out value="${id}"/></h2>
+		<h2>Detalle Capacitacion <c:out value="${cap.getId()}"/></h2>
 		<table>
 			<thead>
 				<tr>
-					<th colspan="4">Detalle Capacitacion <c:out value="${id}"/></th>
+					<th colspan="4">Detalle Capacitacion <c:out value="${cap.getId()}"/></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
 					<td>Cliente</td>
-					<td><c:out value="${idCliente}"/></td>
+					<td><c:out value="${cap.getIdCliente()}"/></td>
 					<td>Fecha</td>
-					<td><c:out value="${fecha}"/></td>
+					<td><c:out value="${cap.getFecha()}"/></td>
 				</tr>
 				<tr>
 					<td>Tema</td>
-					<td colspan="3"><c:out value="${tema}"/></td>
+					<td colspan="3"><c:out value="${cap.getTema()}"/></td>
 				</tr>
 				<tr>
 					<td>Objetivos</td>
-					<td colspan="3"><c:out value="${objetivos}"/></td>
+					<td colspan="3"><c:out value="${cap.getObjetivos()}"/></td>
 				</tr>
 				<tr>
 					<td>Contenidos</td>
-					<td colspan="3"><c:out value="${contenidos}"/></td>
+					<td colspan="3"><c:out value="${cap.getContenidos()}"/></td>
 				</tr>
 				<tr>
 					<td>Recursos</td>
-					<td><c:out value="${recursos}"/></td>
+					<td><c:out value="${cap.getRecursos()}"/></td>
 					<td>Encargado</td>
-					<td><c:out value="${idUsuarioPro}"/></td>
+					<td><c:out value="${cap.getIdUsuarioPro()}"/></td>
 				</tr>
 			</tbody>
 		</table>

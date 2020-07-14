@@ -11,8 +11,6 @@
 
 <div class="contenido">
 	
-	<a href="capacitacion">Detalle Capacitacion</a>
-
 	<h2>Menu provisional</h2>
 	<a href="AreaAdmin">Vista Admin</a>
 	<a href="AreaCliente">Vista Cliente</a>

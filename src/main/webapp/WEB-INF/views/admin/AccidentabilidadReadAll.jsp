@@ -11,7 +11,7 @@
 <body>
 	<jsp:include page="../header.jsp" />
 	<div class="contenido">
-	<jsp:include page="../MenuCliente.jsp" />
+	<jsp:include page="../MenuAdmin.jsp" />
 	<br><h1>Vista Administrador</h1>
 	<h2>Ver Accidentabilidad</h2>
 	

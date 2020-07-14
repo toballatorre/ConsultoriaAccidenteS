@@ -21,4 +21,14 @@
 		<property name="idUsuarioPro" value="7" />
 	</bean>
 	
+	<!-- BEAN ACTIVIDAD -->
+	<bean id="actividad" class="cl.tinyprro.beans.Actividad">
+		<property name="id" value="5"/>
+		<property name="titulo" value="Señaletica"/>
+		<property name="descripcion" value="Renovar señaletica en pasillos de la bodega"/>
+		<property name="fechaPlazo" value="05/12/20"/>
+		<property name="status" value="Pendiente"/>
+		<property name="comentario" value="No se registran avances"/>
+		<property name="idCliente" value="1"/>
+	</bean>
 </beans>

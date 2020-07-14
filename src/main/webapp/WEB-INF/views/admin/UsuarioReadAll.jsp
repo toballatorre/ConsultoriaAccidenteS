@@ -51,7 +51,7 @@
 	
 		</table>
 	
-		<a href="${pageContext.request.contextPath}/CrearUsuario"><i class="far fa-plus-square"></i> Crear Usuario</a>
+		<a href="UsuarioCreate" class="btn btn-primary" role="button"><i class="far fa-plus-square"></i> Crear Usuario</a>
 	
 	
 	</div>

@@ -1,6 +1,5 @@
 package cl.tinyprro.beans;
 
-import java.sql.Date;
 
 public class Actividad {
 
@@ -8,7 +7,7 @@ public class Actividad {
 	private int id;
 	private String titulo;
 	private String descripcion;
-	private Date fechaPlazo;
+	private String fechaPlazo;
 	private String status;
 	private String comentario;
 	private int idCliente;
@@ -29,7 +28,7 @@ public class Actividad {
 	 * @param comentario
 	 * @param idCliente
 	 */
-	public Actividad(String titulo, String descripcion, Date fechaPlazo, String status, String comentario,
+	public Actividad(String titulo, String descripcion, String fechaPlazo, String status, String comentario,
 			int idCliente) {
 		super();
 		this.titulo = titulo;
@@ -51,7 +50,7 @@ public class Actividad {
 	 * @param comentario
 	 * @param idCliente
 	 */
-	public Actividad(int id, String titulo, String descripcion, Date fechaPlazo, String status, String comentario,
+	public Actividad(int id, String titulo, String descripcion, String fechaPlazo, String status, String comentario,
 			int idCliente) {
 		super();
 		this.id = id;
@@ -115,7 +114,7 @@ public class Actividad {
 	/**
 	 * @return the fechaPlazo
 	 */
-	public Date getFechaPlazo() {
+	public String getFechaPlazo() {
 		return fechaPlazo;
 	}
 	
@@ -123,7 +122,7 @@ public class Actividad {
 	/**
 	 * @param fechaPlazo the fechaPlazo to set
 	 */
-	public void setFechaPlazo(Date fechaPlazo) {
+	public void setFechaPlazo(String fechaPlazo) {
 		this.fechaPlazo = fechaPlazo;
 	}
 	

@@ -27,7 +27,7 @@
 					<tr>
 						<td>1</td>
 						<td>Empresas Calipso</td>
-						<td><a href="ClientesEditar?idcliente=11111"><i class="fab fa-wpforms"></i></a></td>
+						<td><a href="ClienteUpdate?idcliente=11111"><i class="fab fa-wpforms"></i></a></td>
 						<td><a href="Accidentabilidad"><i class="fas fa-user-injured"></i></a></td>
 					</tr>
 				

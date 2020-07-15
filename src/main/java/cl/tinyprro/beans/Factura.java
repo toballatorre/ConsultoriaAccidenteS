@@ -1,9 +1,6 @@
 package cl.tinyprro.beans;
 
-import java.sql.Date;
 import java.util.List;
-
-
 
 public class Factura {
 	/* CONSTANTE */
@@ -12,9 +9,9 @@ public class Factura {
 	/* CABECERA */
 	private int idFactura;
 	private int cliente_idCliente;
-	private Date fechaEmision;
-	private Date fechaVencimiento;
-	private Date fechaPago;
+	private String fechaEmision;
+	private String fechaVencimiento;
+	private String fechaPago;
 	
 	/* DETALLE */
 	private List<Item> listaItem = null;
@@ -23,7 +20,7 @@ public class Factura {
 	public Factura() {
 	}
 
-	public Factura(int idFactura, int cliente_idCliente, Date fechaEmision, Date fechaVencimiento, Date fechaPago,
+	public Factura(int idFactura, int cliente_idCliente, String fechaEmision, String fechaVencimiento, String fechaPago,
 			List<Item> listaItem) {
 		this.idFactura = idFactura;
 		this.cliente_idCliente = cliente_idCliente;
@@ -50,27 +47,27 @@ public class Factura {
 		this.cliente_idCliente = cliente_idCliente;
 	}
 
-	public Date getFechaEmision() {
+	public String getFechaEmision() {
 		return fechaEmision;
 	}
 
-	public void setFechaEmision(Date fechaEmision) {
+	public void setFechaEmision(String fechaEmision) {
 		this.fechaEmision = fechaEmision;
 	}
 
-	public Date getFechaVencimiento() {
+	public String getFechaVencimiento() {
 		return fechaVencimiento;
 	}
 
-	public void setFechaVencimiento(Date fechaVencimiento) {
+	public void setFechaVencimiento(String fechaVencimiento) {
 		this.fechaVencimiento = fechaVencimiento;
 	}
 
-	public Date getFechaPago() {
+	public String getFechaPago() {
 		return fechaPago;
 	}
 
-	public void setFechaPago(Date fechaPago) {
+	public void setFechaPago(String fechaPago) {
 		this.fechaPago = fechaPago;
 	}
 

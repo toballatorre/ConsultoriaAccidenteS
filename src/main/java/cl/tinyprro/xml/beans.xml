@@ -31,4 +31,7 @@
 		<property name="comentario" value="No se registran avances"/>
 		<property name="idCliente" value="1"/>
 	</bean>
+	
+	<!-- BEAN FACTURA -->
+	<bean id="factura" class="cl.tinyprro.beans.Factura"></bean>
 </beans>

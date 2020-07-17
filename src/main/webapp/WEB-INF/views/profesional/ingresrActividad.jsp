@@ -16,11 +16,12 @@
 	<h2>Ingresar Actividad Mejora</h2>
 	
 	
-	<form action="detalle" method="post">
+	<form action="ingresar" method="post">
 			<table>
 				<tbody>
 					<tr>
-						<td>ID: </td><td><input type="number" id="idAct" name="idAct"></td>
+						<!-- <td>ID: </td><td><input type="number" id="idAct" name="idAct"></td> -->
+						<td></td><td></td>
 						<td>Titulo: </td><td><input type="text" id="titulo" name="titulo"></td>
 						<td>Fecha Plazo: </td><td><input type="date" id="fechaP" name="fechaP"></td>
 					</tr>

@@ -31,7 +31,7 @@
 					<td> <c:out value="${act.getFechaPlazo()}"/> </td>
 					<td> <c:out value="${act.getStatus()}"/> </td>
 					<td> <c:out value="${act.getIdCliente()}"/> </td>
-					<td> <a href="${pageContext.request.contextPath}/actividad/detalle${act.getId()}">Detalle</a> </td>
+					<td> <a href="${pageContext.request.contextPath}/actividad/detalle/${act.getId()}">Detalle</a> </td>
 				</tr>
 			</c:forEach>
 		</thead>

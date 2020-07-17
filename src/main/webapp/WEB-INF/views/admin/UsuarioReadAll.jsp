@@ -25,29 +25,19 @@
 				<th>Activo</th>
 				<th>Editar</th>
 			</tr>
-	
+		<c:forEach items="${listaUsers}" var="user">
 			<tr>
-				<td>1</td>
-				<td>admin1</td>
-				<td>admin</td>
-				<td>123</td>
-				<td>admin1@consultoria.cl</td>
-				<td>1</td>
+				<td><c:out value="${user.getId()}"/></td>
+				<td><c:out value="${user.getUsuario()}"/></td>
+				<td><c:out value="${user.getTipousuario()}"/></td>
+				<td><c:out value="${user.getClave()}"/></td>
+				<td><c:out value="${user.getMail()}"/></td>
+				<td><c:out value="${user.getActivo()}"/></td>
 				<td>
-					<a href="UsuarioUpdate"><i class="far fa-edit"></i></a>
+					<a href="UsuarioUpdate/${user.getId()}"><i class="far fa-edit"></i></a>
 				</td>
 			</tr>
-			<tr>
-				<td>1</td>
-				<td>admin1</td>
-				<td>admin</td>
-				<td>123</td>
-				<td>admin1@consultoria.cl</td>
-				<td>1</td>
-				<td>
-					<a href="UsuarioUpdate"><i class="far fa-edit"></i></a>
-				</td>
-			</tr>
+		</c:forEach>
 	
 		</table>
 	

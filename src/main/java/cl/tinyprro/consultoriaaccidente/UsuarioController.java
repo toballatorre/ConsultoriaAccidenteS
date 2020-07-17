@@ -2,29 +2,35 @@ package cl.tinyprro.consultoriaaccidente;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import cl.tinyprro.beans.Usuario;
+import cl.tinyprro.dao.DAOusuarios;
 
 @Controller
 public class UsuarioController {
 	private static final Logger logger = LoggerFactory.getLogger(UsuarioController.class);
 	
+	@Autowired
+	DAOusuarios usuarioDAO;	
+	
 	/*CRUD USUARIOS*/
 	@RequestMapping(value = "/Usuarios", method = RequestMethod.GET)
-	public String usuarios(Locale locale,Model model) {
-		logger.info("/Usuarios @UsuarioController ");
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		String formattedDate = dateFormat.format(date);
-		model.addAttribute("serverTime", formattedDate );
+	public ModelAndView listarUsuarios() {
 		
-		return "admin/UsuarioReadAll";
+		List<Usuario> listausuarios = usuarioDAO.buscarTodos();
+				
+		return new ModelAndView("admin/UsuarioReadAll", "listaUsers", listausuarios);
 	}
 	@RequestMapping(value = "/UsuarioCreate", method = RequestMethod.GET)
 	public String usuarioCreate(Locale locale,Model model) {

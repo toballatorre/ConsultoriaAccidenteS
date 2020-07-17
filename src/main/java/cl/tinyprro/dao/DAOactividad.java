@@ -13,6 +13,8 @@ public class DAOactividad {
 	
 	// SQL QUERYS
 	private final String SQL_LISTAR_TODO = "SELECT idactividad, titulo, descripcion, fechaplazo, status, comentario, cliente_idcliente FROM actividad ORDER BY idactividad asc";
+	private final String SQL_BY_ID = "SELECT idactividad, titulo, descripcion, fechaplazo, status, comentario, cliente_idcliente FROM actividad WHERE idactividad = ?";
+	private final String SQL_INSERT = "INSERT INTO actividad (titulo, descripcion, fechaplazo, status, comentario, cliente_idcliente) VALUES (?, ?, ?, ?, ?, ?)";
 	
 	JdbcTemplate template;
 		
@@ -28,6 +30,18 @@ public class DAOactividad {
 		
 		return template.query(SQL_LISTAR_TODO, new ActividadMapper());
 		
+	}
+	/**
+	 * Método para buscar una actividad en específico
+	 * @param id
+	 * @return
+	 */
+	public Actividad actividadById(int id) {
+		return template.queryForObject(SQL_BY_ID, new Object[] {id}, new ActividadMapper());
+	}
+	
+	public int ingresarActividad(Actividad a) {
+		return template.update(SQL_INSERT, new Object[] {a.getTitulo(), a.getDescripcion(), a.getFechaPlazo(), a.getStatus(), a.getComentario(), a.getIdCliente()});
 	}
 	
 	/**

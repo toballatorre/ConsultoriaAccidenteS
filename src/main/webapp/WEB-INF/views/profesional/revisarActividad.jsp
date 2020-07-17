@@ -46,7 +46,7 @@
 				<td colspan="2">${act.getIdCliente()}</td>
 			</tr>
 			<tr>
-				<td><a href="../AreaProfesional">Volver</a></td>
+				<td><a href="${pageContext.request.contextPath}/AreaProfesional">Volver</a></td>
 			</tr>
 		</tbody>
 	</table>

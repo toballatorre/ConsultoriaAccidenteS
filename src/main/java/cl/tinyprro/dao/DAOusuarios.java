@@ -14,6 +14,8 @@ public class DAOusuarios {
 	// SQL QUERYS
 	private final String SQL_LISTAR_TODO = 
 			"SELECT IDUSUARIO ,USUARIO , TIPOUSUARIO , CLAVE , MAIL , ACTIVO  from usuario order by idusuario asc";
+	private final String SQL_LISTAR_BY_ID = 
+			"SELECT IDUSUARIO ,USUARIO , TIPOUSUARIO , CLAVE , MAIL , ACTIVO  from usuario  where idusuario = 1 order by idusuario asc";
 	
 	JdbcTemplate template;
 		
@@ -28,6 +30,11 @@ public class DAOusuarios {
 	public List<Usuario> buscarTodos(){
 		
 		return template.query(SQL_LISTAR_TODO, new UsuarioMapper());
+	}
+	
+	public Usuario buscarPorId(int id) {
+		
+		return template.queryForObject(SQL_LISTAR_BY_ID, new Object[] {id}, new UsuarioMapper());
 	}
 	
 	public class UsuarioMapper implements RowMapper<Usuario>{

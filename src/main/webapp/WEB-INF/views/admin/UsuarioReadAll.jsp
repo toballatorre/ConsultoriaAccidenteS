@@ -6,7 +6,12 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<title>Usuarios</title>
+	<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+	crossorigin="anonymous">
 	<link rel="stylesheet" href="<c:url value="/resources/css/estilo.css"></c:url>">
+
 </head>
 <body>
 	<jsp:include page="../header.jsp" />
@@ -15,9 +20,10 @@
 	<br><h1>Vista Administrador</h1>
 	<h2>Ver Usuarios</h2>
 	
-	<table>
+	<table class="table table-striped table-hover">
+		<thead class="thead-light">
 			<tr>
-				<th>ID</th>
+				<th scope="col">ID</th>
 				<th>Usuario</th>
 				<th>TipoUsuario</th>
 				<th>Clave</th>
@@ -25,6 +31,7 @@
 				<th>Activo</th>
 				<th>Editar</th>
 			</tr>
+		</thead>
 		<c:forEach items="${listaUsers}" var="user">
 			<tr>
 				<td><c:out value="${user.getId()}"/></td>

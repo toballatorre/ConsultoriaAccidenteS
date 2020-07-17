@@ -7,6 +7,10 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<title>Detalle Capacitación <c:out value="${id}"/> </title>
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+		crossorigin="anonymous">
 	<link rel="stylesheet" href="<c:url value="/resources/css/estilo.css"></c:url>">
 </head>
 <body>
@@ -15,7 +19,7 @@
 	<jsp:include page="../MenuProfesional.jsp" />
 	<br><h1>Vista Profesional</h1>	
 		<h2>Detalle Capacitacion <c:out value="${cap.getId()}"/></h2>
-		<table>
+		<table class="table table-striped table-hover">
 			<thead>
 				<tr>
 					<th colspan="4">Detalle Capacitacion <c:out value="${cap.getId()}"/></th>

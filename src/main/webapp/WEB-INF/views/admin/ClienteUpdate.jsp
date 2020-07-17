@@ -6,6 +6,10 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<title>Editar Cliente - Vista Administrador</title>
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+		crossorigin="anonymous">
 	<link rel="stylesheet" href="<c:url value="/resources/css/estilo.css"></c:url>">
 </head>
 <body>
@@ -19,8 +23,8 @@
 	<form action="ClientesEditar" method="post">
 			<input type="hidden" name="idcliente"  value="${datoscliente.getIdCliente()}" />
 			<input type="hidden" name="idusuario"  value="${datoscliente.getIdUsuario()}" />
-			<table class="tabla">
-				<tr>
+			<table class="table table-striped table-hover">
+					<tr>
 					<td>Nombre Empresa:</td>
 					<td><input type="text" name="nombreempresa" value="${datoscliente.getNombreEmpresa()}"/></td>
 				</tr>

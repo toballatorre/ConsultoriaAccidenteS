@@ -10,11 +10,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import cl.tinyprro.beans.Cliente;
 import cl.tinyprro.beans.Usuario;
+import cl.tinyprro.dao.DAOclientes;
 import cl.tinyprro.dao.DAOusuarios;
 
 @Controller
@@ -22,7 +25,8 @@ public class UsuarioController {
 	private static final Logger logger = LoggerFactory.getLogger(UsuarioController.class);
 	
 	@Autowired
-	DAOusuarios usuarioDAO;	
+	DAOusuarios usuarioDAO;
+	DAOclientes clienteDAO;
 	
 	/*CRUD USUARIOS*/
 	@RequestMapping(value = "/Usuarios", method = RequestMethod.GET)
@@ -42,27 +46,27 @@ public class UsuarioController {
 		
 		return "admin/UsuarioCreate";
 	}
-	@RequestMapping(value = "/UsuarioUpdate", method = RequestMethod.GET)
-	public String usuarioUpdate(Locale locale,Model model) {
-		logger.info("/UsuarioUpdate @UsuarioController ");
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		String formattedDate = dateFormat.format(date);
-		model.addAttribute("serverTime", formattedDate );
+	@RequestMapping(value = "/UsuarioUpdate/{id}", method = RequestMethod.GET)
+	public ModelAndView listarUsuarioporid(@PathVariable int id) {
 		
-		return "admin/UsuarioUpdate";
+		Usuario u = usuarioDAO.buscarPorId(id);
+		
+		return new ModelAndView("admin/UsuarioUpdate", "usuario", u);
 	}
 	
+	/*@RequestMapping(value = "/UsuarioUpdate/", method = RequestMethod.POST)
+	public String editsave(Usuario usr) {
+		usuarioDAO.actualizarPorId(usr);
+	return ;
+	}*/
+		
 	/*CRUD CLIENTES*/
 	@RequestMapping(value = "/Clientes", method = RequestMethod.GET)
-	public String clientes(Locale locale,Model model) {
-		logger.info("/Clientes @UsuarioController ");
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		String formattedDate = dateFormat.format(date);
-		model.addAttribute("serverTime", formattedDate );
+	public ModelAndView listarClientes() {
 		
-		return "admin/ClienteReadAll";
+		List<Cliente> listaclientes = clienteDAO.buscarTodosClientes();
+				
+		return new ModelAndView("admin/ClienteReadAll", "listaClientes", listaclientes);
 	}
 	@RequestMapping(value = "/ClienteUpdate", method = RequestMethod.GET)
 	public String clienteUpdate(Locale locale,Model model) {

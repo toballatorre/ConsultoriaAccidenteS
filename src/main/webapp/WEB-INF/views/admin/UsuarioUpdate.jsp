@@ -19,31 +19,31 @@
 	<br><h1>Vista Administrador</h1>
 	<h2>Editar Usuario</h2>
 	
-	<form action="EditarUsuario" method="post">
-				<input type="hidden" name="idusuario"  value="${datosusuario.getIdusuario()}" />
-				<table class="tabla">
+	<form action="/UsuarioUpdate" method="post">
+				<input type="hidden" name="idusuario"  value="${usuario.getId()}" />
+				<table class="table">
 					<tr>
 						<td>Usuario:</td>
-						<td><input type="text" name="txtusuario" value="${datosusuario.getUsuario()}"/></td>
+						<td><input type="text" name="txtusuario" value="${usuario.getUsuario()}"/></td>
 					</tr>
 					<tr>
 						<td>Tipo Usuario:</td>
 						<td>
-							<input type="text" name="txttipousuario" value="${datosusuario.getTipousuario()}"/>
+							<input type="text" name="txttipousuario" value="${usuario.getTipousuario()}"/>
 						</td>
 					</tr>
 					<tr>
 						<td>Clave:</td>
-						<td><input type="password" name="txtclave" value="${datosusuario.getClave()}"/></td>
+						<td><input type="password" name="txtclave" value="${usuario.getClave()}"/></td>
 					</tr>
 					<tr>
 						<td>Mail:</td>
-						<td><input type="email" name="txtmail" value="${datosusuario.getMail()}"/></td>
+						<td><input type="email" name="txtmail" value="${usuario.getMail()}"/></td>
 					</tr>
 					<tr>
 						<td>Activo:</td>
 						<td>
-						<input type="text" name="txtactivo" value="${datosusuario.getActivo()}"/>
+						<input type="text" name="txtactivo" value="${usuario.getActivo()}"/>
 						</tr>
 					<tr>
 						<td></td>
@@ -55,7 +55,7 @@
 	
 	
 	
-	<a class="boton" href="Usuarios"><i class="fas fa-undo-alt"></i> Volver</a>
+	<a href="${pageContext.request.contextPath}/Usuarios" class="btn btn-primary" role="button"><i class="fas fa-undo-alt"></i> Volver</a>
 	</div>
 	<jsp:include page="../footer.jsp" />
 </body>

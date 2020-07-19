@@ -29,14 +29,14 @@
 				
 			</tr>
 		</thead>
-		
-					<tr>
-						<td>1</td>
-						<td>Empresas Calipso</td>
-						<td><a href="ClienteUpdate?idcliente=11111"><i class="fab fa-wpforms"></i></a></td>
-						<td><a href="Accidentabilidad"><i class="fas fa-user-injured"></i></a></td>
-					</tr>
-				
+		<c:forEach items="${listaClientes}" var="cliente">
+			<tr>
+				<td><c:out value="${cliente.getId()}"/></td>
+				<td><c:out value="${cliente.getNombreEmpresa()}"/></td>
+				<td><a href="ClienteUpdate/${cliente.getId()}"><i class="fab fa-wpforms"></i></a></td>
+				<td><a href="Accidentabilidad/${cliente.getId()}"><i class="fas fa-user-injured"></i></a></td>
+			</tr>
+		</c:forEach>		
 		
 			</table>
 	

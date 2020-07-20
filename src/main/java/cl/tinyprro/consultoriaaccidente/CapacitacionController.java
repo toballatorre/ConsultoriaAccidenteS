@@ -1,26 +1,34 @@
 package cl.tinyprro.consultoriaaccidente;
 
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import cl.tinyprro.beans.Capacitacion;
+import cl.tinyprro.beans.Cliente;
+import cl.tinyprro.dao.DAOcapacitacion;
+import cl.tinyprro.dao.DAOclientes;
 
 
 @Controller
 @RequestMapping(value = "/capacitacion")
 public class CapacitacionController {
 	private static final Logger logger = LoggerFactory.getLogger(CapacitacionController.class);
+	
+	@Autowired
+	DAOcapacitacion capacitacionDAO;
+	@Autowired
+	DAOclientes clientesDAO;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String capacitacion() {
@@ -29,34 +37,27 @@ public class CapacitacionController {
 	}
 	
 	@RequestMapping(value="/crear")
-	public String crearCapacitacion() {
-		System.out.println("Voy a capacitacion");
-		return "profesional/crearCapacitacion";
+	public ModelAndView crearCapacitacion() {
+		
+		List<Cliente> listaClientes = clientesDAO.buscarTodosClientes();
+		
+		return new ModelAndView("profesional/crearCapacitacion", "listaClientes", listaClientes);
 	}
 	
-	
-	@RequestMapping(value = "/detalle", method = RequestMethod.POST)
-	public String capacitacion(Locale locale, Model model, HttpServletRequest request) {
+	@RequestMapping(value = "/ingresar", method = RequestMethod.POST)
+	public ModelAndView capacitacion(Locale locale, Model model, HttpServletRequest request) {
 			logger.info("Detalles Capacitacion", locale);
 			
-			ApplicationContext aC = new ClassPathXmlApplicationContext("cl/tinyprro/xml/beans.xml");
+			capacitacionDAO.ingresarCapacitacion(new Capacitacion(
+						Integer.parseInt(request.getParameter("client")),
+						request.getParameter("tema"),
+						request.getParameter("objetivos"),
+						request.getParameter("contenidos"),
+						request.getParameter("recursos"),
+						request.getParameter("fecha"),
+						Integer.parseInt(request.getParameter("idProf"))));
 			
-			Capacitacion c = (Capacitacion) aC.getBean("capacitacion");
-			
-			c.setId(Integer.parseInt(request.getParameter("idCap")));
-			c.setFecha(request.getParameter("fecha"));
-			c.setTema(request.getParameter("tema"));
-			c.setIdCliente(Integer.parseInt(request.getParameter("client")));
-			c.setObjetivos(request.getParameter("objetivos"));
-			c.setContenidos(request.getParameter("contenidos"));
-			c.setRecursos(request.getParameter("recursos"));
-			c.setIdUsuarioPro(Integer.parseInt(request.getParameter("idProf")));
-			
-			model.addAttribute("cap", c);
-			
-			((ConfigurableApplicationContext)aC).close();
-			
-		return "profesional/detalleCapacitacion";
+		return new ModelAndView("/profesional/capacitacion");
 	}
 	
 }

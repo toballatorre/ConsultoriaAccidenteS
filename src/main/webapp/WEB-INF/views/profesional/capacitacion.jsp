@@ -22,6 +22,8 @@
 	<br>
 	<a href="capacitacion/crear">Ingresar Capacitación</a>	
 	<br>
+	<a href="capacitacion/listar">Listar las Capacitaciones</a>	
+	<br>
 	
 	</div>
 	<jsp:include page="../footer.jsp" />

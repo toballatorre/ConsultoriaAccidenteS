@@ -6,6 +6,10 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<title>Clientes</title>
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+		crossorigin="anonymous">
 	<link rel="stylesheet" href="<c:url value="/resources/css/estilo.css"></c:url>">
 </head>
 <body>
@@ -15,22 +19,24 @@
 	<br><h1>Vista Administrador</h1>
 	<h2>Listado de clientes</h2>
 	
-	<table>
-				<tr>
-					<th>ID</th>
-					<th>Nombre Empresa</th>
-					<th>Información</th>
-					<th>Accidentabilidad</th>
-					
-				</tr>
-		
-					<tr>
-						<td>1</td>
-						<td>Empresas Calipso</td>
-						<td><a href="ClienteUpdate?idcliente=11111"><i class="fab fa-wpforms"></i></a></td>
-						<td><a href="Accidentabilidad"><i class="fas fa-user-injured"></i></a></td>
-					</tr>
+	<table class="table table-striped table-hover">
+		<thead class="thead-light">
+			<tr>
+				<th>ID</th>
+				<th>Nombre Empresa</th>
+				<th>Información</th>
+				<th>Accidentabilidad</th>
 				
+			</tr>
+		</thead>
+		<c:forEach items="${listaClientes}" var="cliente">
+			<tr>
+				<td><c:out value="${cliente.getId()}"/></td>
+				<td><c:out value="${cliente.getNombreEmpresa()}"/></td>
+				<td><a href="ClienteUpdate/${cliente.getId()}"><i class="fab fa-wpforms"></i></a></td>
+				<td><a href="Accidentabilidad/${cliente.getId()}"><i class="fas fa-user-injured"></i></a></td>
+			</tr>
+		</c:forEach>		
 		
 			</table>
 	

@@ -5,7 +5,11 @@
 <html>
 <head>
 	<meta charset="ISO-8859-1">
-	<title> - Vista Administrador</title>
+	<title>Ver Profesionales - Vista Administrador</title>
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+		crossorigin="anonymous">
 	<link rel="stylesheet" href="<c:url value="/resources/css/estilo.css"></c:url>">
 </head>
 <body>
@@ -15,8 +19,8 @@
 	<br><h1>Vista Administrador</h1>
 	<h2>Ver Profesionales</h2>
 	
-	
-			<table>
+	<table class="table table-striped table-hover">
+		<thead class="thead-light">
 			<tr>
 				<th>IdEmpleado</th>
 				<th>Nombre</th>
@@ -24,6 +28,7 @@
 				<th>Celular</th>
 				<th>Editar</th>
 			</tr>
+		</thead>
 	
 			<tr>
 				<td>88</td>

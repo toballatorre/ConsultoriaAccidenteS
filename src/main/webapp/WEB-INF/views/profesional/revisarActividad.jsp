@@ -6,6 +6,10 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<title>Ingresar Actividad - Vista Profesional</title>
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+		crossorigin="anonymous">
 	<link rel="stylesheet" href="<c:url value="/resources/css/estilo.css"></c:url>">
 </head>
 <body>
@@ -16,7 +20,7 @@
 	<h2>Revisar Actividad Mejora</h2>
 
 
-	<table>
+	<table class="table table-striped table-hover">
 		<tbody>
 			<tr>
 				<td>ID:</td>

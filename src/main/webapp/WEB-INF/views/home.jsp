@@ -3,7 +3,10 @@
 <html>
 <head>
 	<title>Home - Consultoria Accidentes</title>
-
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+		crossorigin="anonymous">
 	<link rel="stylesheet" href="<c:url value="/resources/css/estilo.css"></c:url>">
 </head>
 <body>
@@ -12,9 +15,9 @@
 <div class="contenido">
 	
 	<h2>Menu provisional</h2>
-	<a href="AreaAdmin">Vista Admin</a>
-	<a href="AreaCliente">Vista Cliente</a>
-	<a href="AreaProfesional">Vista Profesional</a>
+	<button onclick="window.location.href='AreaAdmin';" type="button" class="btn btn-outline-primary">Admin</button>
+	<button onclick="window.location.href='AreaCliente';" type="button" class="btn btn-outline-primary">Cliente</button>
+	<button onclick="window.location.href='AreaProfesional';" type="button" class="btn btn-outline-primary">Profesional</button>
 
 		<h1>Bienvenido</h1><br>
 		<h3>Use alguno de estos usuarios para ingresar</h3>

@@ -6,6 +6,10 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<title>Editar Profesional - Vista Administrador</title>
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+		crossorigin="anonymous">
 	<link rel="stylesheet" href="<c:url value="/resources/css/estilo.css"></c:url>">
 </head>
 <body>
@@ -19,7 +23,7 @@
 	<form action="ProfEditar" method="post">
 				<input type="hidden" name="idempleado"  value="${datosprofesional.getIdempleado()}" />
 				<input type="hidden" name="idusuario"  value="${datosprofesional.getIdusuario()}" />
-				<table class="tabla">
+				<table class="table table-striped table-hover">
 					<tr>   
 						<td>Nombre:</td>
 						<td><input type="text" name="nombre" value="${datosprofesional.getNombre()}"/></td>

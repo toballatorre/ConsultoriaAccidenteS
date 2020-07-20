@@ -1,7 +1,9 @@
 package cl.tinyprro.consultoriaaccidente;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,8 +18,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import cl.tinyprro.beans.Capacitacion;
 import cl.tinyprro.beans.Cliente;
+import cl.tinyprro.beans.Profesional;
 import cl.tinyprro.dao.DAOcapacitacion;
 import cl.tinyprro.dao.DAOclientes;
+import cl.tinyprro.dao.DAOprofesional;
 
 
 @Controller
@@ -29,6 +33,8 @@ public class CapacitacionController {
 	DAOcapacitacion capacitacionDAO;
 	@Autowired
 	DAOclientes clientesDAO;
+	@Autowired
+	DAOprofesional profesionalDAO;
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String capacitacion() {
@@ -40,8 +46,13 @@ public class CapacitacionController {
 	public ModelAndView crearCapacitacion() {
 		
 		List<Cliente> listaClientes = clientesDAO.buscarTodosClientes();
+		List<Profesional> listaProf = profesionalDAO.listarTodos();
 		
-		return new ModelAndView("profesional/crearCapacitacion", "listaClientes", listaClientes);
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("listaClientes", listaClientes);
+		model.put("listaProf", listaProf);
+		
+		return new ModelAndView("profesional/crearCapacitacion", "model", model);
 	}
 	
 	@RequestMapping(value = "/ingresar", method = RequestMethod.POST)

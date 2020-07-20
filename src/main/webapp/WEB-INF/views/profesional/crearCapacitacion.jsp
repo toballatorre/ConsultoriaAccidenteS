@@ -23,14 +23,16 @@
 			<table class="table table-striped table-hover">
 				<tbody>
 					<tr>
-						<td>ID: </td><td><input type="number" id="idCap" name="idCap"></td>
+<!-- 						<td>ID: </td><td><input type="number" id="idCap" name="idCap"></td> -->
 						<td>Fecha: </td><td><input type="date" id="fecha" name="fecha"></td>						
+						<td colspan="2"></td>
 					</tr>
 					<tr>
 						<td>Tema: </td><td><input type="text" id="tema" name="tema"></td>
+						<td>Cliente: </td>
 						<td>
 							<select id="client" name="client">
-								<c:forEach items="${listaClientes}" var="cliente">
+								<c:forEach items="${model.listaClientes}" var="cliente">
 									<option value="${cliente.getId()}"> <c:out value="${cliente.getNombreEmpresa()}"/> </option>									
 								</c:forEach>
 							</select>
@@ -46,7 +48,15 @@
 						<td>Recursos: </td><td colspan="3"><textarea rows="10" cols="80" id="recursos" name="recursos"></textarea></td>
 					</tr>
 					<tr>
-						<td>ID Profesional: </td><td><input type="number" id="idProf" name="idProf"></td>
+						<td>ID Profesional: </td>
+						<td>
+							<select id="idProf" name="idProf">
+								<c:forEach items="${model.listaProf}" var="prof">
+									<option value="${prof.getId()}"> <c:out value="${prof.getNombre()}"/> </option>
+								</c:forEach>
+							</select>
+						</td>
+<!-- 						<td><input type="number" id="idProf" name="idProf"></td> -->
 						<td colspan="2"><input type="submit" value="Ingresar"></td>
 					</tr>
 				</tbody>

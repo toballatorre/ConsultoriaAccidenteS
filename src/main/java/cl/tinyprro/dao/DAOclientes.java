@@ -11,8 +11,7 @@ import cl.tinyprro.beans.Cliente;
 
 public class DAOclientes {
 	// SQL QUERYS
-	private final String SQL_LISTAR_TODO = 
-			"SELECT * from cliente";
+	private final String SQL_LISTAR_TODO = "SELECT idcliente, nombreempresa, rutempresa, usuario_idusuario from cliente";
 	
 
 	JdbcTemplate template;

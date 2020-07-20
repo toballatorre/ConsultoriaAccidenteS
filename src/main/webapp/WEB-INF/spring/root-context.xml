@@ -23,4 +23,12 @@
 	<bean id="usuarioDAO" class="cl.tinyprro.dao.DAOusuarios">
 		<property name="template" ref="jt"></property>
 	</bean>
+	<bean id="capacitacionDAO" class="cl.tinyprro.dao.DAOcapacitacion">
+		<property name="template" ref="jt"></property>
+	</bean>
+	
+	<bean id="clientesDAO" class="cl.tinyprro.dao.DAOclientes">
+		<property name="template" ref="jt"></property>
+	</bean>
+	
 </beans>

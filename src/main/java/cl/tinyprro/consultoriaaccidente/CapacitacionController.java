@@ -37,12 +37,19 @@ public class CapacitacionController {
 	@Autowired
 	DAOprofesional profesionalDAO;
 	
+	/**
+	 * Mustra la Vista de capacitaciones
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public String capacitacion() {
-		System.out.println("Voy a capacitacion");
 		return "profesional/capacitacion";
 	}
 	
+	/**
+	 * Muestra la Vista para crear una capacitacion
+	 * @return
+	 */
 	@RequestMapping(value="/crear")
 	public ModelAndView crearCapacitacion() {
 		
@@ -56,6 +63,13 @@ public class CapacitacionController {
 		return new ModelAndView("profesional/crearCapacitacion", "model", model);
 	}
 	
+	/**
+	 * Ingresa a la base de datos la capacitacion y luego muestra la vista de capacitacion
+	 * @param locale
+	 * @param model
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/ingresar", method = RequestMethod.POST)
 	public ModelAndView capacitacion(Locale locale, Model model, HttpServletRequest request) {
 			logger.info("Detalles Capacitacion", locale);
@@ -71,7 +85,12 @@ public class CapacitacionController {
 			
 		return new ModelAndView("/profesional/capacitacion");
 	}
-	
+	/**
+	 * Muestra la Vista de la capacitación por la id ingresada
+	 * @param locale
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(value = "/detalle/{id}", method = RequestMethod.GET)
 	public ModelAndView detalleCapacitacion(Locale locale,@PathVariable int id) {
 			logger.info("Detalles Capacitacion", locale);
@@ -81,6 +100,11 @@ public class CapacitacionController {
 		return new ModelAndView("/profesional/detalleCapacitacion", "cap", c);
 	}
 	
+	/**
+	 * Muestra la vista con la lista de todas las capacitaciones
+	 * @param locale
+	 * @return
+	 */
 	@RequestMapping(value="/listar", method = RequestMethod.GET)
 	public ModelAndView listarCapacitacion(Locale locale) {
 		logger.info("Detalles Capacitacion", locale);

@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -71,4 +72,21 @@ public class CapacitacionController {
 		return new ModelAndView("/profesional/capacitacion");
 	}
 	
+	@RequestMapping(value = "/detalle/{id}", method = RequestMethod.GET)
+	public ModelAndView detalleCapacitacion(Locale locale,@PathVariable int id) {
+			logger.info("Detalles Capacitacion", locale);
+			
+			Capacitacion c = capacitacionDAO.buscarPorId(id);
+			
+		return new ModelAndView("/profesional/detalleCapacitacion", "cap", c);
+	}
+	
+	@RequestMapping(value="/listar", method = RequestMethod.GET)
+	public ModelAndView listarCapacitacion(Locale locale) {
+		logger.info("Detalles Capacitacion", locale);
+		
+		List<Capacitacion> lista = capacitacionDAO.buscarTodos();
+		
+		return new ModelAndView("profesional/listarCapacitaciones", "listaCap", lista);
+	}
 }

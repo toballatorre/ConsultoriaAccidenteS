@@ -16,10 +16,11 @@ public class DAOusuarios {
 	private final String SQL_LISTAR_TODO = 
 			"SELECT IDUSUARIO ,USUARIO , TIPOUSUARIO , CLAVE , MAIL , ACTIVO  from usuario order by idusuario asc";
 	private final String SQL_LISTAR_BY_ID = 
-			"SELECT IDUSUARIO ,USUARIO , TIPOUSUARIO , CLAVE , MAIL , ACTIVO  from usuario  where idusuario = ? order by idusuario asc";
+			"SELECT IDUSUARIO ,USUARIO , TIPOUSUARIO , CLAVE , MAIL , ACTIVO  from usuario  where idusuario = ?";
 	private final String SQL_UPDATE = 
 			"UPDATE USUARIO SET USUARIO = ?, TIPOUSUARIO = ?, CLAVE =?, MAIL = ?, ACTIVO = ? WHERE idusuario = ? ";
-	
+	private final String SQL_INSERT = 
+			"INSERT INTO USUARIO (USUARIO, TIPOUSUARIO, CLAVE, MAIL, ACTIVO) VALUES (?, ?, ?, ?, ?)";
 	
 	JdbcTemplate template;
 		
@@ -40,29 +41,22 @@ public class DAOusuarios {
 		
 		return template.queryForObject(SQL_LISTAR_BY_ID, new Object[] {id}, new UsuarioMapper());
 	}
-	/*
-	public boolean actualizarPorId(Usuario usr) {
-		boolean creado = false;
-		PreparedStatement ps;
-	       	try {
-	       		ps.getConnection().prepareStatement(SQL_UPDATE);
-				ps.setString(1,usr.getUsuario());
-				ps.setString(2,usr.getTipousuario());  
-				ps.setString(3,usr.getClave());  
-				ps.setString(4,usr.getMail());  
-				ps.setString(5,usr.getActivo());  
-				ps.setInt(6,usr.getId());  
-				
-				if (ps.executeUpdate() > 0) {
-					creado = true;
-				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}  
-	        	         
-		return creado;
-	}*/
+	
+	public int actualizarPorId(Usuario usr) {
+		return template.update(SQL_UPDATE, new Object[] {usr.getUsuario(), usr.getTipousuario(), usr.getClave(), usr.getMail(), usr.getActivo(), usr.getId()});
+	}
+	
+	public int ingresarUsuario (Usuario u) {
+		return template.update(SQL_INSERT,  new Object[]{
+				u.getUsuario(),
+				u.getTipousuario(),
+				u.getClave(),
+				u.getMail(),
+				u.getActivo()
+		}
+		);
+		
+	}
 	
 	
 	public class UsuarioMapper implements RowMapper<Usuario>{

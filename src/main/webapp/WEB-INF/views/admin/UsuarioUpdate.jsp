@@ -19,7 +19,7 @@
 	<br><h1>Vista Administrador</h1>
 	<h2>Editar Usuario</h2>
 	
-	<form action="/UsuarioUpdate" method="post">
+	<form action="UsuarioUpdateSave" method="post">
 				<input type="hidden" name="idusuario"  value="${usuario.getId()}" />
 				<table class="table">
 					<tr>

@@ -20,17 +20,17 @@
 	<h2>Editar infomación del profesional</h2>
 	
 	
-	<form action="ProfEditar" method="post">
-				<input type="hidden" name="idempleado"  value="${datosprofesional.getIdempleado()}" />
-				<input type="hidden" name="idusuario"  value="${datosprofesional.getIdusuario()}" />
+	<form action="ProfesionalUpdateSave" method="post">
+				<input type="hidden" name="idempleado"  value="${profesional.getId()}" />
+				<input type="hidden" name="idusuario"  value="${profesional.getIdusuario()}" />
 				<table class="table table-striped table-hover">
 					<tr>   
 						<td>Nombre:</td>
-						<td><input type="text" name="nombre" value="${datosprofesional.getNombre()}"/></td>
+						<td><input type="text" name="nombre" value="${profesional.getNombre()}"/></td>
 					</tr>
 					<tr>
 						<td>Celular:</td>
-						<td><input type="text" name="celular" value="${datosprofesional.getCelular()}"/></td>
+						<td><input type="text" name="celular" value="${profesional.getCelular()}"/></td>
 					</tr>
 					<tr>
 						<td></td>
@@ -41,7 +41,7 @@
 	
 	
 	
-	<a class="boton" href="Profesionales"><i class="fas fa-undo-alt"></i> Volver a listado de profesionales</a>
+	<a class="btn btn-primary" role="button" href="${pageContext.request.contextPath}/Profesionales"><i class="fas fa-undo-alt"></i> Volver a listado de profesionales</a>
 	</div>
 	<jsp:include page="../footer.jsp" />
 </body>

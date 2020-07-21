@@ -13,7 +13,7 @@
 		onclick="window.location.href='${pageContext.request.contextPath}/factura/listarFaturas';"
 		type="button" class="btn btn-outline-info">Controlar pagos cliente</button>
 	<button
-		onclick="window.location.href='${pageContext.request.contextPath}/actividad/listarActividades';"
+		onclick="window.location.href='${pageContext.request.contextPath}/actividad/listarActividadesA';"
 		type="button" class="btn btn-outline-info">Visualizar actividades</button>
 
 </div>

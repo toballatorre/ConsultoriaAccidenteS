@@ -20,17 +20,17 @@
 	<h2>Editar información del cliente</h2>
 	
 	
-	<form action="ClientesEditar" method="post">
-			<input type="hidden" name="idcliente"  value="${datoscliente.getIdCliente()}" />
-			<input type="hidden" name="idusuario"  value="${datoscliente.getIdUsuario()}" />
+	<form action="ClienteUpdateSave" method="post">
+			<input type="hidden" name="idcliente"  value="${cliente.getId()}" />
+			<input type="hidden" name="idusuario"  value="${cliente.getIdUsuario()}" />
 			<table class="table table-striped table-hover">
 					<tr>
 					<td>Nombre Empresa:</td>
-					<td><input type="text" name="nombreempresa" value="${datoscliente.getNombreEmpresa()}"/></td>
+					<td><input type="text" name="nombreempresa" value="${cliente.getNombreEmpresa()}"/></td>
 				</tr>
 				<tr>
 					<td>RUT:</td>
-					<td><input type="text" name="rutempresa" value="${datoscliente.getRutEmpresa()}"/></td>
+					<td><input type="text" name="rutempresa" value="${cliente.getRutEmpresa()}"/></td>
 				</tr>
 				<tr>
 					<td></td>
@@ -41,7 +41,7 @@
 	
 	
 	
-	<a class="boton" href="Clientes"><i class="fas fa-undo-alt"></i> Volver a listado de clientes</a>
+	<a class="btn btn-primary" role="button" href="${pageContext.request.contextPath}/Clientes"><i class="fas fa-undo-alt"></i> Volver a listado de clientes</a>
 	</div>
 	<jsp:include page="../footer.jsp" />
 </body>

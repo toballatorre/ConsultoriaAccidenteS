@@ -27,12 +27,14 @@
 				<th>Preferencia horario</th>
 			</tr>
 	
-			<tr>
-				<td>1</td>
-				<td>2020/07/03</td>
-				<td>Preparación para auditoria ISO9001</td>
-				<td>Mañana</td>
-			</tr>
+			<c:forEach items="${listaSolicitud}" var="sol">
+				<tr>
+					<td> <c:out value="${sol.getId()}"/> </td>
+					<td> <c:out value="${sol.getFechaHora()}"/> </td>
+					<td> <c:out value="${sol.getMotivo()}"/> </td>
+					<td> <c:out value="${sol.getPreferenciaHorario()}"/> </td>
+				</tr>
+			</c:forEach>
 	
 		</table>
 	

@@ -1,12 +1,11 @@
 package cl.tinyprro.beans;
 
-import java.sql.Date;
 
 public class SolicitudAsesoria {
 
 /* ATRIBUTOS */
 	private int id;
-	private Date fechaHora;
+	private String fechaHora;
 	private String motivo;
 	private String preferenciaHorario;
 	private int idCliente;
@@ -24,7 +23,7 @@ public class SolicitudAsesoria {
 	 * @param preferenciaHorario
 	 * @param idCliente
 	 */
-	public SolicitudAsesoria(Date fechaHora, String motivo, String preferenciaHorario, int idCliente) {
+	public SolicitudAsesoria(String fechaHora, String motivo, String preferenciaHorario, int idCliente) {
 		super();
 		this.fechaHora = fechaHora;
 		this.motivo = motivo;
@@ -40,7 +39,7 @@ public class SolicitudAsesoria {
 	 * @param preferenciaHorario
 	 * @param idCliente
 	 */
-	public SolicitudAsesoria(int id, Date fechaHora, String motivo, String preferenciaHorario, int idCliente) {
+	public SolicitudAsesoria(int id, String fechaHora, String motivo, String preferenciaHorario, int idCliente) {
 		super();
 		this.id = id;
 		this.fechaHora = fechaHora;
@@ -66,14 +65,14 @@ public class SolicitudAsesoria {
 	/**
 	 * @return the fechaHora
 	 */
-	public Date getFechaHora() {
+	public String getFechaHora() {
 		return fechaHora;
 	}
 	
 	/**
 	 * @param fechaHora the fechaHora to set
 	 */
-	public void setFechaHora(Date fechaHora) {
+	public void setFechaHora(String fechaHora) {
 		this.fechaHora = fechaHora;
 	}
 	

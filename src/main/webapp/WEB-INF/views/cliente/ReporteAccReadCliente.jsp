@@ -31,14 +31,16 @@
 			</tr>
 			</thead>
 	
-			<tr>
-				<td>1</td>
-				<td>2020/07/03</td>
-				<td>Av siempreviva 123</td>
-				<td>Trayecto</td>
-				<td>3</td>
-				<td>Caida mismo nivel. Esguince de tobillo</td>
-			</tr>
+			<c:forEach items="${listaAccidente}" var="acc">
+				<tr>
+					<td> <c:out value="${acc.getId()}" /> </td>
+					<td> <c:out value="${acc.getFechaAccidente()}" /> </td>
+					<td> <c:out value="${acc.getLugarAccidente()}" /> </td>
+					<td> <c:out value="${acc.getTipoAccidente()}" /> </td>
+					<td> <c:out value="${acc.getDiasPerdidos()}" /> </td>
+					<td> <c:out value="${acc.getDescripcion()}" /> </td>
+				</tr>
+			</c:forEach>
 	
 		</table>
 	

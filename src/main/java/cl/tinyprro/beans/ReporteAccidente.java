@@ -1,6 +1,5 @@
 package cl.tinyprro.beans;
 
-import java.sql.Date;
 
 public class ReporteAccidente {
 
@@ -8,7 +7,7 @@ public class ReporteAccidente {
 	private int id;
 	private String tipoAccidente;
 	private int diasPerdidos;
-	private Date fechaAccidente;
+	private String fechaAccidente;
 	private String lugarAccidente;
 	private String descripcion;
 	private int idCliente;
@@ -28,7 +27,7 @@ public class ReporteAccidente {
 	 * @param descripcion
 	 * @param idCliente
 	 */
-	public ReporteAccidente(String tipoAccidente, int diasPerdidos, Date fechaAccidente, String lugarAccidente,
+	public ReporteAccidente(String tipoAccidente, int diasPerdidos, String fechaAccidente, String lugarAccidente,
 			String descripcion, int idCliente) {
 		super();
 		this.tipoAccidente = tipoAccidente;
@@ -48,7 +47,7 @@ public class ReporteAccidente {
 	 * @param descripcion
 	 * @param idCliente
 	 */
-	public ReporteAccidente(int id, String tipoAccidente, int diasPerdidos, Date fechaAccidente, String lugarAccidente,
+	public ReporteAccidente(int id, String tipoAccidente, int diasPerdidos, String fechaAccidente, String lugarAccidente,
 			String descripcion, int idCliente) {
 		super();
 		this.id = id;
@@ -101,13 +100,13 @@ public class ReporteAccidente {
 	/**
 	 * @return the fechaAccidente
 	 */
-	public Date getFechaAccidente() {
+	public String getFechaAccidente() {
 		return fechaAccidente;
 	}
 	/**
 	 * @param fechaAccidente the fechaAccidente to set
 	 */
-	public void setFechaAccidente(Date fechaAccidente) {
+	public void setFechaAccidente(String fechaAccidente) {
 		this.fechaAccidente = fechaAccidente;
 	}
 	/**

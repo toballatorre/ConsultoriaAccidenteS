@@ -26,11 +26,16 @@
 	<bean id="capacitacionDAO" class="cl.tinyprro.dao.DAOcapacitacion">
 		<property name="template" ref="jt"></property>
 	</bean>
-	
 	<bean id="clientesDAO" class="cl.tinyprro.dao.DAOclientes">
 		<property name="template" ref="jt"></property>
 	</bean>
 	<bean id="profesionalDAO" class="cl.tinyprro.dao.DAOprofesional">
+		<property name="template" ref="jt"></property>
+	</bean>
+	<bean id="accidenteDAO" class="cl.tinyprro.dao.DAOaccidente">
+		<property name="template" ref="jt"></property>
+	</bean>
+	<bean id="asesoriaDAO" class="cl.tinyprro.dao.DAOasesoria">
 		<property name="template" ref="jt"></property>
 	</bean>
 	

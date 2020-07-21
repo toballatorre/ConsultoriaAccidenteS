@@ -14,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 import cl.tinyprro.beans.Actividad;
 import cl.tinyprro.dao.DAOactividad;
 
-
 @Controller
 @RequestMapping(value = "/actividad")
 public class ActividadController {

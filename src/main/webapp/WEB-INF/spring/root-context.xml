@@ -33,5 +33,8 @@
 	<bean id="profesionalDAO" class="cl.tinyprro.dao.DAOprofesional">
 		<property name="template" ref="jt"></property>
 	</bean>
+	<bean id="accidenteDAO" class="cl.tinyprro.dao.DAOaccidente">
+		<property name="template" ref="jt"></property>
+	</bean>
 	
 </beans>

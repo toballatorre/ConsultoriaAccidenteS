@@ -24,30 +24,25 @@
 		<tbody>
 			<tr>
 				<td>ID:</td>
-				<td><input type="number" id="idAct" name="idAct"
-					readonly="readonly" value="${act.getId()}"></td>
+				<td><c:out value="${act.getId()}"/></td>
 				<td>Titulo:</td>
-				<td><input type="text" id="titulo" name="titulo"
-						readonly="readonly" value="${act.getTitulo()}"></td>
+				<td><c:out value="${act.getTitulo()}"/></td>
 				<td>Fecha Plazo:</td>
-				<td><input type="date" id="fechaP" name="fechaP"
-					readonly="readonly" value="${act.getFechaPlazo()}"></td>
+				<td><c:out value="${act.getFechaPlazo()}"/></td>
 			</tr>
 			<tr>
 				<td>Descripción:</td>
-				<td colspan="5"><textarea rows="10" cols="80" id="descripcion"
-						name="descripcion" readonly="readonly">${act.getDescripcion()}</textarea></td>
+				<td colspan="5"><c:out value="${act.getDescripcion()}"/></td>
 			</tr>
 			<tr>
 				<td>Comentario:</td>
-				<td colspan="5"><textarea rows="10" cols="80" id="comentario"
-							name="comentario" readonly="readonly">${act.getComentario()}</textarea></td>
+				<td colspan="5"><c:out value="${act.getComentario()}"/></td>
 			</tr>
 			<tr>
 				<td>Status:</td>
-				<td colspan="2">${act.getStatus()}</td>
+				<td colspan="2"><c:out value="${act.getStatus()}"/></td>
 				<td>Cliente:</td>
-				<td colspan="2">${act.getIdCliente()}</td>
+				<td colspan="2"><c:out value="${act.getIdCliente()}"/></td>
 			</tr>
 			<tr>
 				<td><a href="${pageContext.request.contextPath}/AreaProfesional">Volver</a></td>

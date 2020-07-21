@@ -20,34 +20,36 @@
 	<h2>Crear Reporte Accidente</h2>
 	
 	<form action="ReporteAccCreate" method="POST">
-			<table>
+			<table class="table table-striped table-hover">
 				<tr>
 					<td>Tipo accidente</td>
 					<td><input type="radio" id="Laboral" name="tipoAccidente" value="Laboral">
 					<label for="tipoAccidente">Laboral</label>
+					</td>
+					<td>
 					<input type="radio" id="Trayecto" name="tipoAccidente" value="Trayecto">
 					<label for="tipoAccidente">Trayecto</label><br>
 					</td>
 				</tr>
 				<tr>
 					<td>Cantidad días perdidos</td>
-					<td><input type="number" name="diasPerdidos" min="0" max="365" required></td>
+					<td colspan="2"><input type="number" name="diasPerdidos" min="0" max="365" required></td>
 				</tr>
 				<tr>
 					<td>Fecha del Accidente</td>	
-					<td><input type="text" name="fechaAccidente" id="fecha" required ></td>
+					<td colspan="2"><input type="text" name="fechaAccidente" id="fecha" required ></td>
 				</tr>
 				<tr>
 					<td>Dirección del lugar del accidente</td>
-					<td><input type="text" name="lugarAccidente" required></td>
+					<td colspan="2"><input type="text" name="lugarAccidente" required></td>
 				</tr>
 				<tr>
 					<td>Descripción de los hechos:</td>
-					<td><textarea name="descripcion" rows="10" cols="20"></textarea></td>
+					<td colspan="2"><textarea name="descripcion" rows="10" cols="80"></textarea></td>
 				</tr>
 				
 				<tr>
-					<td colspan="2"><input type="number" name="idCliente" value="11111" hidden="true" required>
+					<td colspan="2"><input type="number" name="idCliente" value="1" hidden="true" required>
 					<input type="submit" value="Registrar"></td>
 				</tr>
 			</table>

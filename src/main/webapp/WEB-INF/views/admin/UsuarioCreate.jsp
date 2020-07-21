@@ -19,17 +19,17 @@
 	<br><h1>Vista Administrador</h1>
 	<h2>Crear Usuario</h2>
 	
-	<form action="CrearUsuario" method="post">
-			<table class="tabla">
+	<form action="UsuarioCreateSave" method="post">
+			<table class="table">
 				<tr>
 					<td>Usuario:</td>
-					<td><input type="text" name="txttipousuario" /></td>
+					<td><input type="text" name="txtusuario" /></td>
 				</tr>
 				<tr>
 					<td>Tipo Usuario:</td>
-					<td><label for="admin">Admin</label><input type="radio" id="admin" name="txttipouser" value="admin" checked>
-						<label for="pro">Profesional</label><input type="radio" id="pro" name="txttipouser" value="profesional">
-						<label for="cliente">Cliente</label><input type="radio" id="cliente" name="txttipouser" value="cliente"></td>
+					<td><input type="radio" id="admin" name="txttipouser" value="admin" checked><label for="admin">Admin</label><br>
+						<input type="radio" id="pro" name="txttipouser" value="profesional"><label for="pro">Profesional</label><br>
+						<input type="radio" id="cliente" name="txttipouser" value="cliente"><label for="cliente">Cliente</label></td>
 				</tr>
 				<tr>
 					<td>Clave:</td>
@@ -41,8 +41,8 @@
 				</tr>
 				<tr>
 					<td>Activo:</td>
-					<td><label for="si">Si</label><input type="radio" id="si" name="txtactivo" value="1" checked><br>
-						<label for="no">No</label><input type="radio" id="no" name="txtactivo" value="0"></td>
+					<td><input type="radio" id="si" name="txtactivo" value="1" checked><label for="si">Si</label><br>
+						<input type="radio" id="no" name="txtactivo" value="0"><label for="no">No</label></td>
 				</tr>
 				<tr>
 					<td></td>
@@ -54,7 +54,7 @@
 	
 	
 	
-	<a class="boton" href="Usuarios"><i class="fas fa-undo-alt"></i> Volver</a>
+	<a class="btn btn-primary" role="button" href="Usuarios"><i class="fas fa-undo-alt"></i> Volver</a>
 	</div>
 	<jsp:include page="../footer.jsp" />
 </body>

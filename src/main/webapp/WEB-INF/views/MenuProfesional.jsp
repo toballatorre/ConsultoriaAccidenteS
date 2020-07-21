@@ -6,6 +6,6 @@
 		onclick="window.location.href='${pageContext.request.contextPath}/actividad/ingresar';"
 		type="button" class="btn btn-outline-info">Ingresar actividad de mejora</button>
 	<button
-		onclick="window.location.href='${pageContext.request.contextPath}/actividad/listarActividades';"
+		onclick="window.location.href='${pageContext.request.contextPath}/actividad/listarActividadesP';"
 		type="button" class="btn btn-outline-info">Revisar actividad de mejora</button>
 </div><br>

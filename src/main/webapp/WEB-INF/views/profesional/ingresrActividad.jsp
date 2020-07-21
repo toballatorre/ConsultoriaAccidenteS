@@ -44,10 +44,9 @@
 						<td>Cliente: </td>
 						<td colspan="2">
 							<select name="cliente">
-								<option value="1">Cliente 1</option>
-								<option value="2">Cliente 2</option>
-								<option value="3">Cliente 3</option>
-								<option value="4">Cliente 4</option>
+							<c:forEach items="${listaCliente}" var="cliente">
+								<option value="${cliente.getId()}"> <c:out value="${cliente.getNombreEmpresa()}"/> </option>							
+							</c:forEach>
 							</select>
 						</td>
 					</tr>

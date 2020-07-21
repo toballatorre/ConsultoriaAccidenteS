@@ -2,6 +2,8 @@ package cl.tinyprro.consultoriaaccidente;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +36,22 @@ public class SolicitudAsesoriaController {
 	public String solicitudasesoriacrear(Model model) {
 		logger.info("/SolicitudAsesoriaCreate estamos en SolicitudAsesoriaController");
 		
-		
+			
 		return "cliente/SolicitudAsesoriaCreate";
 	}
 	
+	@RequestMapping(value = "/ingresarAsesoria", method = RequestMethod.POST)
+	public ModelAndView insertarSolicitud(HttpServletRequest request) {
+		
+		asesoriaDAO.insertar(new SolicitudAsesoria(
+				request.getParameter("fecha"),
+				request.getParameter("motivo"),
+				request.getParameter("preferenciaHorario"),
+				Integer.parseInt(request.getParameter("idCliente"))));
+	
+		
+		List<SolicitudAsesoria> lista = asesoriaDAO.buscarTodos();
+		
+		return new ModelAndView("cliente/SolicitudAsesoriaReadAll", "listaSolicitud", lista);
+	}
 }

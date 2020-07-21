@@ -4,58 +4,55 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="ISO-8859-1">
-	<title>Reporte Accidente</title>
-	<link rel="stylesheet"
-		href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
-		crossorigin="anonymous">
-	<link rel="stylesheet" href="<c:url value="/resources/css/estilo.css"></c:url>">
+<meta charset="ISO-8859-1">
+<title>Reporte Accidente</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="<c:url value="/resources/css/estilo.css"></c:url>">
 </head>
 <body>
 	<jsp:include page="../header.jsp" />
 	<div class="contenido">
-	<jsp:include page="../MenuCliente.jsp" />
-	<br><h1>Vista Cliente</h1>
-	<h2>Solicitar Asesoria Especial</h2>
-	
-	<form action="ReporteAccCreate" method="POST">
-		<table class="table table-striped table-hover">
+		<jsp:include page="../MenuCliente.jsp" />
+		<br>
+		<h1>Vista Cliente</h1>
+		<h2>Solicitar Asesoria Especial</h2>
+
+		<form action="ingresarAsesoria" method="POST">
+			<table class="table table-striped table-hover">
 				<tr>
-					<td>Tipo accidente</td>
-					<td><input type="radio" id="Laboral" name="tipoAccidente" value="Laboral">
-					<label for="tipoAccidente">Laboral</label>
-					<input type="radio" id="Trayecto" name="tipoAccidente" value="Trayecto">
-					<label for="tipoAccidente">Trayecto</label><br>
+					<td>Preferencia Horario</td>
+					<td><input type="radio" id="Mañana" name="preferenciaHorario"
+						value="Mañana"> <label for="tipoAccidente">Mañana</label>
+					</td>
+					<td><input type="radio" id="Tarde" name="preferenciaHorario"
+						value="Tarde"> <label for="tipoAccidente">Tarde</label><br>
 					</td>
 				</tr>
 				<tr>
-					<td>Cantidad días perdidos</td>
-					<td><input type="number" name="diasPerdidos" min="0" max="365" required></td>
+					<td>Fecha</td>
+					<td colspan="2"><input type="text" name="fecha" id="fecha"	required></td>
 				</tr>
 				<tr>
-					<td>Fecha del Accidente</td>	
-					<td><input type="text" name="fechaAccidente" id="fecha" required readonly></td>
-				</tr>
-				<tr>
-					<td>Dirección del lugar del accidente</td>
-					<td><input type="text" name="lugarAccidente" required></td>
-				</tr>
-				<tr>
-					<td>Descripción de los hechos:</td>
-					<td><textarea name="descripcion" rows="10" cols="20"></textarea></td>
+					<td>Motivo</td>
+					<td colspan="2"><input type="text" name="motivo" id="motivo" required></td>
 				</tr>
 				
 				<tr>
-					<td colspan="2"><input type="number" name="idCliente" value="111111111" hidden="true" required>
-					<input type="submit" value="Registrar"></td>
+					<td colspan="3">
+					<input type="number" name="idCliente" value="1" hidden="true" required> 
+						<input type="submit" value="Registrar">
+					</td>
 				</tr>
 			</table>
 		</form>
 		<a class="boton" href="SolicitudAsesoria"><i class="fas fa-undo-alt"></i> Volver</a>
-	
-	
-	
+
+
+
 	</div>
 	<jsp:include page="../footer.jsp" />
 </body>

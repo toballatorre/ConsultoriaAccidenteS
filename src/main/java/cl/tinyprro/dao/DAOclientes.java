@@ -29,10 +29,10 @@ public List<Cliente> buscarTodosClientes(){
 public class ClienteMapper implements RowMapper<Cliente>{
 	public Cliente mapRow(ResultSet rs, int rowNum) throws SQLException{
 	return new Cliente(
-			rs.getInt("IDCLIENTE"),
-			rs.getString("NOMBREEMPRESA"),
-			rs.getString("RUTEMPRESA"),
-			rs.getInt("USUARIO_IDUSUARIO")
+			rs.getInt("idcliente"),
+			rs.getString("nombreempresa"),
+			rs.getString("rutempresa"),
+			rs.getInt("usuario_idusuario")
 			);
 
 	};

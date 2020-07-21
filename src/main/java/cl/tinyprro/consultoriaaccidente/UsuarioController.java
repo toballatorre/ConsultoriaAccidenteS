@@ -26,6 +26,7 @@ public class UsuarioController {
 	
 	@Autowired
 	DAOusuarios usuarioDAO;
+	@Autowired
 	DAOclientes clienteDAO;
 	
 	/*CRUD USUARIOS*/

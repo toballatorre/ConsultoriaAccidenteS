@@ -15,9 +15,31 @@ import org.springframework.web.servlet.ModelAndView;
 
 import cl.tinyprro.beans.ReporteAccidente;
 import cl.tinyprro.dao.DAOaccidente;
+import cl.tinyprro.services.ReporteAccidenteService;
 
 @Controller
 public class ReporteAccidenteController {
+
+	@Autowired
+	ReporteAccidenteService rar;
+	
+	@RequestMapping(value = "/ReporteAccidente")
+	public ModelAndView listarReportes() {
+		List<ReporteAccidente> lista = rar.getAll();
+		
+		return new ModelAndView("cliente/ReporteAccReadCliente", "listaAccidente", lista);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*
+		
 	private static final Logger logger = LoggerFactory.getLogger(ReporteAccidenteController.class);
 
 	@Autowired
@@ -38,10 +60,7 @@ public class ReporteAccidenteController {
 
 		return "cliente/ReporteAccCreate";
 	}
-	/**
-	 * Ingresa un accidente a la base de datos y nuestra la vista de la lista de todos los accidentes
-	 * @return
-	 */
+	
 	@RequestMapping(value = "/ReporteAccCreate", method = RequestMethod.POST)
 	public ModelAndView insertarAccidente(HttpServletRequest request) {
 
@@ -65,4 +84,6 @@ public class ReporteAccidenteController {
 
 		return "admin/AccidentabilidadReadAll";
 	}
+	
+	*/
 }

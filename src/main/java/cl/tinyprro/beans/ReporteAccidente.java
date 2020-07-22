@@ -1,15 +1,31 @@
 package cl.tinyprro.beans;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="reporteaccidente")
 public class ReporteAccidente {
 
 /* ATRIBUTOS */
+	@Id
+	//@GeneratedValue(strategy = GenerationType.AUTO);
+	@Column (name="IDREPORTE")
 	private int id;
+	@Column (name="TIPOACCIDENTE")
 	private String tipoAccidente;
+	@Column (name="DIASPERDIDOS")
 	private int diasPerdidos;
+	@Column (name="FECHAACCIDENTE")
 	private String fechaAccidente;
+	@Column (name="LUGARACCIDENTE")
 	private String lugarAccidente;
+	@Column (name="DESCRIPCION")
 	private String descripcion;
+	@Column (name="CLIENTE_IDCLIENTE")
 	private int idCliente;
 	
 	/**

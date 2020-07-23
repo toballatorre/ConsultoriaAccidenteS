@@ -13,64 +13,84 @@ import org.springframework.web.servlet.ModelAndView;
 
 import cl.tinyprro.beans.Actividad;
 import cl.tinyprro.beans.Cliente;
-import cl.tinyprro.dao.DAOactividad;
-import cl.tinyprro.dao.DAOclientes;
+import cl.tinyprro.services.ActividadService;
+import cl.tinyprro.services.ClienteService;
 
 @Controller
 @RequestMapping(value = "/actividad")
 public class ActividadController {
 
 	@Autowired
-	DAOactividad actividadDAO;
+	ActividadService as;
 	@Autowired
-	DAOclientes clientesDAO;
-
-	@RequestMapping(value="/ingresar", method = RequestMethod.GET)
-	public ModelAndView actividad() {
-		
-		List<Cliente> listaCliente = clientesDAO.buscarTodosClientes();
-		
-		return new ModelAndView("profesional/ingresrActividad", "listaCliente", listaCliente);
-	}
-
-
+	ClienteService cs;
 	
-	  @RequestMapping(value = "/ingresar", method = RequestMethod.POST)
-	  public String actividad(HttpServletRequest request) {
-	  	  
-	  actividadDAO.ingresarActividad(new Actividad(
-			  request.getParameter("titulo"),
-			  request.getParameter("descripcion"),
-			  request.getParameter("fechaP"),
-			  request.getParameter("status"),
-			  request.getParameter("comentario"),
-			  Integer.parseInt(request.getParameter("cliente"))));
-	  
-	  return "profesional/revisarActividad"; }
-	 
-
+	/**
+	 * Listar Actividades para Admin
+	 * @return
+	 */
 	@RequestMapping(value = "/listarActividadesA")
-	public ModelAndView listarActividadesA(){
-
-		List<Actividad> listaActividades = actividadDAO.buscarTodos();
-
-		return new ModelAndView("/admin/visualizarActividades", "listaAct", listaActividades);
+	public ModelAndView listarActividadesA() {
+		
+		List<Actividad> lista = as.getAll();
+		
+		return new ModelAndView("/admin/visualizarActividades", "listaAct", lista);
 	}
 	
+	/**
+	 * Listar Actividades para Profesional
+	 * @return
+	 */
 	@RequestMapping(value = "/listarActividadesP")
-	public ModelAndView listarActividadesP(){
-
-		List<Actividad> listaActividades = actividadDAO.buscarTodos();
-
-		return new ModelAndView("/profesional/listarActividades", "listaAct", listaActividades);
+	public ModelAndView listarActividadesP() {
+		
+		List<Actividad> lista = as.getAll();
+		
+		return new ModelAndView("/profesional/listarActividades", "listaAct", lista);
 	}
-
-
-	@RequestMapping(value = "/detalle/{id}", method = RequestMethod.GET)
+	
+	/**
+	 * Muestra en detalle una actividad en específico
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value="/detalle/{id}", method = RequestMethod.GET)
 	public ModelAndView detalleActividad(@PathVariable int id) {
 		
-		Actividad actividad = actividadDAO.actividadById(id);
-
-		return new ModelAndView("profesional/revisarActividad", "act", actividad);
+		Actividad a = as.getById(id);
+		
+		return new ModelAndView("profesional/revisarActividad", "act", a);
 	}
+	
+	/**
+	 * Muestra la Vista para llenar los datos de la actividad
+	 * @return
+	 */
+	@RequestMapping(value="/ingresar", method = RequestMethod.GET)
+	public ModelAndView ingresarActividad() {
+		
+		List<Cliente> lista = cs.getAll();
+		
+		return new ModelAndView("profesional/ingresrActividad", "listaCliente", lista);
+	}
+	
+	/**
+	 * Ingresa a la base de datos con JPA la actividad y muestra las actividades listadas
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="/ingresar", method = RequestMethod.POST)
+	public ModelAndView ingresarActividad(HttpServletRequest request) {
+		
+		as.add(new Actividad(
+				request.getParameter("titulo"),
+				request.getParameter("descripcion"),
+				request.getParameter("fechaP"),
+				request.getParameter("status"),
+				request.getParameter("comentario"),
+				Integer.parseInt(request.getParameter("cliente"))));
+		
+		return new ModelAndView("redirect:/actividad/listarActividadesP");
+	}
+	
 }

@@ -2,7 +2,10 @@ package cl.tinyprro.beans;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -12,6 +15,8 @@ public class SolicitudAsesoria {
 /* ATRIBUTOS */
 	@Id
 	@Column(name="IDSOLICITUD")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Sol_seq")
+	@SequenceGenerator(name = "Sol_seq", sequenceName = "SOLICITUDASESORIA_IDSOLICITUD")
 	private int id;
 	@Column(name="FECHAHORA")
 	private String fechaHora;

@@ -16,6 +16,11 @@ import cl.tinyprro.beans.Cliente;
 import cl.tinyprro.services.ActividadService;
 import cl.tinyprro.services.ClienteService;
 
+/**
+ * Actividad implementado JPA
+ * @author Cristobal L
+ *
+ */
 @Controller
 @RequestMapping(value = "/actividad")
 public class ActividadController {
@@ -50,7 +55,7 @@ public class ActividadController {
 	}
 	
 	/**
-	 * Muestra en detalle una actividad en específico
+	 * Muestra en detalle una actividad en específico VistaProfesional
 	 * @param id
 	 * @return
 	 */
@@ -61,6 +66,21 @@ public class ActividadController {
 		
 		return new ModelAndView("profesional/revisarActividad", "act", a);
 	}
+	
+	/**
+	 * Muestra en detalle una actividad en específico VistaAdmin
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value="/detalleA/{id}", method = RequestMethod.GET)
+	public ModelAndView detalleActividadA(@PathVariable int id) {
+		
+		Actividad a = as.getById(id);
+		
+		return new ModelAndView("admin/revisarActividad", "act", a);
+	}
+	
+	
 	
 	/**
 	 * Muestra la Vista para llenar los datos de la actividad

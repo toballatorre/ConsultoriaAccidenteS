@@ -38,7 +38,7 @@
 	
 		</table>
 	
-	<a href="SolicitudAsesoriaCreate">Crear</a>
+	<a href="SolicitudAsesoriaCreate" class="btn btn-primary" role="button">Crear</a>
 	
 	
 	

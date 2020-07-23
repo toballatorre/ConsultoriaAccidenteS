@@ -15,6 +15,9 @@
 	<button
 		onclick="window.location.href='${pageContext.request.contextPath}/actividad/listarActividadesA';"
 		type="button" class="btn btn-outline-info">Visualizar actividades</button>
+	<button
+		onclick="window.location.href='${pageContext.request.contextPath}/ReportesAccidentesAll';"
+		type="button" class="btn btn-outline-info">Ver Accidentabilidad</button>
 
 </div>
 <br>

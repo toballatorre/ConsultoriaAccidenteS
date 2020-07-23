@@ -1,16 +1,36 @@
 package cl.tinyprro.beans;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="capacitacion")
 public class Capacitacion {
 	
 	/* ATRIBUTOS */
+	@Id
+	@Column(name="IDCAPACITACION")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Cap_seq")
+	@SequenceGenerator(name = "Cap_seq", sequenceName = "CAPACITACION_SEQ1")
 	private int id;
+	@Column(name="CLIENTE_IDCLIENTE")
 	private int idCliente;
+	@Column(name="TEMA")
 	private String tema;
+	@Column(name="OBJETIVOS")
 	private String objetivos;
+	@Column(name="CONTENIDOS")
 	private String contenidos;
+	@Column(name="RECURSOS")
 	private String recursos;
+	@Column(name="FECHA")
 	private String fecha;
+	@Column(name="IDUSUARIOPRO")
 	private int idUsuarioPro;
 	
 	/* CONSTRUCTORES */

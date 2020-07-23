@@ -1,11 +1,23 @@
 package cl.tinyprro.beans;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="PROFESIONAL")
 public class Profesional {
 	
 	/* ATRIBUTOS */
+	@Id
+	@Column(name="IDEMPLEADO")
 	private int id;
+	@Column(name="NOMBRE")
 	private String nombre;
+	@Column(name="USUARIO_IDUSUARIO")
 	private int idusuario;
+	@Column(name="CELULAR")
 	private String celular;
 
 	/**

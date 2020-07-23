@@ -1,16 +1,35 @@
 package cl.tinyprro.beans;
 
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="USUARIO")
 public class Usuario {
 
 /* ATRIBUTOS */
+	@Id
+	@Column(name="IDUSUARIO")
 	private int id;
+	@Column(name="USUARIO")
 	private String usuario;
+	@Column(name="TIPOUSUARIO")
 	private String tipousuario;
+	@Column(name="CLAVE")
 	private String clave;
+	@Column(name="MAIL")
 	private String mail;
+	@Column(name="ACTIVO")
 	private String activo;
 
-	
 /*bob el CONSTRUCTOR */
 	public Usuario() {
 		super();
@@ -84,7 +103,6 @@ public class Usuario {
 	public void setActivo(String activo) {
 		this.activo = activo;
 	}
-	
-		
+
 }
 

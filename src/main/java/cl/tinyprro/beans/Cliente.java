@@ -1,13 +1,28 @@
 package cl.tinyprro.beans;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="CLIENTE")
 public class Cliente {
 
 	/* ATRIBUTOS */
+	@Id
+	@Column(name="IDCLIENTE")
 	private int id;
+	@Column(name="NOMBREEMPRESA")
 	private String nombreEmpresa;
+	@Column(name="RUTEMPRESA")
 	private String rutEmpresa;
+	@Column(name="USUARIO_IDUSUARIO")
 	private int idUsuario;
-	
+
 	/**
 	 * Contructor vacio
 	 */

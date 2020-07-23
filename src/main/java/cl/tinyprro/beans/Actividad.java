@@ -1,15 +1,29 @@
 package cl.tinyprro.beans;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="ACTIVIDAD")
 public class Actividad {
 
 	 /* ATRIBUTOS */
+	@Id
+	@Column(name="IDACTIVIDAD")
 	private int id;
+	@Column(name="TITULO")
 	private String titulo;
+	@Column(name="DESCRIPCION")
 	private String descripcion;
+	@Column(name="FECHAPLAZO")
 	private String fechaPlazo;
+	@Column(name="STATUS")
 	private String status;
+	@Column(name="COMENTARIO")
 	private String comentario;
+	@Column(name="CLIENTE_IDCLIENTE")
 	private int idCliente;
 	
 	/**

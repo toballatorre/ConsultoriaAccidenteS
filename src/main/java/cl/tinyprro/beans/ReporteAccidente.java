@@ -2,8 +2,10 @@ package cl.tinyprro.beans;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-//import javax.persistence.GenerationType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -12,7 +14,8 @@ public class ReporteAccidente {
 
 /* ATRIBUTOS */
 	@Id
-	//@GeneratedValue(strategy = GenerationType.AUTO);
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Rep_seq")
+	@SequenceGenerator(name="Rep_seq", sequenceName = "REPORTEACCIDENTE_IDREPORTE_SEQ")
 	@Column (name="IDREPORTE")
 	private int id;
 	@Column (name="TIPOACCIDENTE")

@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta charset="ISO-8859-1">
-	<title>Ingresar Actividad - Vista Profesional</title>
+	<title>Ingresar Actividad - Vista Administrador</title>
 	<link rel="stylesheet"
 		href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
@@ -15,8 +15,8 @@
 <body>
 	<jsp:include page="../header.jsp" />
 	<div class="contenido">
-	<jsp:include page="../MenuProfesional.jsp" />
-	<br><h1>Vista Profesional</h1>
+	<jsp:include page="../MenuAdmin.jsp" />
+	<br><h1>Vista Administrador</h1>
 	<h2>Revisar Actividad Mejora</h2>
 
 
@@ -45,7 +45,7 @@
 				<td colspan="2"><c:out value="${act.getIdCliente()}"/></td>
 			</tr>
 			<tr>
-				<td colspan="5"><a href="${pageContext.request.contextPath}/AreaProfesional"><i class="fas fa-undo-alt"></i>Volver</a></td>
+				<td colspan="6"><a href="${pageContext.request.contextPath}/AreaAdmin" class="btn btn-primary" role="button"><i class="fas fa-undo-alt"></i> Volver</a></td>
 			</tr>
 		</tbody>
 	</table>

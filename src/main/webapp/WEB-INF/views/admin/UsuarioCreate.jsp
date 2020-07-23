@@ -46,7 +46,7 @@
 				</tr>
 				<tr>
 					<td></td>
-					<td><input type="submit" value="Agregar usuario" /></td>
+					<td><input type="submit" value="Agregar usuario" class="btn btn-danger"/> <a class="btn btn-primary" role="button" href="Usuarios"><i class="fas fa-undo-alt"></i> Volver</a></td>
 				</tr>
 			</table>
 		</form>
@@ -54,7 +54,7 @@
 	
 	
 	
-	<a class="btn btn-primary" role="button" href="Usuarios"><i class="fas fa-undo-alt"></i> Volver</a>
+	
 	</div>
 	<jsp:include page="../footer.jsp" />
 </body>

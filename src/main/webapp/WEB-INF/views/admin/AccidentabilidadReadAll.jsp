@@ -19,7 +19,30 @@
 	<br><h1>Vista Administrador</h1>
 	<h2>Ver Accidentabilidad</h2>
 	
+	<table class="table table-striped table-hover">
+			<tr>
+				<th>ID</th>
+				<th>Fecha accidente</th>
+				<th>Lugar</th>
+				<th>Tipo Accidente</th>
+				<th>Dias perdidos</th>
+				<th>Descripcion</th>
+				<th>Cliente</th>
+				
+			</tr>
 	
+			<c:forEach items="${listaAccidente}" var="reporte">
+				<tr>
+					<td>${reporte.getId()}</td>
+					<td>${reporte.getFechaAccidente()}</td>
+					<td>${reporte.getLugarAccidente()}</td>
+					<td>${reporte.getTipoAccidente()}</td>
+					<td>${reporte.getDiasPerdidos()}</td>
+					<td>${reporte.getDescripcion()}</td>
+					<td>${reporte.getIdCliente()}</td>
+				</tr>
+			</c:forEach>
+		</table>
 	
 	
 	</div>

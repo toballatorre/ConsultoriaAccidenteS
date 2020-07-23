@@ -22,9 +22,14 @@ public class ReporteAccidenteImpl implements ReporteAccidenteService {
 
 	@Override
 	public List<ReporteAccidente> getAll() {
-		// TODO Auto-generated method stub
+		
 		return (List<ReporteAccidente>) rar.findAll();
 	}
+	/*
+	 * @Override //!!!!!!!!!! public List<ReporteAccidente> getAllId(int id) {
+	 * 
+	 * return (List<ReporteAccidente>) rar.findAll(); }
+	 */
 
 	@Override
 	public void add(ReporteAccidente r) {
@@ -49,5 +54,7 @@ public class ReporteAccidenteImpl implements ReporteAccidenteService {
 		// TODO Auto-generated method stub
 		rar.delete(id);
 	}
+
+
 
 }

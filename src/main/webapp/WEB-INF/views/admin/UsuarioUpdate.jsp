@@ -47,7 +47,7 @@
 						</tr>
 					<tr>
 						<td></td>
-						<td><input type="submit" value="Editar usuario" /></td>
+						<td><input type="submit" value="Editar usuario"  class="btn btn-danger"/> <a href="${pageContext.request.contextPath}/Usuarios" class="btn btn-primary" role="button"><i class="fas fa-undo-alt"></i> Volver</a></td>
 					</tr>
 				</table>
 			</form>
@@ -55,7 +55,7 @@
 	
 	
 	
-	<a href="${pageContext.request.contextPath}/Usuarios" class="btn btn-primary" role="button"><i class="fas fa-undo-alt"></i> Volver</a>
+	
 	</div>
 	<jsp:include page="../footer.jsp" />
 </body>

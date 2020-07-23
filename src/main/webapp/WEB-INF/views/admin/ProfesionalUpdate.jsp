@@ -33,15 +33,13 @@
 						<td><input type="text" name="celular" value="${profesional.getCelular()}"/></td>
 					</tr>
 					<tr>
-						<td></td>
-						<td><input type="submit" value="Editar Profesional" /></td>
+						<td colspan="2"><input type="submit" value="Editar Profesional" class="btn btn-danger"/> <a class="btn btn-primary" role="button" href="${pageContext.request.contextPath}/Profesionales"><i class="fas fa-undo-alt"></i> Volver a listado de profesionales</a></td>
 					</tr>
 				</table>
 			</form>
 	
 	
 	
-	<a class="btn btn-primary" role="button" href="${pageContext.request.contextPath}/Profesionales"><i class="fas fa-undo-alt"></i> Volver a listado de profesionales</a>
 	</div>
 	<jsp:include page="../footer.jsp" />
 </body>

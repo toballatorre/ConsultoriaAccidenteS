@@ -42,14 +42,14 @@
 				</tr>
 				
 				<tr>
-					<td colspan="3">
+					<td colspan="3" align="center">
 					<input type="number" name="idCliente" value="1" hidden="true" required> 
 						<input type="submit" value="Registrar">
 					</td>
 				</tr>
 			</table>
 		</form>
-		<a class="boton" href="SolicitudAsesoria"><i class="fas fa-undo-alt"></i> Volver</a>
+		<a class="btn btn-primary" role="button" href="SolicitudAsesoria"><i class="fas fa-undo-alt"></i> Volver</a>
 
 
 

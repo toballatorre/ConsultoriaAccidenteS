@@ -20,17 +20,17 @@
 	<h2>Editar infomación del profesional</h2>
 	
 	
-	<form action="ProfesionalUpdateSave" method="post">
-				<input type="hidden" name="idempleado"  value="${profesional.getId()}" />
-				<input type="hidden" name="idusuario"  value="${profesional.getIdusuario()}" />
+	<form action="ProfesionalUpdateSave" method="POST">
+				<input type="hidden" name="id"  value="${p.getId()}" />
+				<input type="hidden" name="idusuario"  value="${p.getIdusuario()}" />
 				<table class="table table-striped table-hover">
 					<tr>   
 						<td>Nombre:</td>
-						<td><input type="text" name="nombre" value="${profesional.getNombre()}"/></td>
+						<td><input type="text" name="nombre" value="${p.getNombre()}"/></td>
 					</tr>
 					<tr>
 						<td>Celular:</td>
-						<td><input type="text" name="celular" value="${profesional.getCelular()}"/></td>
+						<td><input type="text" name="celular" value="${p.getCelular()}"/></td>
 					</tr>
 					<tr>
 						<td colspan="2"><input type="submit" value="Editar Profesional" class="btn btn-danger"/> <a class="btn btn-primary" role="button" href="${pageContext.request.contextPath}/Profesionales"><i class="fas fa-undo-alt"></i> Volver a listado de profesionales</a></td>

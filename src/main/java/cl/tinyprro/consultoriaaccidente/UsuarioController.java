@@ -21,19 +21,24 @@ import cl.tinyprro.beans.Cliente;
 import cl.tinyprro.beans.Profesional;
 import cl.tinyprro.beans.Usuario;
 import cl.tinyprro.dao.DAOclientes;
-import cl.tinyprro.dao.DAOprofesional;
 import cl.tinyprro.dao.DAOusuarios;
+import cl.tinyprro.services.ProfesionalService;
 
 @Controller
 public class UsuarioController {
 	private static final Logger logger = LoggerFactory.getLogger(UsuarioController.class);
 	
+	
+	// TAKE QUE LOS NOMBRES DE LOS INPUT COINCIDAN CON LOS ATRIBUTOS DE LAS ENTIDADES (CLASES)
+	//********* JPA *********
+	@Autowired
+	ProfesionalService ps;
+	
+	//******* TEMPLATE *********
 	@Autowired
 	DAOusuarios usuarioDAO;
 	@Autowired
 	DAOclientes clienteDAO;
-	@Autowired
-	DAOprofesional profesionalDAO;
 	
 	/*CRUD USUARIOS*/
 	@RequestMapping(value = "/Usuarios", method = RequestMethod.GET)
@@ -126,42 +131,49 @@ public class UsuarioController {
 				
 	}
 	
+	/**
+	 * JPA PROFESIONALES
+	 */
 	
-	
-	
-	
-	
-	/*
-	 * CRUD PROFESIONALES
-	 * */
+	/**
+	 * Muestra la vista del listado de todos los profesionales
+	 * @return
+	 */
 	@RequestMapping(value = "/Profesionales", method = RequestMethod.GET)
-	public ModelAndView profesionales() {
-
-	
-		List<Profesional> listaprofesionales = profesionalDAO.listarTodos();
+	public ModelAndView listarProfesionales() {
+		logger.info("Usuario Controller, listar profesionales con JPA");
 		
-		return new ModelAndView("admin/ProfesionalReadAll", "listaProf", listaprofesionales);
+		List<Profesional> lista = ps.getAll();
+		
+		return new ModelAndView("admin/ProfesionalReadAll", "listaProf", lista);
 	}
+	
+	/**
+	 * Muestra la Vista para editar los datos del profesional
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(value = "/ProfesionalUpdate/{id}", method = RequestMethod.GET)
 	public ModelAndView profesionalUpdate(@PathVariable int id) {
 		logger.info("/ProfesionalUpdate @UsuarioController ");
-		
-		Profesional p = profesionalDAO.buscarPorId(id);
-		
-		return new ModelAndView("admin/ProfesionalUpdate", "profesional", p);
-	}
-	@RequestMapping(value = "/ProfesionalUpdate/ProfesionalUpdateSave", method = RequestMethod.POST)
-	public ModelAndView guardarProfesionalporid(HttpServletRequest request) {
-		
-		Profesional p = new Profesional(
-				Integer.parseInt(request.getParameter("idempleado")),
-				request.getParameter("nombre"),
-				Integer.parseInt(request.getParameter("idusuario")),
-				request.getParameter("celular")
-				);
-		profesionalDAO.actualizarPorId(p);
 				
-		return new ModelAndView("redirect:/Profesionales");
+		Profesional p = ps.getById(id);
+		logger.info("ID Seleccionado:" + p.getId());
+		
+		return new ModelAndView("admin/ProfesionalUpdate", "p", p);
 	}
 	
+	/**
+	 * Edita los datos modificados del formulario del profesional seleccionado
+	 * @param p
+	 * @return
+	 */
+	@RequestMapping(value = "/ProfesionalUpdate/ProfesionalUpdateSave", method = RequestMethod.POST)
+	public ModelAndView guardarProfesionalporid(Profesional p) {
+		
+		ps.edit(p);
+		
+		return new ModelAndView("redirect:/Profesionales");
+	}
+
 }

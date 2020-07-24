@@ -22,6 +22,7 @@ import cl.tinyprro.beans.Profesional;
 import cl.tinyprro.beans.Usuario;
 import cl.tinyprro.dao.DAOclientes;
 import cl.tinyprro.dao.DAOusuarios;
+import cl.tinyprro.services.ClienteService;
 import cl.tinyprro.services.ProfesionalService;
 
 @Controller
@@ -33,6 +34,10 @@ public class UsuarioController {
 	//********* JPA *********
 	@Autowired
 	ProfesionalService ps;
+	
+	@Autowired
+	ClienteService cs;
+	
 	
 	//******* TEMPLATE *********
 	@Autowired
@@ -101,7 +106,7 @@ public class UsuarioController {
 		
 	/*
 	 * CRUD CLIENTES
-	 * */
+	 * 
 	@RequestMapping(value = "/Clientes", method = RequestMethod.GET)
 	public ModelAndView listarClientes() {
 		
@@ -129,8 +134,33 @@ public class UsuarioController {
 		
 		return new ModelAndView("redirect:/Clientes");
 				
-	}
+	}*/
 	
+	/*
+	 * JPA CLIENTE
+	 */
+	@RequestMapping(value = "/Clientes", method = RequestMethod.GET)
+	public ModelAndView listarClientes() {
+		
+		List<Cliente> listaclientes = cs.getAll();
+		logger.info("JPA clientes ");
+		return new ModelAndView("admin/ClienteReadAll", "listaClientes", listaclientes);
+	}
+	@RequestMapping(value = "/ClienteUpdate/{id}", method = RequestMethod.GET)
+	public ModelAndView clienteUpdate(@PathVariable int id) {
+			
+		Cliente c = cs.getById(id);
+			
+		return new ModelAndView("admin/ClienteUpdate", "cliente", c);
+	}
+	@RequestMapping(value = "/ClienteUpdate/ClienteUpdateSave", method = RequestMethod.POST)
+	public ModelAndView guardarClienteporid(Cliente c) {
+		
+		cs.edit(c);
+		
+		return new ModelAndView("redirect:/Clientes");
+				
+	}
 	/**
 	 * JPA PROFESIONALES
 	 */

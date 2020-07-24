@@ -21,16 +21,16 @@
 	
 	
 	<form action="ClienteUpdateSave" method="post">
-			<input type="hidden" name="idcliente"  value="${cliente.getId()}" />
-			<input type="hidden" name="idusuario"  value="${cliente.getIdUsuario()}" />
+			<input type="hidden" name="id"  value="${cliente.getId()}" />
+			<input type="hidden" name="idUsuario"  value="${cliente.getIdUsuario()}" />
 			<table class="table table-striped table-hover">
 					<tr>
 					<td>Nombre Empresa:</td>
-					<td><input type="text" name="nombreempresa" value="${cliente.getNombreEmpresa()}"/></td>
+					<td><input type="text" name="nombreEmpresa" value="${cliente.getNombreEmpresa()}"/></td>
 				</tr>
 				<tr>
 					<td>RUT:</td>
-					<td><input type="text" name="rutempresa" value="${cliente.getRutEmpresa()}"/></td>
+					<td><input type="text" name="rutEmpresa" value="${cliente.getRutEmpresa()}"/></td>
 				</tr>
 				<tr>
 					<td></td>

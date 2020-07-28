@@ -17,6 +17,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class LoginController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
+	@RequestMapping(value = "/Login", method = RequestMethod.GET)
+	public String loginsecurity(Locale locale, Model model) {
+				
+		return "Login";
+	}
+	
+	
 		
 	@RequestMapping(value = "/haceLogin", method = RequestMethod.POST)
 	public String hacelogin(Locale locale, Model model, HttpServletRequest request) {

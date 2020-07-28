@@ -64,10 +64,10 @@ muchas empresas se encuentran en zonas donde no hay conexión de ese tipo.
 ## Desarrollo
 ### Preparación del proyecto
 1. Iniciamos diseñando el diagrama de casos de uso que se proveyó en la asignación del proyecto.
-![CasosDeUso](https://github.com/toballatorre/ConsultoriaAccidente/blob/master/WebContent/img/DiagramasModelos/CasosDeUso.jpg)
+![CasosDeUso](https://github.com/toballatorre/ConsultoriaAccidenteS/blob/master/WebContent/img/DiagramasModelos/CasosDeUso.jpg)
 
 2. Creamos el diagrama de casos
-![](https://github.com/toballatorre/ConsultoriaAccidente/blob/master/WebContent/img/DiagramasModelos/DiagramaCasodeUso.jpeg)
+![](https://github.com/toballatorre/ConsultoriaAccidenteS/blob/master/WebContent/img/DiagramasModelos/DiagramaCasodeUso.jpeg)
 
 3. Modelo de Datos
 ![UML](https://github.com/takeshidev/ConsPrevRiesgSQL/blob/master/ModeloSQL/Relational_1.png) 

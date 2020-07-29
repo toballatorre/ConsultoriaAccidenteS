@@ -9,23 +9,27 @@
                     http://www.springframework.org/schema/security/spring-security-4.2.xsd">
 
 	<http use-expressions="true">
-		<intercept-url pattern="/AreaAdmin" access="hasAuthority('ROLE_ADMIN')" />
-		<intercept-url pattern="/AreaCliente" access="hasAuthority('ROLE_CLIENTE')" />
-		<intercept-url pattern="/AreaProfesional" access="hasAuthority('ROLE_PROF')" />
+		<intercept-url pattern="/AreaAdmin" access="hasAuthority('admin')" />
+		<intercept-url pattern="/AreaCliente" access="hasAuthority('cliente')" />
+		<intercept-url pattern="/AreaProfesional" access="hasAuthority('profesional')" />
 		<intercept-url pattern="/**" access="isAuthenticated()"/>
 		<form-login />
+		<logout logout-success-url="/login" />
 	</http>
 
 	<authentication-manager>
 		<authentication-provider>
 			<password-encoder hash="bcrypt"/>
-			<user-service>
-				<user name="brian" password="kupita" authorities="ROLE_ADMIN"/>
-				<user name="ana" password="ana" authorities="ROLE_USER"/>
-				<user name="admin" password="$2a$10$/Vj4nUtV/nBonAnUZ1Ka5.3L1dhy1J6ZPF0lkJftb62CMpHsztHzi" authorities="ROLE_ADMIN"/>
-				<user name="cliente" password="{noop}123" authorities="ROLE_CLIENTE"/>
-				<user name="profesional" password="{noop}123" authorities="ROLE_PROF"/>
-			</user-service>
+	
+			<jdbc-user-service data-source-ref="dataSource"
+				users-by-username-query=" 
+	    		select usuario as username, clave as password, 1 as enabled from usuario where usuario=?"
+				
+				authorities-by-username-query="
+				select usuario as username, tipousuario as authority from usuario where usuario=?"
+				
+				
+			/>
 		</authentication-provider>
 	</authentication-manager>
 </beans:beans>

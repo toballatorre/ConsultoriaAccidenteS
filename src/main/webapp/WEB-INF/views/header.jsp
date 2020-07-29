@@ -16,5 +16,6 @@
 			<input type="text" id="Password" name="Password" placeholder="Password">
 			<input type="submit" value="Login">
 		</form>
+		<button onclick="window.location.href='logout';" type="button">Logout</button>
 	</div>
 </header>

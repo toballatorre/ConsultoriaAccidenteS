@@ -20,7 +20,7 @@
 	<br><h1>Vista Profesional</h1>	
 		<h2>Detalle Capacitacion <c:out value="${cap.getId()}"/></h2>
 		<table class="table table-striped table-hover">
-			<thead>
+			<thead class="thead-light">
 				<tr>
 					<th colspan="4">Detalle Capacitacion <c:out value="${cap.getId()}"/></th>
 				</tr>

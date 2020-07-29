@@ -4,12 +4,13 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -17,7 +18,32 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class LoginController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
-		
+	
+	@RequestMapping("/login")
+	public String login() {
+		System.out.println("Ingreso a login");
+		return "login";
+	}
+
+	@RequestMapping("/error")
+	public String error(ModelMap model) {
+		model.addAttribute("error", "true");
+		return "login";
+	}
+
+	@RequestMapping("/logout")
+	public String logout(ModelMap model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); //get logged in username
+
+	      model.addAttribute("username", name);
+		if (auth != null) {
+			SecurityContextHolder.getContext().setAuthentication(null);
+		}
+		return "redirect:/login?logout";
+	}
+
+	/* LOGIN MULA
 	@RequestMapping(value = "/haceLogin", method = RequestMethod.POST)
 	public String hacelogin(Locale locale, Model model, HttpServletRequest request) {
 		
@@ -31,7 +57,7 @@ public class LoginController {
 		String user = request.getParameter("Usuario");
 		String pass = request.getParameter("Password");
 		
-		/*Login provisional, sin conexion a DB*/
+		
 		if (user.equals("cliente")) {
 			model.addAttribute("tipoUsuario", "cliente");
 			return "AreaCliente";	
@@ -42,16 +68,20 @@ public class LoginController {
 			model.addAttribute("tipoUsuario", "profesional");
 			return "AreaProfesional";
 		}
-		/*Fin login mula*/
-	}
+		
+	}Fin login mula*/
 	@RequestMapping(value = "/AreaAdmin", method = RequestMethod.GET)
-	public String login(Locale locale, Model model) {
+	public String logina(Locale locale, Model model) {
 		
 		logger.info("estamos en AreaAdmin", locale);
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		String formattedDate = dateFormat.format(date);
 		model.addAttribute("serverTime", formattedDate );
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); //get logged in username
+
+	      model.addAttribute("username", name);
 		
 		return "AreaAdmin";
 	}
@@ -64,6 +94,10 @@ public class LoginController {
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		String formattedDate = dateFormat.format(date);
 		model.addAttribute("serverTime", formattedDate );
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); //get logged in username
+
+	      model.addAttribute("username", name);
 		
 		return "AreaCliente";
 	}
@@ -76,6 +110,12 @@ public class LoginController {
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		String formattedDate = dateFormat.format(date);
 		model.addAttribute("serverTime", formattedDate );
+		
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); //get logged in username
+
+	    model.addAttribute("username", name);
 		
 		return "AreaProfesional";
 	}

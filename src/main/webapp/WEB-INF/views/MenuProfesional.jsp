@@ -8,4 +8,7 @@
 	<button
 		onclick="window.location.href='${pageContext.request.contextPath}/actividad/listarActividadesP';"
 		type="button" class="btn btn-outline-info">Revisar actividad de mejora</button>
+	<button
+		onclick="window.location.href='${pageContext.request.contextPath}/checklist/listar';"
+		type="button" class="btn btn-outline-info">Checklist</button>
 </div><br>

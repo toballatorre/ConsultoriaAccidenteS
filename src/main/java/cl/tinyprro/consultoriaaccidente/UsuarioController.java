@@ -10,8 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -47,14 +50,25 @@ public class UsuarioController {
 	
 	/*CRUD USUARIOS*/
 	@RequestMapping(value = "/Usuarios", method = RequestMethod.GET)
-	public ModelAndView listarUsuarios() {
+	public ModelAndView listarUsuarios(ModelMap model) {
 		
 		List<Usuario> listausuarios = usuarioDAO.buscarTodos();
+		
+		
+		/*Rescata nombre de usuario*/
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); //get logged in username
+	    model.addAttribute("username", name);
 				
 		return new ModelAndView("admin/UsuarioReadAll", "listaUsers", listausuarios);
 	}
 	@RequestMapping(value = "/UsuarioCreate", method = RequestMethod.GET)
 	public String usuarioCreate(Locale locale,Model model) {
+		/*Rescata nombre de usuario*/
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); //get logged in username
+	    model.addAttribute("username", name);
+		
 		logger.info("/UsuarioCreate @UsuarioController ");
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
@@ -64,8 +78,13 @@ public class UsuarioController {
 		return "admin/UsuarioCreate";
 	}
 	@RequestMapping(value = "/UsuarioCreateSave", method = RequestMethod.POST)
-	public ModelAndView usuarioCreateSave(HttpServletRequest request) {
-		
+	public ModelAndView usuarioCreateSave(HttpServletRequest request, ModelMap model) {
+		/*Rescata nombre de usuario*/
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); //get logged in username
+	    model.addAttribute("username", name);
+	    
+	    
 		usuarioDAO.ingresarUsuario(new Usuario(
 				request.getParameter("txtusuario"),
 				request.getParameter("txttipouser"),
@@ -79,14 +98,24 @@ public class UsuarioController {
 	
 	
 	@RequestMapping(value = "/UsuarioUpdate/{id}", method = RequestMethod.GET)
-	public ModelAndView listarUsuarioporid(@PathVariable int id) {
+	public ModelAndView listarUsuarioporid(@PathVariable int id, ModelMap model) {
+		/*Rescata nombre de usuario*/
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); //get logged in username
+	    model.addAttribute("username", name);
+		
 		
 		Usuario u = usuarioDAO.buscarPorId(id);
 		
 		return new ModelAndView("admin/UsuarioUpdate", "usuario", u);
 	}
 	@RequestMapping(value = "/UsuarioUpdate/UsuarioUpdateSave", method = RequestMethod.POST)
-	public ModelAndView guardarUsuarioporid(HttpServletRequest request) {
+	public ModelAndView guardarUsuarioporid(HttpServletRequest request, ModelMap model) {
+		/*Rescata nombre de usuario*/
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); //get logged in username
+	    model.addAttribute("username", name);
+		
 		
 		Usuario u = new Usuario(
 				Integer.parseInt(request.getParameter("idusuario")),
@@ -140,21 +169,34 @@ public class UsuarioController {
 	 * JPA CLIENTE
 	 */
 	@RequestMapping(value = "/Clientes", method = RequestMethod.GET)
-	public ModelAndView listarClientes() {
+	public ModelAndView listarClientes(ModelMap model) {
+		/*Rescata nombre de usuario*/
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); //get logged in username
+	    model.addAttribute("username", name);
 		
 		List<Cliente> listaclientes = cs.getAll();
 		logger.info("JPA clientes ");
 		return new ModelAndView("admin/ClienteReadAll", "listaClientes", listaclientes);
 	}
 	@RequestMapping(value = "/ClienteUpdate/{id}", method = RequestMethod.GET)
-	public ModelAndView clienteUpdate(@PathVariable int id) {
-			
+	public ModelAndView clienteUpdate(@PathVariable int id, ModelMap model) {
+		/*Rescata nombre de usuario*/
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); //get logged in username
+	    model.addAttribute("username", name);	
+		
+		
 		Cliente c = cs.getById(id);
 			
 		return new ModelAndView("admin/ClienteUpdate", "cliente", c);
 	}
 	@RequestMapping(value = "/ClienteUpdate/ClienteUpdateSave", method = RequestMethod.POST)
-	public ModelAndView guardarClienteporid(Cliente c) {
+	public ModelAndView guardarClienteporid(Cliente c, ModelMap model) {
+		/*Rescata nombre de usuario*/
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); //get logged in username
+	    model.addAttribute("username", name);
 		
 		cs.edit(c);
 		
@@ -170,7 +212,13 @@ public class UsuarioController {
 	 * @return
 	 */
 	@RequestMapping(value = "/Profesionales", method = RequestMethod.GET)
-	public ModelAndView listarProfesionales() {
+	public ModelAndView listarProfesionales(ModelMap model) {
+		/*Rescata nombre de usuario*/
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); //get logged in username
+	    model.addAttribute("username", name);
+	    
+	    
 		logger.info("Usuario Controller, listar profesionales con JPA");
 		
 		List<Profesional> lista = ps.getAll();
@@ -184,7 +232,12 @@ public class UsuarioController {
 	 * @return
 	 */
 	@RequestMapping(value = "/ProfesionalUpdate/{id}", method = RequestMethod.GET)
-	public ModelAndView profesionalUpdate(@PathVariable int id) {
+	public ModelAndView profesionalUpdate(@PathVariable int id, ModelMap model) {
+		/*Rescata nombre de usuario*/
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); //get logged in username
+	    model.addAttribute("username", name);
+	    
 		logger.info("/ProfesionalUpdate @UsuarioController ");
 				
 		Profesional p = ps.getById(id);
@@ -199,7 +252,11 @@ public class UsuarioController {
 	 * @return
 	 */
 	@RequestMapping(value = "/ProfesionalUpdate/ProfesionalUpdateSave", method = RequestMethod.POST)
-	public ModelAndView guardarProfesionalporid(Profesional p) {
+	public ModelAndView guardarProfesionalporid(Profesional p, ModelMap model) {
+		/*Rescata nombre de usuario*/
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); //get logged in username
+	    model.addAttribute("username", name);
 		
 		ps.edit(p);
 		

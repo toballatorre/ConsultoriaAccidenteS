@@ -9,7 +9,9 @@
                     http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
 	<http use-expressions="true">
-		<intercept-url pattern="/interior" access="hasAuthority('ROLE_ADMIN')" />
+		<intercept-url pattern="/AreaAdmin" access="hasAuthority('ROLE_ADMIN')" />
+		<intercept-url pattern="/AreaCliente" access="hasAuthority('ROLE_CLIENTE')" />
+		<intercept-url pattern="/AreaProfesional" access="hasAuthority('ROLE_PROF')" />
 		<intercept-url pattern="/**" access="isAuthenticated()"/>
 		<form-login />
 	</http>
@@ -19,6 +21,9 @@
 			<user-service>
 				<user name="brian" password="kupita" authorities="ROLE_ADMIN"/>
 				<user name="ana" password="ana" authorities="ROLE_USER"/>
+				<user name="admin" password="123" authorities="ROLE_ADMIN"/>
+				<user name="cliente" password="123" authorities="ROLE_CLIENTE"/>
+				<user name="profesional" password="123" authorities="ROLE_PROF"/>
 			</user-service>
 		</authentication-provider>
 	</authentication-manager>

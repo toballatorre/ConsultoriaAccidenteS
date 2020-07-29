@@ -6,7 +6,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
                     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
                     http://www.springframework.org/schema/security 
-                    http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+                    http://www.springframework.org/schema/security/spring-security-4.2.xsd">
 
 	<http use-expressions="true">
 		<intercept-url pattern="/AreaAdmin" access="hasAuthority('ROLE_ADMIN')" />
@@ -18,12 +18,13 @@
 
 	<authentication-manager>
 		<authentication-provider>
+			<password-encoder hash="bcrypt"/>
 			<user-service>
 				<user name="brian" password="kupita" authorities="ROLE_ADMIN"/>
 				<user name="ana" password="ana" authorities="ROLE_USER"/>
-				<user name="admin" password="123" authorities="ROLE_ADMIN"/>
-				<user name="cliente" password="123" authorities="ROLE_CLIENTE"/>
-				<user name="profesional" password="123" authorities="ROLE_PROF"/>
+				<user name="admin" password="$2a$10$/Vj4nUtV/nBonAnUZ1Ka5.3L1dhy1J6ZPF0lkJftb62CMpHsztHzi" authorities="ROLE_ADMIN"/>
+				<user name="cliente" password="{noop}123" authorities="ROLE_CLIENTE"/>
+				<user name="profesional" password="{noop}123" authorities="ROLE_PROF"/>
 			</user-service>
 		</authentication-provider>
 	</authentication-manager>

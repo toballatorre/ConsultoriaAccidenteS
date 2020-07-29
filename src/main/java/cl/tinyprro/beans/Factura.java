@@ -2,16 +2,26 @@ package cl.tinyprro.beans;
 
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="FACTURA")
 public class Factura {
 	/* CONSTANTE */
 	private final float IVA = 0.19f;
 	
 	/* CABECERA */
+	@Id
+	@Column(name="IDFACTURA")
 	private int idFactura;
-	private int cliente_idCliente;
-	private String fechaEmision;
-	private String fechaVencimiento;
-	private String fechaPago;
+	@Column(name="CLIENTE_IDCLIENTE")
+	private int idCliente;
+	private String fechaemision;
+	private String fechavencimiento;
+	private String fechapago;
 	
 	/* DETALLE */
 	private List<Item> listaItem = null;
@@ -20,13 +30,13 @@ public class Factura {
 	public Factura() {
 	}
 
-	public Factura(int idFactura, int cliente_idCliente, String fechaEmision, String fechaVencimiento, String fechaPago,
+	public Factura(int idFactura, int idCliente, String fechaEmision, String fechaVencimiento, String fechaPago,
 			List<Item> listaItem) {
 		this.idFactura = idFactura;
-		this.cliente_idCliente = cliente_idCliente;
-		this.fechaEmision = fechaEmision;
-		this.fechaVencimiento = fechaVencimiento;
-		this.fechaPago = fechaPago;
+		this.idCliente = idCliente;
+		this.fechaemision = fechaEmision;
+		this.fechavencimiento = fechaVencimiento;
+		this.fechapago = fechaPago;
 		this.listaItem = listaItem;
 	}
 
@@ -40,35 +50,35 @@ public class Factura {
 	}
 
 	public int getCliente_idCliente() {
-		return cliente_idCliente;
+		return idCliente;
 	}
 
-	public void setCliente_idCliente(int cliente_idCliente) {
-		this.cliente_idCliente = cliente_idCliente;
+	public void setCliente_idCliente(int idCliente) {
+		this.idCliente = idCliente;
 	}
 
 	public String getFechaEmision() {
-		return fechaEmision;
+		return fechaemision;
 	}
 
 	public void setFechaEmision(String fechaEmision) {
-		this.fechaEmision = fechaEmision;
+		this.fechaemision = fechaEmision;
 	}
 
 	public String getFechaVencimiento() {
-		return fechaVencimiento;
+		return fechavencimiento;
 	}
 
 	public void setFechaVencimiento(String fechaVencimiento) {
-		this.fechaVencimiento = fechaVencimiento;
+		this.fechavencimiento = fechaVencimiento;
 	}
 
 	public String getFechaPago() {
-		return fechaPago;
+		return fechapago;
 	}
 
 	public void setFechaPago(String fechaPago) {
-		this.fechaPago = fechaPago;
+		this.fechapago = fechaPago;
 	}
 
 	public List<Item> getListaItem() {

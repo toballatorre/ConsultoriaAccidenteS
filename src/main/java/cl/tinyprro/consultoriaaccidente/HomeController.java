@@ -6,6 +6,8 @@ import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,9 +35,16 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 
-	
-		
-		return "home";
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); //get logged in username
+		System.out.println("/home   +" + name);
+		model.addAttribute("username", name);
+		if (name.contentEquals("anonymousUser")) {
+			return "login";
+		} else {
+			return "home";
+		}
+				
 	}
 	
 }

@@ -9,13 +9,15 @@
 		<!-- jsp:include page="ValidaUsuario.jsp" /> -->
 		<a href="/consultoriaaccidente"><i class="fas fa-home"></i></a>
 		
-		Hola ${tipoUsuario}! - 
+		Hola ${username} ${tipoUsuario}! - 
 		${serverTime}
+		<!-- 
 		<form action="${pageContext.request.contextPath}/haceLogin" method="post">
 			<input type="text" id="Usuario" name="Usuario" placeholder="Usuario">
 			<input type="text" id="Password" name="Password" placeholder="Password">
 			<input type="submit" value="Login">
 		</form>
-		<button onclick="window.location.href='logout';" type="button">Logout</button>
+		 -->
+		 <button onclick="window.location.href='logout';" type="button">Logout</button>
 	</div>
 </header>

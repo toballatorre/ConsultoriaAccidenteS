@@ -9,11 +9,17 @@
                     http://www.springframework.org/schema/security/spring-security-4.2.xsd">
 
 	<http use-expressions="true">
+		<intercept-url pattern="/login" access="permitAll"/>
+		<intercept-url pattern="/home" access="isAuthenticated()"/>
 		<intercept-url pattern="/AreaAdmin" access="hasAuthority('admin')" />
 		<intercept-url pattern="/AreaCliente" access="hasAuthority('cliente')" />
 		<intercept-url pattern="/AreaProfesional" access="hasAuthority('profesional')" />
-		<intercept-url pattern="/**" access="isAuthenticated()"/>
-		<form-login />
+		<form-login 
+			login-page="/login"
+			authentication-failure-url="/error"
+			username-parameter="username"
+		    password-parameter="password"
+		/>
 		<logout logout-success-url="/login" />
 	</http>
 

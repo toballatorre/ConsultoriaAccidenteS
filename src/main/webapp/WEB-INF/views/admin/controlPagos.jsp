@@ -28,6 +28,7 @@
 				<th>Fecha Vencimiento</th>
 				<th>Fecha Pago</th>
 				<th>Estado</th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -39,17 +40,18 @@
 					<td> <c:out value="${factura.getFechaVencimiento()}"/> </td>
 					<td> <c:out value="${factura.getFechaPago()}"/> </td>
 					<c:choose>
-						<c:when test="${factura.getFechaPago() == ''}">
+						<c:when test="${factura.getFechaPago() == null}">
 							<td> SIN PAGAR </td>
 						</c:when>
 						<c:otherwise>
 							<td> PAGADO </td>
 						</c:otherwise>
 					</c:choose>
+					<td> <a href="${pageContext.request.contextPath}/factura/detalle/${factura.getIdFactura()}">Detalle</a> </td>
 				</tr>
 			</c:forEach>
 			<tr>
-				<td colspan="6"> <a href="../AreaAdmin">Volver</a> </td>			
+				<td colspan="7"> <a href="../AreaAdmin">Volver</a> </td>			
 			</tr>
 		</tbody>
 		

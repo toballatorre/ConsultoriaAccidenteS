@@ -1,13 +1,29 @@
 package cl.tinyprro.beans;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="ITEM")
 public class Item {
 
 	/* ATRIBUTOS */
+	@Id
+	@Column(name="IDITEM")
 	private int idItem;
 	private String concepto;
+	@Column(name="PRECIOUNIT")
 	private float precioUnitario;
 	private int cantidad;
-	private int factira_facturaId;
+	
+	@JoinColumn(name="FACTURA_IDFACTURA")
+	@ManyToOne(targetEntity = Factura.class)
+	private int idFactura;
 	
 	
 	/**Constructor vacío
@@ -27,7 +43,7 @@ public class Item {
 		this.concepto = concepto;
 		this.precioUnitario = precioUnitario;
 		this.cantidad = cantidad;
-		this.factira_facturaId = factira_facturaId;
+		this.idFactura = factira_facturaId;
 	}
 
 
@@ -44,7 +60,7 @@ public class Item {
 		this.concepto = concepto;
 		this.precioUnitario = precioUnitario;
 		this.cantidad = cantidad;
-		this.factira_facturaId = factira_facturaId;
+		this.idFactura = factira_facturaId;
 	}
 
 
@@ -116,7 +132,7 @@ public class Item {
 	 * @return the factira_facturaId
 	 */
 	public int getFactira_facturaId() {
-		return factira_facturaId;
+		return idFactura;
 	}
 	
 
@@ -124,14 +140,13 @@ public class Item {
 	 * @param factira_facturaId the factira_facturaId to set
 	 */
 	public void setFactira_facturaId(int factira_facturaId) {
-		this.factira_facturaId = factira_facturaId;
+		this.idFactura = factira_facturaId;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "Item [idItem=" + idItem + ", concepto=" + concepto + ", precioUnitario=" + precioUnitario
+				+ ", cantidad=" + cantidad + ", idFactura=" + idFactura + "]";
+	}
+
 }

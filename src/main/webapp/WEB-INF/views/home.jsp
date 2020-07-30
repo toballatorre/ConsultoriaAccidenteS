@@ -14,20 +14,12 @@
 
 <div class="contenido">
 	
-	<h2>Menu provisional</h2>
+	<h1>Bienvenido</h1><br>
+	<h2>Menú</h2>
 	<button onclick="window.location.href='AreaAdmin';" type="button" class="btn btn-outline-primary">Admin</button>
 	<button onclick="window.location.href='AreaCliente';" type="button" class="btn btn-outline-primary">Cliente</button>
 	<button onclick="window.location.href='AreaProfesional';" type="button" class="btn btn-outline-primary">Profesional</button>
-
-		<h1>Bienvenido</h1><br>
-		<h3>Use alguno de estos usuarios para ingresar</h3>
-			<p>U: admin1 P: 123</p>
-			<p>U: admin2 P: 123</p>
-			<p>U: cliente1 P: 123</p>
-			<p>U: cliente2 P: 123</p>
-			<p>U: prev1 P: 123</p>
-			<p>U: prev2 P: 123</p>
-			<br>
+		
 		<h2>No más Accidentabilidad</h2>
 		<h3>Integrantes</h3>
 			<p>Takeshi Kita - <a target="_blank" href="https://github.com/takeshidev"><i class="fab fa-github"></i>takeshidev</a></p>
@@ -40,20 +32,6 @@
 		<p>Interpretar especificaciones de sistemas utilizando casos de uso para su posterior implementación
 		Construir una aplicación web dinámica utilizando el patrón MVC con vistas JSP y controladores Servlets para el despliegue de información.
 		Realizar conexión a una base de datos dinámica de acuerdo a las especificaciones entregadas</p>
-		<br>
-		<h3>Casos de uso implementados:</h3>
-		<ol>
-			<li>CU1 - Mantener información Cliente</li>
-			<li>CU2 - Mantener información profesionales</li>
-			<li>CU3 - Crear capacitacion</li>
-			<li>CU6 - Reportar accidente</li>
-			<li>CU8 - Ingresar actividad mejora</li>
-			<li>CU9 - Revisar actividad mejora</li>
-			<li>CU10 - Controlar pagos cliente</li>
-			<li>CU12 - Calcular accidentabildiad</li>
-			<li>CU14 - Visualizar actividades</li>
-			<li>CU16 - Solicitar asesoria especial</li>
-		</ol>
 		<br>
 		<h3>Preparación del proyecto</h3>
 		<p>1. Iniciamos diseñando el diagrama de casos de uso que se proveyó en la asignación del proyecto.</p>

@@ -8,9 +8,14 @@
 Construir aplicaciones web dinámicas utilizando el entorno de desarrollo Java.
 
 ## Objetivos del proyecto
-- Interpretar especificaciones de sistemas utilizando casos de uso para su posterior implementación
-- Construir una aplicación web dinámica utilizando el patrón MVC con vistas JSP y controladores Servlets para el despliegue de información.
-- Realizar conexión a una base de datos dinámica de acuerdo a las especificaciones entregadas
+- Interpretar especificaciones de sistemas utilizando casos de uso para su posterior implementación 
+- Construir una aplicación web con Spring MVC
+- Desarrollar incrementalmente una solución de software
+- Manejo de datos con JPA y JdbcTemplate
+- Una pieza de software que consume un servicio REST utilizando Spring MVC para solucionar un problema dado de interoperabilidad
+- Controlar el acceso al consumo de una API REST implementando seguridad mediante JWT
+- Codifica una API REST utilizando Spring MVC para exponer recursos y operaciones que dan solución a una problemática dada
+
 
 ## Descpripción
 ### Contexto

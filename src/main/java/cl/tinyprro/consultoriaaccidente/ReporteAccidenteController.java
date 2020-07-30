@@ -1,7 +1,10 @@
 package cl.tinyprro.consultoriaaccidente;
 
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,7 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,15 +36,26 @@ public class ReporteAccidenteController {
 	 * @return
 	 */
 	@RequestMapping(value = "/ReportesAccidentesAll")
-	public ModelAndView listarReportes() {
-		
+	public ModelAndView listarReportes(Locale locale, ModelMap model) {
+		/* Rescata nombre usuario logeado y muestra en header y log4j*/
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); //get logged in username
+	    model.addAttribute("username", name);
+	    logger.info("Usuario {}.", name);
+	    
+	    /*Rescata fecha hora actual*/
+	    Date date = new Date();
+	    DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+	    String formattedDate = dateFormat.format(date);
+	    model.addAttribute("serverTime", formattedDate );
+	    
+	    /*Controlador*/
 		List<ReporteAccidente> lista = rar.getAll();
 		
 		return new ModelAndView("admin/AccidentabilidadReadAll", "listaAccidente", lista);
 	}
 	@RequestMapping(value = "/ReportesAccidentes/{id}")
 	public ModelAndView listarReportesById(@PathVariable int id) {
-		
 		List<ReporteAccidente> lista  = rar.getAll();
 		int idCliente = id;
 		
@@ -54,15 +71,40 @@ public class ReporteAccidenteController {
 	 * @return
 	 */
 	@RequestMapping(value = "/ReportarAccidente", method = RequestMethod.GET)
-	public ModelAndView formCrearAccidente() {
+	public ModelAndView formCrearAccidente(Locale locale, ModelMap model) {
+		/* Rescata nombre usuario logeado y muestra en header y log4j*/
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); //get logged in username
+	    model.addAttribute("username", name);
+	    logger.info("Usuario {}.", name);
+	    
+	    /*Rescata fecha hora actual*/
+	    Date date = new Date();
+	    DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+	    String formattedDate = dateFormat.format(date);
+	    model.addAttribute("serverTime", formattedDate );
+	    
+	    /*Controlador*/	
 		logger.info("/ReportarAccidente estamos en ReporteAccidenteController ");
 		
 		return new ModelAndView("cliente/ReporteAccCreate");
 	}
 	
 	@RequestMapping(value = "/ReporteAccCreate", method = RequestMethod.POST)
-	public ModelAndView insertarAccidente(HttpServletRequest request) {
-	
+	public ModelAndView insertarAccidente(Locale locale, ModelMap model,HttpServletRequest request) {
+		/* Rescata nombre usuario logeado y muestra en header y log4j*/
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); //get logged in username
+	    model.addAttribute("username", name);
+	    logger.info("Usuario {}.", name);
+	    
+	    /*Rescata fecha hora actual*/
+	    Date date = new Date();
+	    DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+	    String formattedDate = dateFormat.format(date);
+	    model.addAttribute("serverTime", formattedDate );
+	    
+	    /*Controlador*/
 		rar.add(new ReporteAccidente(
 				request.getParameter("tipoAccidente"),
 				Integer.parseInt(request.getParameter("diasPerdidos")),

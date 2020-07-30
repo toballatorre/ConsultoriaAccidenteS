@@ -1,11 +1,20 @@
 package cl.tinyprro.consultoriaaccidente;
 
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,7 +33,8 @@ import cl.tinyprro.services.ClienteService;
 @Controller
 @RequestMapping(value = "/actividad")
 public class ActividadController {
-
+	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	
 	@Autowired
 	ActividadService as;
 	@Autowired
@@ -35,7 +45,19 @@ public class ActividadController {
 	 * @return
 	 */
 	@RequestMapping(value = "/listarActividadesA")
-	public ModelAndView listarActividadesA() {
+	public ModelAndView listarActividadesA(Locale locale,ModelMap model) {
+		/*Rescata nombre de usuario*/
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); //get logged in username
+	    model.addAttribute("username", name);
+	    logger.info("Usuario {}.", name);
+	    
+	    /*Rescata fecha hora actual*/
+	    Date date = new Date();
+	    DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+	    String formattedDate = dateFormat.format(date);
+	    model.addAttribute("serverTime", formattedDate );
+		
 		
 		List<Actividad> lista = as.getAll();
 		
@@ -47,7 +69,19 @@ public class ActividadController {
 	 * @return
 	 */
 	@RequestMapping(value = "/listarActividadesP")
-	public ModelAndView listarActividadesP() {
+	public ModelAndView listarActividadesP(Locale locale,ModelMap model) {
+		/*Rescata nombre de usuario*/
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); //get logged in username
+	    model.addAttribute("username", name);
+	    logger.info("Usuario {}.", name);
+		
+	    /*Rescata fecha hora actual*/
+	    Date date = new Date();
+	    DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+	    String formattedDate = dateFormat.format(date);
+	    model.addAttribute("serverTime", formattedDate );
+		
 		
 		List<Actividad> lista = as.getAll();
 		
@@ -60,7 +94,19 @@ public class ActividadController {
 	 * @return
 	 */
 	@RequestMapping(value="/detalle/{id}", method = RequestMethod.GET)
-	public ModelAndView detalleActividad(@PathVariable int id) {
+	public ModelAndView detalleActividad(@PathVariable int id,Locale locale,ModelMap model) {
+		/*Rescata nombre de usuario*/
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); //get logged in username
+	    model.addAttribute("username", name);
+	    logger.info("Usuario {}.", name);
+		
+	    /*Rescata fecha hora actual*/
+	    Date date = new Date();
+	    DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+	    String formattedDate = dateFormat.format(date);
+	    model.addAttribute("serverTime", formattedDate );
+		
 		
 		Actividad a = as.getById(id);
 		
@@ -73,7 +119,18 @@ public class ActividadController {
 	 * @return
 	 */
 	@RequestMapping(value="/detalleA/{id}", method = RequestMethod.GET)
-	public ModelAndView detalleActividadA(@PathVariable int id) {
+	public ModelAndView detalleActividadA(@PathVariable int id, Locale locale,ModelMap model) {
+		/*Rescata nombre de usuario*/
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); //get logged in username
+	    model.addAttribute("username", name);
+	    logger.info("Usuario {}.", name);
+		
+	    /*Rescata fecha hora actual*/
+	    Date date = new Date();
+	    DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+	    String formattedDate = dateFormat.format(date);
+	    model.addAttribute("serverTime", formattedDate );
 		
 		Actividad a = as.getById(id);
 		
@@ -87,7 +144,19 @@ public class ActividadController {
 	 * @return
 	 */
 	@RequestMapping(value="/ingresar", method = RequestMethod.GET)
-	public ModelAndView ingresarActividad() {
+	public ModelAndView ingresarActividad(Locale locale,ModelMap model) {
+		/*Rescata nombre de usuario*/
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); //get logged in username
+	    model.addAttribute("username", name);
+	    logger.info("Usuario {}.", name);
+		
+	    /*Rescata fecha hora actual*/
+	    Date date = new Date();
+	    DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+	    String formattedDate = dateFormat.format(date);
+	    model.addAttribute("serverTime", formattedDate );
+		
 		
 		List<Cliente> lista = cs.getAll();
 		
@@ -100,7 +169,12 @@ public class ActividadController {
 	 * @return
 	 */
 	@RequestMapping(value="/ingresar", method = RequestMethod.POST)
-	public ModelAndView ingresarActividad(HttpServletRequest request) {
+	public ModelAndView ingresarActividad(HttpServletRequest request, ModelMap model) {
+		/*Rescata nombre de usuario*/
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); //get logged in username
+	    model.addAttribute("username", name);
+	    logger.info("Usuario {}.", name);
 		
 		as.add(new Actividad(
 				request.getParameter("titulo"),

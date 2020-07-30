@@ -26,25 +26,22 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		logger.info("Bienvenido al home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-
+		/* Mostrar el nombre en el header */
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String name = auth.getName(); //get logged in username
-		System.out.println("/home   +" + name);
-		model.addAttribute("username", name);
+	    model.addAttribute("username", name);
+	    logger.info("Usuario {} en /.", name);
+	    
+	    /*Rescata fecha hora actual*/
+	    Date date = new Date();
+	    DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+	    String formattedDate = dateFormat.format(date);
+	    model.addAttribute("serverTime", formattedDate );
+		
 		if (name.contentEquals("anonymousUser")) {
 			return "login";
 		} else {
 			return "home";
 		}
-				
 	}
-	
 }

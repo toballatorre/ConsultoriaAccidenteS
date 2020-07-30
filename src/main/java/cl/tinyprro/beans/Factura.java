@@ -31,11 +31,12 @@ public class Factura {
 	private float IVA;
 	
 	/* DETALLE */
-	@OneToMany(mappedBy = "idFactura", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private List<Item> listaItem = new ArrayList<Item>();
+	@OneToMany(mappedBy = "factura", cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.REMOVE}, fetch = FetchType.EAGER)
+	private List<Item> listaItem;
 
 	/* CONSTRUCTORES */
 	public Factura() {
+		listaItem = new ArrayList<Item>();
 	}
 
 	public Factura(int id, int idCliente, String fechaEmision, String fechaVencimiento, String fechaPago,

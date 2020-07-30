@@ -43,59 +43,41 @@ public class LoginController {
 		return "redirect:/login?logout";
 	}
 
-	/* LOGIN MULA
-	@RequestMapping(value = "/haceLogin", method = RequestMethod.POST)
-	public String hacelogin(Locale locale, Model model, HttpServletRequest request) {
-		
-		logger.info("Haciendo login- U: " + request.getParameter("Usuario") + "  P: "+ request.getParameter("Password"), locale);
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		String formattedDate = dateFormat.format(date);
-		model.addAttribute("serverTime", formattedDate );
-		
-		
-		String user = request.getParameter("Usuario");
-		String pass = request.getParameter("Password");
-		
-		
-		if (user.equals("cliente")) {
-			model.addAttribute("tipoUsuario", "cliente");
-			return "AreaCliente";	
-		} else if (user.equals("admin")){
-			model.addAttribute("tipoUsuario", "admin");
-			return "AreaAdmin";
-		} else {
-			model.addAttribute("tipoUsuario", "profesional");
-			return "AreaProfesional";
-		}
-		
-	}Fin login mula*/
+
 	@RequestMapping(value = "/AreaAdmin", method = RequestMethod.GET)
 	public String logina(Locale locale, Model model) {
-		
-		logger.info("estamos en AreaAdmin", locale);
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		String formattedDate = dateFormat.format(date);
-		model.addAttribute("serverTime", formattedDate );
+		/* Rescata nombre usuario logeado y muestra en header y log4j*/
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String name = auth.getName(); //get logged in username
-
-	      model.addAttribute("username", name);
+	    model.addAttribute("username", name);
+	    logger.info("Usuario {} en /AreaAdmin.", name);
+	    
+	    /*Rescata fecha hora actual*/
+	    Date date = new Date();
+	    DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+	    String formattedDate = dateFormat.format(date);
+	    model.addAttribute("serverTime", formattedDate );
+	    
+	    /*Controlador*/
 		
 		return "AreaAdmin";
 	}
 	
 	@RequestMapping(value="/AreaCliente", method = RequestMethod.GET)
 	public String areacliente(Locale locale,Model model) {
-		
-		logger.info("estamos en AreaClienteController");
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		String formattedDate = dateFormat.format(date);
-		model.addAttribute("serverTime", formattedDate );
+		/* Rescata nombre usuario logeado y muestra en header y log4j*/
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String name = auth.getName(); //get logged in username
+	    model.addAttribute("username", name);
+	    logger.info("Usuario {} en /AreaCliente.", name);
+	    
+	    /*Rescata fecha hora actual*/
+	    Date date = new Date();
+	    DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+	    String formattedDate = dateFormat.format(date);
+	    model.addAttribute("serverTime", formattedDate );
+	    
+	    /*Controlador*/
 
 	      model.addAttribute("username", name);
 		
@@ -104,19 +86,49 @@ public class LoginController {
 	
 	@RequestMapping(value="/AreaProfesional", method = RequestMethod.GET)
 	public String areaprofesional(Locale locale,Model model) {
-		
-		logger.info("estamos en AreaProfesionalController");
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		String formattedDate = dateFormat.format(date);
-		model.addAttribute("serverTime", formattedDate );
-		
-		
+		/* Rescata nombre usuario logeado y muestra en header y log4j*/
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String name = auth.getName(); //get logged in username
-
+	    model.addAttribute("username", name);
+	    logger.info("Usuario {} en /AreaProfesional.", name);
+	    
+	    /*Rescata fecha hora actual*/
+	    Date date = new Date();
+	    DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+	    String formattedDate = dateFormat.format(date);
+	    model.addAttribute("serverTime", formattedDate );
+	    
+	    /*Controlador*/
 	    model.addAttribute("username", name);
 		
 		return "AreaProfesional";
 	}
 }
+
+/* LOGIN MULA
+@RequestMapping(value = "/haceLogin", method = RequestMethod.POST)
+public String hacelogin(Locale locale, Model model, HttpServletRequest request) {
+	
+	logger.info("Haciendo login- U: " + request.getParameter("Usuario") + "  P: "+ request.getParameter("Password"), locale);
+	Date date = new Date();
+	DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+	String formattedDate = dateFormat.format(date);
+	model.addAttribute("serverTime", formattedDate );
+	
+	
+	String user = request.getParameter("Usuario");
+	String pass = request.getParameter("Password");
+	
+	
+	if (user.equals("cliente")) {
+		model.addAttribute("tipoUsuario", "cliente");
+		return "AreaCliente";	
+	} else if (user.equals("admin")){
+		model.addAttribute("tipoUsuario", "admin");
+		return "AreaAdmin";
+	} else {
+		model.addAttribute("tipoUsuario", "profesional");
+		return "AreaProfesional";
+	}
+	
+}Fin login mula*/

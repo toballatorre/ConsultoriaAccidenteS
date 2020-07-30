@@ -1,16 +1,23 @@
 package cl.tinyprro.consultoriaaccidente;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -45,12 +52,37 @@ public class CapacitacionController {
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView capacitacion() {
+	public ModelAndView capacitacion(Locale locale,ModelMap model) {
+		/* Mostrar el nombre en el header */
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); //get logged in username
+	    model.addAttribute("username", name);
+	    
+	    /*Rescata fecha hora actual*/
+	    Date date = new Date();
+	    DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+	    String formattedDate = dateFormat.format(date);
+	    model.addAttribute("serverTime", formattedDate );
+		
+		
 		return new ModelAndView("profesional/capacitacion");
 	}
 	
 	@RequestMapping(value="/listar", method = RequestMethod.GET)
-	public ModelAndView listarCapacitacion() {
+	public ModelAndView listarCapacitacion(Locale locale,ModelMap model) {
+		/* Mostrar el nombre en el header */
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); //get logged in username
+	    model.addAttribute("username", name);
+	    
+	    /*Rescata fecha hora actual*/
+	    Date date = new Date();
+	    DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+	    String formattedDate = dateFormat.format(date);
+	    model.addAttribute("serverTime", formattedDate );
+		
+		
+		
 		logger.info("Lista capacitaciones");
 		
 		List<Capacitacion> lista = cs.getAll();
@@ -59,8 +91,20 @@ public class CapacitacionController {
 	}
 	
 	@RequestMapping(value="/detalle/{id}", method = RequestMethod.GET)
-	public ModelAndView detalleCapacitacion(@PathVariable int id) {
-		
+	public ModelAndView detalleCapacitacion(@PathVariable int id,Locale locale,ModelMap model) {
+		/* Rescata nombre usuario logeado y muestra en header y log4j*/
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); //get logged in username
+	    model.addAttribute("username", name);
+	    logger.info("Usuario {}.", name);
+	    
+	    /*Rescata fecha hora actual*/
+	    Date date = new Date();
+	    DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+	    String formattedDate = dateFormat.format(date);
+	    model.addAttribute("serverTime", formattedDate );
+	    
+	    /*Controlador*/
 		Capacitacion c = cs.getById(id);
 		
 		return new ModelAndView("/profesional/detalleCapacitacion", "cap", c);
@@ -68,6 +112,9 @@ public class CapacitacionController {
 	
 	@RequestMapping(value="/crear", method = RequestMethod.GET)
 	public ModelAndView crearCapacitacion() {
+	
+	    
+	    /*Controlador*/
 		
 		List<Cliente> listaCliente = cls.getAll();
 		List<Profesional> listaProf = ps.getAll();
@@ -79,8 +126,21 @@ public class CapacitacionController {
 	}
 	
 	@RequestMapping(value="/ingresar", method = RequestMethod.POST)
-	public ModelAndView insertarCapacitacion(HttpServletRequest request) {
-
+	public ModelAndView insertarCapacitacion(HttpServletRequest request, Locale locale,ModelMap model) {
+		/* Mostrar el nombre en el header */
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); //get logged in username
+	    model.addAttribute("username", name);
+	    logger.info("Usuario {}.", name);
+	    
+	    /*Rescata fecha hora actual*/
+	    Date date = new Date();
+	    DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+	    String formattedDate = dateFormat.format(date);
+	    model.addAttribute("serverTime", formattedDate );
+	    
+	    /*Controlador*/
+		
 		cs.add(new Capacitacion(
 				Integer.parseInt(request.getParameter("client")),
 				request.getParameter("tema"),

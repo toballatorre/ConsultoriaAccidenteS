@@ -71,7 +71,7 @@ public class FacturaController {
 			logger.info("ITEM: {}",i.toString());
 		}
 		
-		return new ModelAndView("detalleFactura");
+		return new ModelAndView("/admin/detalleFactura", "f", f);
 	}
 
 }

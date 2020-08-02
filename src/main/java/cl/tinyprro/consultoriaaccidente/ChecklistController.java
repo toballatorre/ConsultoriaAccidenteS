@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import cl.tinyprro.beans.Checklist;
 import cl.tinyprro.beans.Pregunta;
+import cl.tinyprro.dao.DAOchecklist;
 import cl.tinyprro.services.ChecklistService;
 import cl.tinyprro.services.PreguntaService;
 
@@ -30,10 +33,16 @@ import cl.tinyprro.services.PreguntaService;
 public class ChecklistController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	//********* JPA *********
 	@Autowired
 	ChecklistService cs;
 	@Autowired
 	PreguntaService ps;
+	
+	//******* TEMPLATE *********
+	@Autowired
+	DAOchecklist checklistDAO;	
+	
 	/**
 	 * Lista todas los checklist de la base de datos
 	 * @return
@@ -86,6 +95,7 @@ public class ChecklistController {
 		
 		return new ModelAndView("/profesional/detalleChecklist", "model", modelo);
 	}
+	
 	/**
 	 * Muestra la vista con los detalles del Checklist y la lista de preguntas
 	 * @param id
@@ -110,14 +120,15 @@ public class ChecklistController {
 		
 		return new ModelAndView("/profesional/ChecklistCreate");
 	}
+	
 	/**
 	 * Muestra la vista con los detalles del Checklist y la lista de preguntas
 	 * @param id
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value="/guardarChecklist")
-	public ModelAndView guardarChecklist(Locale locale, Model model) {
+	@RequestMapping(value="/guardarChecklist", method = RequestMethod.POST)
+	public ModelAndView guardarChecklist(HttpServletRequest request,Locale locale, Model model) {
 		/*Rescata fecha hora actual*/
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
@@ -130,8 +141,35 @@ public class ChecklistController {
 		model.addAttribute("username", name);
 		logger.info("Usuario {}. /guardarChecklist {}", name, formattedDate);
 		
-		List<Checklist> lista = cs.getAll();
-		System.out.println(lista);
-		return new ModelAndView("/profesional/listaChecklist", "listaCh", lista);
+		
+		Checklist ch = new Checklist(
+				Integer.parseInt(request.getParameter("idcliente")),
+				request.getParameter("descripcion"),
+				"No respondida",
+				""
+				);
+		String mensaje ="";
+		if (checklistDAO.ingresarChecklist(ch)>0) {
+			logger.info("Exito DAO checklist");
+			
+			checklistDAO.ingresarPregunta(request.getParameter("pregunta1"));
+			checklistDAO.ingresarPregunta(request.getParameter("pregunta2"));
+			checklistDAO.ingresarPregunta(request.getParameter("pregunta3"));
+			checklistDAO.ingresarPregunta(request.getParameter("pregunta4"));
+			checklistDAO.ingresarPregunta(request.getParameter("pregunta5"));
+			checklistDAO.ingresarPregunta(request.getParameter("pregunta6"));
+			checklistDAO.ingresarPregunta(request.getParameter("pregunta7"));
+			checklistDAO.ingresarPregunta(request.getParameter("pregunta8"));
+			checklistDAO.ingresarPregunta(request.getParameter("pregunta9"));
+			checklistDAO.ingresarPregunta(request.getParameter("pregunta10"));
+			
+			mensaje ="Exito";
+			model.addAttribute("mensaje", mensaje);
+			return new ModelAndView("/profesional/listaChecklist", "listaCh", model);
+		} else {
+			mensaje ="F en el chat";
+			model.addAttribute("mensaje", mensaje);
+			return new ModelAndView("/profesional/listaChecklist", "listaCh", model);
+		}
 	}
 }

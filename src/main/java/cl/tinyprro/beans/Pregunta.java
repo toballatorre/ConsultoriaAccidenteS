@@ -18,10 +18,11 @@ public class Pregunta {
 	private String respuesta;
 	private String comentarios;
 	
-	public Pregunta() {
-		
+	/* CONSTRUCTORES */
+	public Pregunta() {	
 	}
 	
+	// Todos los atributos
 	public Pregunta(int id, int idChecklist, String pregunta, String respuesta, String comentarios) {
 		this.id = id;
 		this.idChecklist = idChecklist;
@@ -30,6 +31,19 @@ public class Pregunta {
 		this.comentarios = comentarios;
 	}
 
+	
+	/** solo pregunta
+	 * @param idChecklist
+	 * @param pregunta
+	 * @param respuesta
+	 * @param comentarios
+	 */
+	public Pregunta(String pregunta) {
+		super();
+		this.pregunta = pregunta;
+	}
+
+	/* GET AND SET */
 	public int getId() {
 		return id;
 	}

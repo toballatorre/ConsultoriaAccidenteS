@@ -15,8 +15,16 @@
 <body>
 	<jsp:include page="header.jsp" />
 	<div class="contenido">
-	<jsp:include page="MenuAdmin.jsp" />
-	<br><h1>Vista Administrador</h1>
+		<jsp:include page="MenuAdmin.jsp" />
+		<br>
+		<h1>Vista Administrador</h1>
+		<br>
+		<br>
+		<br>
+		<img alt="" src="${pageContext.request.contextPath}/resources/img/casco.png">
+		<br>
+		<br>
+		<br>
 	</div>
 	<jsp:include page="footer.jsp" />
 </body>

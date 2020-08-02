@@ -39,13 +39,11 @@ public class FacturaController {
 		String name = auth.getName(); //get logged in username
 
 		model.addAttribute("username", name);
-		if (auth != null) {
-			SecurityContextHolder.getContext().setAuthentication(null);
-		}
+
 
 		List<Factura> listaFacturas = fs.getAll();
 		for (Factura factura : listaFacturas) {
-			logger.info(factura.toString());
+			logger.debug(factura.toString());
 		}
 
 

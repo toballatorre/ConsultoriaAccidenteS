@@ -14,12 +14,15 @@
 		<intercept-url pattern="/AreaAdmin" access="hasAuthority('admin')" />
 		<intercept-url pattern="/AreaCliente" access="hasAuthority('cliente')" />
 		<intercept-url pattern="/AreaProfesional" access="hasAuthority('profesional')" />
+		<intercept-url pattern="/checklist" access="hasAuthority('profesional')" />
+		
 		<form-login 
 			login-page="/login"
 			authentication-failure-url="/error"
 			username-parameter="username"
 		    password-parameter="password"
 		/>
+		<csrf disabled="true"/>
 		<logout logout-success-url="/login" />
 	</http>
 

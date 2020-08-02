@@ -40,19 +40,17 @@ public class ChecklistController {
 	 */
 	@RequestMapping("/listar")
 	public ModelAndView listarChecklist(Locale locale,ModelMap model) {
-		logger.info("Listar Checklist");
-		/* Mostrar el nombre en el header */
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String name = auth.getName(); //get logged in username
-	    model.addAttribute("username", name);
-	    logger.info("Usuario {}.", name);
-	    
 	    /*Rescata fecha hora actual*/
 	    Date date = new Date();
 	    DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 	    String formattedDate = dateFormat.format(date);
 	    model.addAttribute("serverTime", formattedDate );
 	
+	    /* Mostrar el nombre en el header */
+	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String name = auth.getName(); //get logged in username
+	    model.addAttribute("username", name);
+	    logger.info("Usuario {} en /listar a las {}", name, formattedDate);
 		
 		List<Checklist> lista = cs.getAll();
 		System.out.println(lista);
@@ -66,13 +64,12 @@ public class ChecklistController {
 	 */
 	@RequestMapping(value="/detalle/{id}", method = RequestMethod.GET)
 	public ModelAndView detalleChecklist(@PathVariable int id,Locale locale, Model model) {
-		logger.info("Detalle de Checklist {}", id);
 		
 		/* Mostrar el nombre en el header */
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String name = auth.getName(); //get logged in username
 	    model.addAttribute("username", name);
-	    logger.info("Usuario {}.", name);
+	    logger.info("Usuario {}. /detalle/{}", name, id);
 	    
 	    /*Rescata fecha hora actual*/
 	    Date date = new Date();
@@ -88,5 +85,53 @@ public class ChecklistController {
 		modelo.put("listaP", listaP);
 		
 		return new ModelAndView("/profesional/detalleChecklist", "model", modelo);
+	}
+	/**
+	 * Muestra la vista con los detalles del Checklist y la lista de preguntas
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/crear", method = RequestMethod.GET)
+	public ModelAndView crearChecklist(Locale locale, Model model) {
+		/* Mostrar el nombre en el header */
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); //get logged in username
+	    model.addAttribute("username", name);
+	    logger.info("Usuario {}. /crear", name);
+	    
+	    /*Rescata fecha hora actual*/
+	    Date date = new Date();
+	    DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+	    String formattedDate = dateFormat.format(date);
+	    model.addAttribute("serverTime", formattedDate );
+		
+		
+		
+		return new ModelAndView("/profesional/ChecklistCreate");
+	}
+	/**
+	 * Muestra la vista con los detalles del Checklist y la lista de preguntas
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/guardarChecklist")
+	public ModelAndView guardarChecklist(Locale locale, Model model) {
+		/*Rescata fecha hora actual*/
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		String formattedDate = dateFormat.format(date);
+		model.addAttribute("serverTime", formattedDate );
+		
+		/* Mostrar el nombre en el header */
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); //get logged in username
+		model.addAttribute("username", name);
+		logger.info("Usuario {}. /guardarChecklist {}", name, formattedDate);
+		
+		List<Checklist> lista = cs.getAll();
+		System.out.println(lista);
+		return new ModelAndView("/profesional/listaChecklist", "listaCh", lista);
 	}
 }

@@ -27,6 +27,7 @@
 				<th>Cliente</th>
 				<th>Descripcion</th>
 				<th>Status</th>
+				<th colspan="2">Acciones</th>		
 			</tr>
 		</thead>
 			<c:forEach items="${listaCh}" var="ch">
@@ -35,10 +36,14 @@
 					<td> <c:out value="${ch.getIdCliente()}"/> </td>
 					<td> <c:out value="${ch.getDescripcion()}"/> </td>
 					<td> <c:out value="${ch.getStatus()}"/> </td>
-					<td> <a href="${pageContext.request.contextPath}/checklist/detalle/${ch.getId()}">Detalle</a> </td>
+					<td> <a href="${pageContext.request.contextPath}/checklist/detalle/${ch.getId()}"><i class="far fa-eye"></i></a> </td>
+					<td> <i class="far fa-edit"></i> </td>
 				</tr>
 			</c:forEach>
 	</table>
+	
+	<a href="crear" class="btn btn-primary" role="button"><i class="far fa-plus-square"></i> Crear Checklist</a>
+		
 	</div>
 	<jsp:include page="../footer.jsp" />
 </body>

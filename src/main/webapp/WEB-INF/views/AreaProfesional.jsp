@@ -17,6 +17,13 @@
 	<div class="contenido">
 	<jsp:include page="MenuProfesional.jsp" />
 	<br><br/><h1>Vista Profesional</h1>
+	<br>
+	<br>
+	<br>
+	<img alt="" src="${pageContext.request.contextPath}/resources/img/casco.png">
+	<br>
+	<br>
+	<br>
 	</div>
 	<jsp:include page="footer.jsp" />
 </body>

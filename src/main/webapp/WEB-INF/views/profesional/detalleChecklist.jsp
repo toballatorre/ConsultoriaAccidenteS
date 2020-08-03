@@ -23,16 +23,16 @@
 		<h1>Vista Profesional</h1>
 		<h2>
 			Detalle Checklist
-			<c:out value="${modelo.ch.getId()}" />
+			<c:out value="${model.ch.getId()}" />
 		</h2>
 
 		<table class="table table-striped table-hover">
 			<thead class="thead-light">
 				<tr>
-					<th>Id: <c:out value="${modelo.ch.getId()}"/> </th>
+					<th>Id: <c:out value="${model.ch.getId()}"/> </th>
 					<th>Cliente: <c:out value="${model.ch.getIdCliente()}"/></th>
-					<th><c:out value="${modelo.ch.getDescripcion()}" /></th>
-					<th><c:out value="${modelo.ch.getStatus()}" /></th>
+					<th>Descripción: <c:out value="${model.ch.getDescripcion()}" /></th>
+					<th>Status: <c:out value="${model.ch.getStatus()}" /></th>
 				</tr>
 			</thead>
 		</table>
@@ -51,21 +51,22 @@
 			</thead>
 			<tbody>
 				<c:forEach items="${model.listaP}" var="p">
-					<c:if test="${p.getIdChecklist() == model.ch.getId()}">
+					
 						<tr>
 							<td> <c:out value="${p.getId()}"/> </td>
 							<td> <c:out value="${p.getPregunta()}"/> </td>
 							<td> <c:out value="${p.getRespuesta()}"/> </td>
 							<td> <c:out value="${p.getComentarios()}"/> </td>
 						</tr>
-					</c:if>
+					
 				</c:forEach>
 			</tbody>
 			
 		</table>
 
 
-
+<a href="${pageContext.request.contextPath}/checklist/crearPregunta/${model.ch.getId()}" class="btn btn-primary" role="button"><i class="far fa-plus-square"></i> Agregar pregunta</a>
+	
 
 
 	</div>

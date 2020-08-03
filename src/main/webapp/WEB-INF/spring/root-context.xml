@@ -45,6 +45,9 @@
 	<bean id="asesoriaDAO" class="cl.tinyprro.dao.DAOasesoria">
 		<property name="template" ref="jt"></property>
 	</bean>
+	<bean id="checklistDAO" class="cl.tinyprro.dao.DAOchecklist">
+		<property name="template" ref="jt"></property>
+	</bean>
 	
 	<!-- Cosas del JPA -->
 	

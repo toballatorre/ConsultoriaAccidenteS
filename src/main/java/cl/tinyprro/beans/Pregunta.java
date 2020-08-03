@@ -2,7 +2,10 @@ package cl.tinyprro.beans;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -11,11 +14,16 @@ public class Pregunta {
 
 	@Id
 	@Column(name="IDPREGUNTA")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "preg_seq")
+	@SequenceGenerator(name = "preg_seq", sequenceName = "PREGUNTA_IDPREGUNTA_SEQ")
 	private int id;
 	@Column(name="CHECKLIST_IDCHECKLIST")
 	private int idChecklist;
+	@Column(name="PREGUNTA")
 	private String pregunta;
+	@Column(name="RESPUESTA")
 	private String respuesta;
+	@Column(name="COMENTARIOS")
 	private String comentarios;
 	
 	/* CONSTRUCTORES */
@@ -38,8 +46,9 @@ public class Pregunta {
 	 * @param respuesta
 	 * @param comentarios
 	 */
-	public Pregunta(String pregunta) {
+	public Pregunta(int idChecklist,String pregunta) {
 		super();
+		this.idChecklist = idChecklist;
 		this.pregunta = pregunta;
 	}
 

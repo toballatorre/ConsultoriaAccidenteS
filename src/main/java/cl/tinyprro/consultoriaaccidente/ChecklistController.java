@@ -66,13 +66,13 @@ public class ChecklistController {
 		return new ModelAndView("/profesional/listaChecklist", "listaCh", lista);
 	}
 	/**
-	 * Muestra la vista con los detalles del Checklist y la lista de preguntas
+	 * INCOMPLETO !!! - Muestra la vista con los detalles del Checklist y la lista de preguntas
 	 * @param id
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping(value="/detalle/{id}", method = RequestMethod.GET)
-	public ModelAndView detalleChecklist(@PathVariable int id,Locale locale, Model model) {
+	public ModelAndView detalleChecklist(@PathVariable int id,Locale locale, ModelMap model) {
 		
 		/* Mostrar el nombre en el header */
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -87,7 +87,7 @@ public class ChecklistController {
 	    model.addAttribute("serverTime", formattedDate );
 		
 		Checklist ch = cs.getById(id);
-		List<Pregunta> listaP = ps.getAll();
+		List<Pregunta> listaP = ps.getAll();// no sirve
 		
 		Map<String, Object> modelo = new HashMap<String, Object>();
 		modelo.put("ch", ch);
@@ -152,24 +152,72 @@ public class ChecklistController {
 		if (checklistDAO.ingresarChecklist(ch)>0) {
 			logger.info("Exito DAO checklist");
 			
-			checklistDAO.ingresarPregunta(request.getParameter("pregunta1"));
-			checklistDAO.ingresarPregunta(request.getParameter("pregunta2"));
-			checklistDAO.ingresarPregunta(request.getParameter("pregunta3"));
-			checklistDAO.ingresarPregunta(request.getParameter("pregunta4"));
-			checklistDAO.ingresarPregunta(request.getParameter("pregunta5"));
-			checklistDAO.ingresarPregunta(request.getParameter("pregunta6"));
-			checklistDAO.ingresarPregunta(request.getParameter("pregunta7"));
-			checklistDAO.ingresarPregunta(request.getParameter("pregunta8"));
-			checklistDAO.ingresarPregunta(request.getParameter("pregunta9"));
-			checklistDAO.ingresarPregunta(request.getParameter("pregunta10"));
-			
 			mensaje ="Exito";
 			model.addAttribute("mensaje", mensaje);
-			return new ModelAndView("/profesional/listaChecklist", "listaCh", model);
+			
+			List<Checklist> lista = cs.getAll();
+			
+			return new ModelAndView("/profesional/listaChecklist", "listaCh", lista);
 		} else {
 			mensaje ="F en el chat";
 			model.addAttribute("mensaje", mensaje);
 			return new ModelAndView("/profesional/listaChecklist", "listaCh", model);
 		}
 	}
+	
+	/* Muestra la vista de creacion de pregunta */
+	@RequestMapping(value="/crearPregunta/{id}", method = RequestMethod.GET)
+	public ModelAndView crearPregunta(@PathVariable int id, Locale locale, Model model) {
+		/* Mostrar el nombre en el header */
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); //get logged in username
+	    model.addAttribute("username", name);
+	    logger.info("Usuario {}. /crear", name);
+	    
+	    /*Rescata fecha hora actual*/
+	    Date date = new Date();
+	    DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+	    String formattedDate = dateFormat.format(date);
+	    model.addAttribute("serverTime", formattedDate );
+	    model.addAttribute("serverTime", formattedDate );
+		
+		Checklist ch = cs.getById(id);
+		
+		Map<String, Object> modelo = new HashMap<String, Object>();
+		modelo.put("ch", ch);
+		
+		return new ModelAndView("/profesional/PreguntaCreate", "datos", modelo);
+	}
+	
+
+	@RequestMapping(value="/guardarPregunta", method = RequestMethod.POST)
+	public ModelAndView guardarPregunta(HttpServletRequest request,Locale locale, Model model) {
+		/*Rescata fecha hora actual*/
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		String formattedDate = dateFormat.format(date);
+		model.addAttribute("serverTime", formattedDate );
+		
+		/* Mostrar el nombre en el header */
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); //get logged in username
+		model.addAttribute("username", name);
+		logger.info("Usuario {}. /guardarChecklist {}", name, formattedDate);
+		
+		
+		Pregunta p = new Pregunta(
+				Integer.parseInt(request.getParameter("idchecklist")),
+				request.getParameter("pregunta")
+				);
+		String mensaje ="";
+		
+		ps.add(p);
+		model.addAttribute("id", Integer.parseInt(request.getParameter("idchecklist")));
+		
+		return new ModelAndView("redirect:/checklist/detalle/{id}");
+
+	}
+
+	
+	
 }

@@ -30,46 +30,6 @@
 					<td><textarea rows = "3" cols = "70" name = "descripcion" maxlength="1000" ></textarea></td>
 				</tr>
 				<tr>
-					<td>Pregunta 1:</td>
-					<td><textarea rows = "2" cols = "70" name = "pregunta1" maxlength="1000"></textarea></td>
-				</tr>
-				<tr>
-					<td>Pregunta 2:</td>
-					<td><textarea rows = "2" cols = "70" name = "pregunta2" maxlength="1000"></textarea></td>
-				</tr>
-				<tr>
-					<td>Pregunta 3:</td>
-					<td><textarea rows = "2" cols = "70" name = "pregunta3" maxlength="1000"></textarea></td>
-				</tr>
-				<tr>
-					<td>Pregunta 4:</td>
-					<td><textarea rows = "2" cols = "70" name = "pregunta4" maxlength="1000"></textarea></td>
-				</tr>
-				<tr>
-					<td>Pregunta 5:</td>
-					<td><textarea rows = "2" cols = "70" name = "pregunta5" maxlength="1000"></textarea></td>
-				</tr>
-				<tr>
-					<td>Pregunta 6:</td>
-					<td><textarea rows = "2" cols = "70" name = "pregunta6" maxlength="1000"></textarea></td>
-				</tr>
-				<tr>
-					<td>Pregunta 7:</td>
-					<td><textarea rows = "2" cols = "70" name = "pregunta7" maxlength="1000"></textarea></td>
-				</tr>
-				<tr>
-					<td>Pregunta 8:</td>
-					<td><textarea rows = "2" cols = "70" name = "pregunta8" maxlength="1000"></textarea></td>
-				</tr>
-				<tr>
-					<td>Pregunta 9:</td>
-					<td><textarea rows = "2" cols = "70" name = "pregunta9" maxlength="1000"></textarea></td>
-				</tr>
-				<tr>
-					<td>Pregunta 10:</td>
-					<td><textarea rows = "2" cols = "70" name = "pregunta10" maxlength="1000"></textarea></td>
-				</tr>
-				<tr>
 					<td>Comentarios:</td>
 					<td><textarea rows = "6" cols = "70" name = "comentarioschk" maxlength="1000"></textarea></td>
 				</tr>

@@ -50,4 +50,10 @@ public class UsuarioImpl implements UsuarioService {
 		ur.delete(id);
 	}
 
+	@Override
+	public Usuario getByUsuario(String u) {
+		// TODO Auto-generated method stub
+		return ur.findOneByUsuario(u);
+	}
+
 }

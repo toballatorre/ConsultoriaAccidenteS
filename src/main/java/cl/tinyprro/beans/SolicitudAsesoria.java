@@ -1,31 +1,52 @@
 package cl.tinyprro.beans;
 
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="SOLICITUDASESORIA")
+@Table(name = "SOLICITUDASESORIA")
 public class SolicitudAsesoria {
 
-/* ATRIBUTOS */
+	/* ATRIBUTOS */
 	@Id
-	@Column(name="IDSOLICITUD")
+	@Column(name = "IDSOLICITUD")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Sol_seq")
 	@SequenceGenerator(name = "Sol_seq", sequenceName = "SOLICITUDASESORIA_IDSOLICITUD")
 	private int id;
-	@Column(name="FECHAHORA")
-	private String fechaHora;
-	@Column(name="MOTIVO")
+	@Column(name = "FECHASOLICITUD")
+	private String fechasolicitud;
+	@Column(name = "MOTIVO")
 	private String motivo;
-	@Column(name="PREFERENCIAHORARIO")
+	@Column(name = "PREFERENCIAHORARIO")
 	private String preferenciaHorario;
-	@Column(name="CLIENTE_IDCLIENTE")
+	@Column(name = "CLIENTE_IDCLIENTE")
 	private int idCliente;
+	@Column(name = "STATUS")
+	private String status;
+	@Column(name = "FECHAAGENDADA")
+	private String fechaagenda;
+	@Column(name = "LUGAR")
+	private String lugar;
+	@Column(name = "CONTACTO")
+	private String contacto;
+	@Column(name = "DETALLE")
+	private String detalle;
+
+	
+	
 	
 	/**
 	 * Constructor vacio
@@ -33,109 +54,192 @@ public class SolicitudAsesoria {
 	public SolicitudAsesoria() {
 		super();
 	}
-	/**
-	 * Constructor sin id
-	 * @param fechaHora
-	 * @param motivo
-	 * @param preferenciaHorario
-	 * @param idCliente
-	 */
-	public SolicitudAsesoria(String fechaHora, String motivo, String preferenciaHorario, int idCliente) {
-		super();
-		this.fechaHora = fechaHora;
-		this.motivo = motivo;
-		this.preferenciaHorario = preferenciaHorario;
-		this.idCliente = idCliente;
-	}
-	
-	/**
-	 * Constructor full
+
+	/** Todos los atributos
 	 * @param id
-	 * @param fechaHora
+	 * @param fechasolicitud
 	 * @param motivo
 	 * @param preferenciaHorario
 	 * @param idCliente
+	 * @param status
+	 * @param fechaagenda
+	 * @param lugar
+	 * @param contacto
+	 * @param detalle
 	 */
-	public SolicitudAsesoria(int id, String fechaHora, String motivo, String preferenciaHorario, int idCliente) {
+	public SolicitudAsesoria(int id, String fechasolicitud, String motivo, String preferenciaHorario, int idCliente,
+			String status, String fechaagenda, String lugar, String contacto, String detalle) {
 		super();
 		this.id = id;
-		this.fechaHora = fechaHora;
+		this.fechasolicitud = fechasolicitud;
 		this.motivo = motivo;
 		this.preferenciaHorario = preferenciaHorario;
 		this.idCliente = idCliente;
+		this.status = status;
+		this.fechaagenda = fechaagenda;
+		this.lugar = lugar;
+		this.contacto = contacto;
+		this.detalle = detalle;
 	}
-	
+
+	/** Constructor para vista cliente
+	 * @param id
+	 * @param fechasolicitud
+	 * @param motivo
+	 * @param preferenciaHorario
+	 * @param idCliente
+	 * @param status
+	 */
+	public SolicitudAsesoria(String fechasolicitud, String motivo, String preferenciaHorario, int idCliente,
+			String status) {
+		super();
+		this.fechasolicitud = fechasolicitud;
+		this.motivo = motivo;
+		this.preferenciaHorario = preferenciaHorario;
+		this.idCliente = idCliente;
+		this.status = status;
+	}
+
 	/**
 	 * @return the id
 	 */
 	public int getId() {
 		return id;
 	}
-	
+
 	/**
 	 * @param id the id to set
 	 */
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	/**
-	 * @return the fechaHora
+	 * @return the fechasolicitud
 	 */
-	public String getFechaHora() {
-		return fechaHora;
+	public String getFechasolicitud() {
+		return fechasolicitud;
 	}
-	
+
 	/**
-	 * @param fechaHora the fechaHora to set
+	 * @param fechasolicitud the fechasolicitud to set
 	 */
-	public void setFechaHora(String fechaHora) {
-		this.fechaHora = fechaHora;
+	public void setFechasolicitud(String fechasolicitud) {
+		this.fechasolicitud = fechasolicitud;
 	}
-	
+
 	/**
 	 * @return the motivo
 	 */
 	public String getMotivo() {
 		return motivo;
 	}
-	
+
 	/**
 	 * @param motivo the motivo to set
 	 */
 	public void setMotivo(String motivo) {
 		this.motivo = motivo;
 	}
-	
+
 	/**
 	 * @return the preferenciaHorario
 	 */
 	public String getPreferenciaHorario() {
 		return preferenciaHorario;
 	}
-	
+
 	/**
 	 * @param preferenciaHorario the preferenciaHorario to set
 	 */
 	public void setPreferenciaHorario(String preferenciaHorario) {
 		this.preferenciaHorario = preferenciaHorario;
 	}
-	
+
 	/**
 	 * @return the idCliente
 	 */
 	public int getIdCliente() {
 		return idCliente;
 	}
-	
+
 	/**
 	 * @param idCliente the idCliente to set
 	 */
 	public void setIdCliente(int idCliente) {
 		this.idCliente = idCliente;
 	}
-	
-	
+
+	/**
+	 * @return the status
+	 */
+	public String getStatus() {
+		return status;
+	}
+
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	/**
+	 * @return the fechaagenda
+	 */
+	public String getFechaagenda() {
+		return fechaagenda;
+	}
+
+	/**
+	 * @param fechaagenda the fechaagenda to set
+	 */
+	public void setFechaagenda(String fechaagenda) {
+		this.fechaagenda = fechaagenda;
+	}
+
+	/**
+	 * @return the lugar
+	 */
+	public String getLugar() {
+		return lugar;
+	}
+
+	/**
+	 * @param lugar the lugar to set
+	 */
+	public void setLugar(String lugar) {
+		this.lugar = lugar;
+	}
+
+	/**
+	 * @return the contacto
+	 */
+	public String getContacto() {
+		return contacto;
+	}
+
+	/**
+	 * @param contacto the contacto to set
+	 */
+	public void setContacto(String contacto) {
+		this.contacto = contacto;
+	}
+
+	/**
+	 * @return the detalle
+	 */
+	public String getDetalle() {
+		return detalle;
+	}
+
+	/**
+	 * @param detalle the detalle to set
+	 */
+	public void setDetalle(String detalle) {
+		this.detalle = detalle;
+	}
+
 	
 	
 }

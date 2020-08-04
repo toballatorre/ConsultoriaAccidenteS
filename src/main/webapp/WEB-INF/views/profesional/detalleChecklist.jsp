@@ -23,49 +23,74 @@
 		<h1>Vista Profesional</h1>
 		<h2>
 			Detalle Checklist
-			<c:out value="${model.ch.getId()}" />
+			<c:out value="${ch.getId()}" />
 		</h2>
+		<form action="../updateChecklist" method="post">
+			<table class="table table-striped table-hover">
+				<thead class="thead-light">
+					<tr>
+						<th colspan="7">Checklist</th>
+					</tr>
+					<tr>
+						<th>Id: </th>
+						<th><input type="number" name="chid" value="${ch.getId()}" readonly/> </th>
+						<th>Cliente:</th>
+						<th><input type="number" name="chidclinete"  value="${ch.getIdCliente()}"/></th>
 
+					</tr>
+					<tr>
+						<th>Descripción:</th>
+						<th colspan="3"><textarea rows = "3" cols = "70" name = "chdescripcion" maxlength="1000"><c:out value="${ch.getDescripcion()}"/></textarea></th>
+					</tr>
+					<tr>
+						<th>Comentarios:</th>
+						<th colspan="3"><textarea rows = "3" cols = "70" name = "chcomentarios" maxlength="1000"><c:out value="${ch.getComentarios()}"/></textarea></th>
+					</tr>
+					<tr>
+						<th>Status:</th>
+						<th><input type="text" name="chstatus" value="${ch.getStatus()}"></th>
+						<th colspan="2"><input type="submit" value="Actualizar checklist" class="btn btn-danger"/></th>
+					</tr>
+				
+				
+				</thead>
+			</table>
+		</form>	
+		
+		
+				
 		<table class="table table-striped table-hover">
 			<thead class="thead-light">
 				<tr>
-					<th>Id: <c:out value="${model.ch.getId()}"/> </th>
-					<th>Cliente: <c:out value="${model.ch.getIdCliente()}"/></th>
-					<th>Descripción: <c:out value="${model.ch.getDescripcion()}" /></th>
-					<th>Status: <c:out value="${model.ch.getStatus()}" /></th>
-				</tr>
-			</thead>
-		</table>
-		<table class="table table-striped table-hover">
-			
-			<thead class="thead-light">
-				<tr>
-					<th colspan="4">Preguntas</th>
+					<th colspan="5">Preguntas</th>
 				</tr>
 				<tr>
 					<th>#</th>
 					<th>Pregunta</th>
 					<th>Respuesta</th>
 					<th>Comentarios</th>
+					<th>Editar</th>
+					
 				<tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${model.listaP}" var="p">
-					
+				<c:forEach items="${ch.getListaP()}" var="p">
 						<tr>
 							<td> <c:out value="${p.getId()}"/> </td>
 							<td> <c:out value="${p.getPregunta()}"/> </td>
 							<td> <c:out value="${p.getRespuesta()}"/> </td>
 							<td> <c:out value="${p.getComentarios()}"/> </td>
+							<td>
+							<a href="${pageContext.request.contextPath}/checklist/responderPregunta/${p.getId()}"><i class="far fa-eye"></i></a>
+							</td>
 						</tr>
-					
 				</c:forEach>
 			</tbody>
 			
 		</table>
 
 
-<a href="${pageContext.request.contextPath}/checklist/crearPregunta/${model.ch.getId()}" class="btn btn-primary" role="button"><i class="far fa-plus-square"></i> Agregar pregunta</a>
+<a href="${pageContext.request.contextPath}/checklist/crearPregunta/${ch.getId()}" class="btn btn-primary" role="button"><i class="far fa-plus-square"></i> Agregar pregunta</a>
 	
 
 

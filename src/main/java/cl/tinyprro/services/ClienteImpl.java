@@ -50,4 +50,10 @@ public class ClienteImpl implements ClienteService {
 		cr.delete(id);
 	}
 
+	@Override
+	public Cliente getByUsuario_idusuario(int c) {
+		// TODO Auto-generated method stub
+		return cr.findOneByIdUsuario(c);
+	}
+
 }

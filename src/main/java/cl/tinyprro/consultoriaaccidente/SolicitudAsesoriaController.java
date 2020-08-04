@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import cl.tinyprro.beans.SolicitudAsesoria;
+import cl.tinyprro.services.ClienteService;
 import cl.tinyprro.services.SolicitudAsesoriaService;
+import cl.tinyprro.services.UsuarioService;
 
 /**
  * Solicitud Asesoria funcionando con JPA
@@ -33,6 +35,13 @@ public class SolicitudAsesoriaController {
 	
 	@Autowired
 	SolicitudAsesoriaService sas;
+	
+	@Autowired
+	UsuarioService us;
+	
+	@Autowired
+	ClienteService cs;
+
 	
 	/**
 	 * Muestra la Vista de las asesorías listadas
@@ -55,9 +64,17 @@ public class SolicitudAsesoriaController {
 	    /*Controlador*/
 		logger.info("/SolicitudAsesoria estamos en SolicitudAsesoriaController, listarAsesorias");
 		
-		List<SolicitudAsesoria> lista = sas.getAll();
+		int idusuario =us.getByUsuario(name).getId();
+		int idcliente =cs.getByUsuario_idusuario(idusuario).getId();
 		
-		return new ModelAndView("cliente/SolicitudAsesoriaReadAll", "listaSolicitud", lista);
+		System.out.println("idUsuario: "+idusuario);
+		System.out.println("idCliente: "+idcliente);
+		
+		
+		List<SolicitudAsesoria> listaS = sas.getByIdCliente(idcliente);
+
+		
+		return new ModelAndView("cliente/SolicitudAsesoriaReadAll", "listaS", listaS);
 	}
 	
 	/**
@@ -102,10 +119,12 @@ public class SolicitudAsesoriaController {
 		logger.info("/SolicitudAsesoriaCreate estamos en SolicitudAsesoriaController Ingresar Asesoria");
 		
 		sas.add(new SolicitudAsesoria( 
-				request.getParameter("fecha"),
+				request.getParameter("fechasolicitud"),
 				request.getParameter("motivo"),
 				request.getParameter("preferenciaHorario"),
-				Integer.parseInt(request.getParameter("idCliente"))));
+				Integer.parseInt(request.getParameter("idCliente")),
+				request.getParameter("status")
+				));
 				
 		return new ModelAndView("redirect:/SolicitudAsesoria");
 	}

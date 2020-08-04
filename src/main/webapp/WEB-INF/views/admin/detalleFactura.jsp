@@ -25,7 +25,7 @@
 		<table class="table table-striped table-hover">
 			<thead class="thead-light">
 				<tr>
-					<th>Cliente: ${f.getCliente_idCliente()}</th>
+					<th>Cliente: ${f.getidCliente()}</th>
 					<th>Fecha Emision: ${f.getFechaEmision()}</th>
 					<th>Fecha Vencimiento: ${f.getFechaVencimiento()}</th>
 					<th>Fecha Pago: ${f.getFechaPago()}</th>

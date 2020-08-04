@@ -1,6 +1,11 @@
 package cl.tinyprro.consultoriaaccidente;
 
+import java.text.DateFormat;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,10 +19,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import cl.tinyprro.beans.Cliente;
 import cl.tinyprro.beans.Factura;
 import cl.tinyprro.beans.Item;
+import cl.tinyprro.services.ClienteService;
 import cl.tinyprro.services.FacturaService;
-
+/**
+ * Controlles de la factura para el CU control de pagos
+ * @author Cristobal L
+ *
+ */
+import cl.tinyprro.services.ItemService;
 @Controller
 @RequestMapping(value = "/factura")
 public class FacturaController {
@@ -25,20 +37,30 @@ public class FacturaController {
 
 	@Autowired
 	FacturaService fs;
+	@Autowired
+	ClienteService cls;
+	@Autowired
+	ItemService is;
+	
 	/**
 	 * Lista todas las facturas existentes
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping(value ="/listarFaturas", method = RequestMethod.GET)
-	public ModelAndView leerFacturas(Model model) {
-
-		logger.info("Listar facturas");
-
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String name = auth.getName(); //get logged in username
-
-		model.addAttribute("username", name);
+	public ModelAndView leerFacturas(Locale locale, Model model) {
+		
+		/*Rescata fecha hora actual*/
+	    Date date = new Date();
+	    DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+	    String formattedDate = dateFormat.format(date);
+	    model.addAttribute("serverTime", formattedDate );
+	
+	    /* Mostrar el nombre en el header */
+	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String name = auth.getName(); //get logged in username
+	    model.addAttribute("username", name);
+	    logger.info("Usuario {} en /listar a las {}", name, formattedDate);
 
 
 		List<Factura> listaFacturas = fs.getAll();
@@ -49,18 +71,26 @@ public class FacturaController {
 
 		return new ModelAndView("admin/controlPagos", "listaFacturas", listaFacturas);
 	}
-
+	
+	/**
+	 * Muestra la vista con los detalles de la factura seleccionada
+	 * @param model
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(value="/detalle/{id}", method = RequestMethod.GET)
-	public ModelAndView detalleFactura(Model model,@PathVariable int id) {
-		logger.info("Detalle factura Nº{}", id);
-
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String name = auth.getName(); //get logged in username
-
-		model.addAttribute("username", name);
-		if (auth != null) {
-			SecurityContextHolder.getContext().setAuthentication(null);
-		}
+	public ModelAndView detalleFactura(Locale locale, Model model, @PathVariable int id) {
+		/*Rescata fecha hora actual*/
+	    Date date = new Date();
+	    DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+	    String formattedDate = dateFormat.format(date);
+	    model.addAttribute("serverTime", formattedDate );
+	
+	    /* Mostrar el nombre en el header */
+	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String name = auth.getName(); //get logged in username
+	    model.addAttribute("username", name);
+	    logger.info("Usuario {} en /Detalle a las {}", name, formattedDate);
 		
 		Factura f = fs.getById(id);
 		logger.info(f.toString());
@@ -71,5 +101,93 @@ public class FacturaController {
 		
 		return new ModelAndView("/admin/detalleFactura", "f", f);
 	}
-
+	
+	/**
+	 * Muestra la vista del formulario para crear una factura
+	 * @return
+	 */
+	@RequestMapping(value="/formularioFactura", method = RequestMethod.GET)
+	public ModelAndView crearFactura(Locale locale, Model model) {
+		/*Rescata fecha hora actual*/
+	    Date date = new Date();
+	    DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+	    String formattedDate = dateFormat.format(date);
+	    model.addAttribute("serverTime", formattedDate );
+	
+	    /* Mostrar el nombre en el header */
+	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String name = auth.getName(); //get logged in username
+	    model.addAttribute("username", name);
+	    logger.info("Usuario {} en /formularioFacturaGET a las {}", name, formattedDate);
+		
+		Factura factura = new Factura();
+		List<Cliente> listaCliente = cls.getAll();
+		model.addAttribute("date", date);
+	    logger.info("DATE: {}", date);
+	
+		Map<String, Object> m = new HashMap<String, Object>();
+		m.put("factura",factura);
+		m.put("listaC", listaCliente);
+		
+		return new ModelAndView("admin/formularioFactura", "model", m);
+	}
+	
+	/**
+	 * Agrega la factura a la base de datos
+	 * @param locale
+	 * @param model
+	 * @param f
+	 * @return
+	 */
+	@RequestMapping(value="/formularioFactura", method = RequestMethod.POST)
+	public ModelAndView crearFactura(Locale locale, Model model, Factura f) {
+		/*Rescata fecha hora actual*/
+	    Date date = new Date();
+	    DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+	    String formattedDate = dateFormat.format(date);
+	    model.addAttribute("serverTime", formattedDate );
+	    
+	    /* Mostrar el nombre en el header */
+	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String name = auth.getName(); //get logged in username
+	    model.addAttribute("username", name);
+	    logger.info("Usuario {} en /formularioFacturaPOST a las {}", name, formattedDate);
+	    logger.info("FECHA E: {} FECHA V: {}", f.getFechaEmision(), f.getFechaVencimiento());
+		fs.add(f);
+		
+		return new ModelAndView("redirect: listarFaturas");
+	}
+	/**
+	 * Eliminar una factura y sus items si los tiene
+	 * @param locale
+	 * @param model
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value="/eliminar/{id}", method = RequestMethod.GET)
+	public ModelAndView eliminarFactura(Locale locale, Model model, @PathVariable int id) {
+		/*Rescata fecha hora actual*/
+	    Date date = new Date();
+	    DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+	    String formattedDate = dateFormat.format(date);
+	    model.addAttribute("serverTime", formattedDate );
+	    
+	    /* Mostrar el nombre en el header */
+	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String name = auth.getName(); //get logged in username
+	    model.addAttribute("username", name);
+	    logger.info("Usuario {} en /eliminarFactura a las {}", name, formattedDate);
+			    
+		Factura f = fs.getById(id);
+		
+		// Elimina los items si hay alguno relacionado con la factura
+		if(f.getListaItem().size() < 0) {
+			for (Item i : f.getListaItem()) {
+				is.delete(i);
+			}
+		}
+		fs.delete(f);
+		
+		return new ModelAndView("redirect: /consultoriaaccidente/factura/listarFaturas");
+	}
 }

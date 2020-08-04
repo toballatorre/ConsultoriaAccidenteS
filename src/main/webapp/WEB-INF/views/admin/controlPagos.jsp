@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +19,7 @@
 	<jsp:include page="../MenuAdmin.jsp" />
 	<br><h1>Vista Administrador</h1>
 	<h2>Control de Pagos</h2>
-	
+	<a class="btn btn-outline-info" href="${pageContext.request.contextPath}/factura/formularioFactura">Crear nueva Factura</a>
 	<table class="table table-striped table-hover">
 		<thead class="thead-light">
 			<tr>
@@ -35,10 +36,19 @@
 			<c:forEach items="${listaFacturas}" var="factura">
 				<tr>
 					<td> <c:out value="${factura.getIdFactura()}"/> </td>
-					<td> <c:out value="${factura.getCliente_idCliente()}"/> </td>
-					<td> <c:out value="${factura.getFechaEmision()}"/> </td>
-					<td> <c:out value="${factura.getFechaVencimiento()}"/> </td>
-					<td> <c:out value="${factura.getFechaPago()}"/> </td>
+					<td> <c:out value="${factura.getidCliente()}"/> </td>
+					<td>
+						<fmt:formatDate value="${factura.getFechaEmision()}" pattern="dd/MM/yyyy" var="fechaE"/> 
+						<c:out value="${fechaE}"/>
+					</td>
+					<td>
+						<fmt:formatDate value="${factura.getFechaVencimiento()}" pattern="dd/MM/yyyy" var="fechaV"/>
+						<c:out value="${fechaV}"/>
+					</td>
+					<td>
+						<fmt:formatDate value="${factura.getFechaPago()}" pattern="dd/MM/yyyy" var="fechaP"/>
+						<c:out value="${fechaP}"/>
+					</td>
 					<c:choose>
 						<c:when test="${factura.getFechaPago() == null}">
 							<td> SIN PAGAR </td>
@@ -47,7 +57,7 @@
 							<td> PAGADO </td>
 						</c:otherwise>
 					</c:choose>
-					<td> <a href="${pageContext.request.contextPath}/factura/detalle/${factura.getIdFactura()}">Detalle</a> </td>
+					<td> <a href="${pageContext.request.contextPath}/factura/detalle/${factura.getIdFactura()}">Detalle</a> | <a href="${pageContext.request.contextPath}/factura/eliminar/${factura.getIdFactura()}">Eliminar</a> </td>
 				</tr>
 			</c:forEach>
 			<tr>

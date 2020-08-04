@@ -12,5 +12,6 @@ public interface UsuarioService {
 	void edit(Usuario u);
 	void delete(Usuario u);
 	void delete(int id);
+	Usuario getByUsuario(String u);
 	
 }

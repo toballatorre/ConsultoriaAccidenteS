@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -17,8 +19,11 @@ public class Pregunta {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "preg_seq")
 	@SequenceGenerator(name = "preg_seq", sequenceName = "PREGUNTA_IDPREGUNTA_SEQ")
 	private int id;
-	@Column(name="CHECKLIST_IDCHECKLIST")
-	private int idChecklist;
+	
+	@JoinColumn(name="CHECKLIST_IDCHECKLIST", referencedColumnName = "IDCHECKLIST")
+	@ManyToOne
+	private Checklist checklist;
+	
 	@Column(name="PREGUNTA")
 	private String pregunta;
 	@Column(name="RESPUESTA")
@@ -26,33 +31,23 @@ public class Pregunta {
 	@Column(name="COMENTARIOS")
 	private String comentarios;
 	
-	/* CONSTRUCTORES */
-	public Pregunta() {	
+	public Pregunta() {
+		
 	}
 	
-	// Todos los atributos
-	public Pregunta(int id, int idChecklist, String pregunta, String respuesta, String comentarios) {
+	public Pregunta(int id, Checklist checklist, String pregunta, String respuesta, String comentarios) {
 		this.id = id;
-		this.idChecklist = idChecklist;
+		this.checklist = checklist;
 		this.pregunta = pregunta;
 		this.respuesta = respuesta;
 		this.comentarios = comentarios;
 	}
-
 	
-	/** solo pregunta
-	 * @param idChecklist
-	 * @param pregunta
-	 * @param respuesta
-	 * @param comentarios
-	 */
-	public Pregunta(int idChecklist,String pregunta) {
-		super();
-		this.idChecklist = idChecklist;
+	public Pregunta(Checklist checklist, String pregunta) {
+		this.checklist = checklist;
 		this.pregunta = pregunta;
 	}
 
-	/* GET AND SET */
 	public int getId() {
 		return id;
 	}
@@ -61,12 +56,12 @@ public class Pregunta {
 		this.id = id;
 	}
 
-	public int getIdChecklist() {
-		return idChecklist;
+	public Checklist getChecklist() {
+		return checklist;
 	}
 
-	public void setIdChecklist(int idChecklist) {
-		this.idChecklist = idChecklist;
+	public void setChecklist(Checklist checklist) {
+		this.checklist = checklist;
 	}
 
 	public String getPregunta() {
@@ -95,9 +90,8 @@ public class Pregunta {
 
 	@Override
 	public String toString() {
-		return "Pregunta [id=" + id + ", idChecklist=" + idChecklist + ", pregunta=" + pregunta + ", respuesta="
-				+ respuesta + ", comentarios=" + comentarios + "]";
+		return "Pregunta [id=" + id + ", checklist=" + checklist + ", pregunta=" + pregunta + ", respuesta=" + respuesta
+				+ ", comentarios=" + comentarios + "]";
 	}
-	
 	
 }

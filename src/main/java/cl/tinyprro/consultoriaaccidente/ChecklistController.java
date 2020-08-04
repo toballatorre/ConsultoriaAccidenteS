@@ -48,8 +48,8 @@ public class ChecklistController {
 	 * @return
 	 */
 	@RequestMapping("/listar")
-	public ModelAndView listarChecklist(Locale locale,ModelMap model) {
-	    /*Rescata fecha hora actual*/
+	public ModelAndView listarChecklist(Locale locale, ModelMap model) {
+		 /*Rescata fecha hora actual*/
 	    Date date = new Date();
 	    DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 	    String formattedDate = dateFormat.format(date);
@@ -66,7 +66,7 @@ public class ChecklistController {
 		return new ModelAndView("/profesional/listaChecklist", "listaCh", lista);
 	}
 	/**
-	 * INCOMPLETO !!! - Muestra la vista con los detalles del Checklist y la lista de preguntas
+	 * Muestra la vista con los detalles del Checklist y la lista de preguntas
 	 * @param id
 	 * @param model
 	 * @return
@@ -87,13 +87,8 @@ public class ChecklistController {
 	    model.addAttribute("serverTime", formattedDate );
 		
 		Checklist ch = cs.getById(id);
-		List<Pregunta> listaP = ps.getAll();// no sirve
 		
-		Map<String, Object> modelo = new HashMap<String, Object>();
-		modelo.put("ch", ch);
-		modelo.put("listaP", listaP);
-		
-		return new ModelAndView("/profesional/detalleChecklist", "model", modelo);
+		return new ModelAndView("/profesional/detalleChecklist", "ch", ch);
 	}
 	
 	/**
@@ -189,7 +184,7 @@ public class ChecklistController {
 		return new ModelAndView("/profesional/PreguntaCreate", "datos", modelo);
 	}
 	
-
+	/*Crea la Pregunta */
 	@RequestMapping(value="/guardarPregunta", method = RequestMethod.POST)
 	public ModelAndView guardarPregunta(HttpServletRequest request,Locale locale, Model model) {
 		/*Rescata fecha hora actual*/
@@ -204,11 +199,12 @@ public class ChecklistController {
 		model.addAttribute("username", name);
 		logger.info("Usuario {}. /guardarChecklist {}", name, formattedDate);
 		
+		int idCh = Integer.parseInt(request.getParameter("idchecklist"));
 		
 		Pregunta p = new Pregunta(
-				Integer.parseInt(request.getParameter("idchecklist")),
-				request.getParameter("pregunta")
-				);
+				  cs.getById(idCh),
+				  request.getParameter("pregunta") );
+		
 		String mensaje ="";
 		
 		ps.add(p);
@@ -217,7 +213,93 @@ public class ChecklistController {
 		return new ModelAndView("redirect:/checklist/detalle/{id}");
 
 	}
-
+	/* Ver  responder preguntas*/
+	@RequestMapping(value="/responderPregunta/{id}", method = RequestMethod.GET)
+	public ModelAndView responderPregunta(@PathVariable int id,Locale locale, ModelMap model) {
+		
+		/* Mostrar el nombre en el header */
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); //get logged in username
+	    model.addAttribute("username", name);
+	    logger.info("Usuario {}. /detalle/{}", name, id);
+	    
+	    /*Rescata fecha hora actual*/
+	    Date date = new Date();
+	    DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+	    String formattedDate = dateFormat.format(date);
+	    model.addAttribute("serverTime", formattedDate );
+		
+		Pregunta preg = ps.getById(id);
+		
+		return new ModelAndView("/profesional/ChecklistResponder", "preg", preg);
+	}
 	
+	@RequestMapping(value="/updatePregunta", method = RequestMethod.POST)
+	public ModelAndView updatePregunta(HttpServletRequest request,Locale locale, Model model) {
+		/*Rescata fecha hora actual*/
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		String formattedDate = dateFormat.format(date);
+		model.addAttribute("serverTime", formattedDate );
+		
+		/* Mostrar el nombre en el header */
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); //get logged in username
+		model.addAttribute("username", name);
+		logger.info("Usuario {}. /guardarChecklist {}", name, formattedDate);
+		
+		int idCh = Integer.parseInt(request.getParameter("idchecklist"));
+		
+		Pregunta p = new Pregunta(
+				Integer.parseInt(request.getParameter("idpregunta")),
+				  cs.getById(idCh),
+				  request.getParameter("pregunta"),
+				  request.getParameter("respuesta"),
+				  request.getParameter("comentario")			
+				);
+		
+		String mensaje ="";
+		
+		ps.edit(p);
+		model.addAttribute("id", Integer.parseInt(request.getParameter("idchecklist")));
+		
+		return new ModelAndView("redirect:/checklist/detalle/{id}");
+
+	}
+	
+	@RequestMapping(value="/updateChecklist", method = RequestMethod.POST)
+	public ModelAndView updateChecklist(HttpServletRequest request,Locale locale, Model model) {
+		/*Rescata fecha hora actual*/
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		String formattedDate = dateFormat.format(date);
+		model.addAttribute("serverTime", formattedDate );
+		
+		/* Mostrar el nombre en el header */
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); //get logged in username
+		model.addAttribute("username", name);
+		logger.info("Usuario {}. /guardarChecklist {}", name, formattedDate);
+		
+		System.out.println(request.getParameter("chid"));
+		System.out.println(request.getParameter("chidclinete"));
+		System.out.println(request.getParameter("chdescripcion"));
+		
+		Checklist c = new Checklist(
+				Integer.parseInt(request.getParameter("chid")),
+				Integer.parseInt(request.getParameter("chidclinete")),
+				request.getParameter("chdescripcion"),
+				request.getParameter("chstatus"),
+				request.getParameter("chcomentarios")
+				);
+		
+		String mensaje ="";
+		
+		cs.edit(c);
+		model.addAttribute("id", Integer.parseInt(request.getParameter("chid")));
+		
+		return new ModelAndView("redirect:/checklist/detalle/{id}");
+
+	}
 	
 }

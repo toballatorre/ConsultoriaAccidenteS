@@ -29,6 +29,7 @@ import cl.tinyprro.services.FacturaService;
  * @author Cristobal L
  *
  */
+import cl.tinyprro.services.ItemService;
 @Controller
 @RequestMapping(value = "/factura")
 public class FacturaController {
@@ -38,6 +39,8 @@ public class FacturaController {
 	FacturaService fs;
 	@Autowired
 	ClienteService cls;
+	@Autowired
+	ItemService is;
 	
 	/**
 	 * Lista todas las facturas existentes
@@ -149,10 +152,42 @@ public class FacturaController {
 	    String name = auth.getName(); //get logged in username
 	    model.addAttribute("username", name);
 	    logger.info("Usuario {} en /formularioFacturaPOST a las {}", name, formattedDate);
-			    
+	    logger.info("FECHA E: {} FECHA V: {}", f.getFechaEmision(), f.getFechaVencimiento());
 		fs.add(f);
 		
 		return new ModelAndView("redirect: listarFaturas");
 	}
-
+	/**
+	 * Eliminar una factura y sus items si los tiene
+	 * @param locale
+	 * @param model
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value="/eliminar/{id}", method = RequestMethod.GET)
+	public ModelAndView eliminarFactura(Locale locale, Model model, @PathVariable int id) {
+		/*Rescata fecha hora actual*/
+	    Date date = new Date();
+	    DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+	    String formattedDate = dateFormat.format(date);
+	    model.addAttribute("serverTime", formattedDate );
+	    
+	    /* Mostrar el nombre en el header */
+	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String name = auth.getName(); //get logged in username
+	    model.addAttribute("username", name);
+	    logger.info("Usuario {} en /eliminarFactura a las {}", name, formattedDate);
+			    
+		Factura f = fs.getById(id);
+		
+		// Elimina los items si hay alguno relacionado con la factura
+		if(f.getListaItem().size() < 0) {
+			for (Item i : f.getListaItem()) {
+				is.delete(i);
+			}
+		}
+		fs.delete(f);
+		
+		return new ModelAndView("redirect: /consultoriaaccidente/factura/listarFaturas");
+	}
 }

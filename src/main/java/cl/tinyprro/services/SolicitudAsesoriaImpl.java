@@ -50,4 +50,10 @@ public class SolicitudAsesoriaImpl implements SolicitudAsesoriaService {
 		sar.delete(id);
 	}
 
+	@Override
+	public List<SolicitudAsesoria> getByIdCliente(int idcliente) {
+		// TODO Auto-generated method stub
+		return (List<SolicitudAsesoria>)sar.findAllByIdCliente(idcliente);
+	}
+
 }

@@ -27,14 +27,14 @@
 				<th>Preferencia horario</th>
 			</tr>
 	
-			<c:forEach items="${listaSolicitud}" var="sol">
+			<c:forEach items="${listaS}" var="s">
 				<tr>
-					<td> <c:out value="${sol.getId()}"/> </td>
-					<td> <c:out value="${sol.getFechaHora()}"/> </td>
-					<td> <c:out value="${sol.getMotivo()}"/> </td>
-					<td> <c:out value="${sol.getPreferenciaHorario()}"/> </td>
+					<td> <c:out value="${s.getId()}"/> </td>
+					<td> <c:out value="${s.getFechasolicitud()}"/> </td>
+					<td> <c:out value="${s.getMotivo()}"/> </td>
+					<td> <c:out value="${s.getPreferenciaHorario()}"/> </td>
 				</tr>
-			</c:forEach>
+		</c:forEach>
 	
 		</table>
 	

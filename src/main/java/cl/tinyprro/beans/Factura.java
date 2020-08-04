@@ -42,7 +42,7 @@ public class Factura {
 	private float IVA;
 	
 	/* DETALLE */
-	@OneToMany(mappedBy = "factura", cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.REMOVE}, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "factura", cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.EAGER)
 	private List<Item> listaItem;
 
 	/* CONSTRUCTORES */
@@ -83,24 +83,25 @@ public class Factura {
 		return fechaemision;
 	}
 
-	public void setFechaEmision(Date fechaEmision) {
-		this.fechaemision = fechaEmision;
+	public void setFechaEmision(String fechaEmision) {
+		
+		this.fechaemision = Utilidades.AjustaFecha(fechaEmision);
 	}
 
 	public Date getFechaVencimiento() {
 		return fechavencimiento;
 	}
 
-	public void setFechaVencimiento(Date fechaVencimiento) {
-		this.fechavencimiento = fechaVencimiento;
+	public void setFechaVencimiento(String fechaVencimiento) {
+		this.fechavencimiento = Utilidades.AjustaFecha(fechaVencimiento);
 	}
 
 	public Date getFechaPago() {
 		return fechapago;
 	}
 
-	public void setFechaPago(Date fechaPago) {
-		this.fechapago = fechaPago;
+	public void setFechaPago(String fechaPago) {
+		this.fechapago = Utilidades.AjustaFecha(fechaPago);
 	}
 
 	public List<Item> getListaItem() {

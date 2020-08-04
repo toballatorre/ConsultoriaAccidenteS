@@ -12,5 +12,6 @@ public interface SolicitudAsesoriaService {
 	void edit(SolicitudAsesoria sa);
 	void delete(SolicitudAsesoria sa);
 	void delete(int id);
+	List<SolicitudAsesoria> getByIdCliente(int idcliente);
 	
 }

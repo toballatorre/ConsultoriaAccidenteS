@@ -21,37 +21,37 @@ public class DAOasesoria {
 	public void setTemplate(JdbcTemplate template) {
 		this.template = template;
 	}
-	
-	/**
-	 * Busca todas las asesorias
-	 * @return
-	 */
-	public List<SolicitudAsesoria> buscarTodos(){
-		return template.query(SQL_BUSCAR_TODO, new AsesoriaMapper());
-	}
-	
-	/**
-	 * Inserta una asesoria
-	 * @param sa
-	 * @return
-	 */
-	public int insertar(SolicitudAsesoria sa) {
-		return template.update(SQL_INSERTAR, new Object[] {
-				sa.getFechaHora(),
-				sa.getMotivo(),
-				sa.getPreferenciaHorario(),
-				sa.getIdCliente()});
-	}
-	
-	public class AsesoriaMapper implements RowMapper<SolicitudAsesoria>{
-		public SolicitudAsesoria mapRow(ResultSet rs, int rowNum) throws SQLException{
-			return new SolicitudAsesoria(
-					rs.getInt("idsolicitud"),
-					rs.getString("fechahora"),
-					rs.getString("motivo"),
-					rs.getString("preferenciahorario"),
-					rs.getInt("cliente_idcliente"));
-		}
-	}
+//	
+//	/**
+//	 * Busca todas las asesorias
+//	 * @return
+//	 */
+//	public List<SolicitudAsesoria> buscarTodos(){
+//		return template.query(SQL_BUSCAR_TODO, new AsesoriaMapper());
+//	}
+//	
+//	/**
+//	 * Inserta una asesoria
+//	 * @param sa
+//	 * @return
+//	 */
+//	public int insertar(SolicitudAsesoria sa) {
+//		return template.update(SQL_INSERTAR, new Object[] {
+//				sa.getFechaHora(),
+//				sa.getMotivo(),
+//				sa.getPreferenciaHorario(),
+//				sa.getIdCliente()});
+//	}
+//	
+//	public class AsesoriaMapper implements RowMapper<SolicitudAsesoria>{
+//		public SolicitudAsesoria mapRow(ResultSet rs, int rowNum) throws SQLException{
+//			return new SolicitudAsesoria(
+//					rs.getInt("idsolicitud"),
+//					rs.getString("fechahora"),
+//					rs.getString("motivo"),
+//					rs.getString("preferenciahorario"),
+//					rs.getInt("cliente_idcliente"));
+//		}
+//	}
 	
 }

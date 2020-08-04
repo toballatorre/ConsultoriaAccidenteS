@@ -12,5 +12,5 @@ public interface ClienteService {
 	void edit(Cliente c);
 	void delete(Cliente c);
 	void delete(int id);
-	
+	Cliente getByUsuario_idusuario(int idusuario);
 }

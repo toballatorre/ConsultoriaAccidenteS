@@ -33,7 +33,7 @@
 					</tr>
 					<tr>
 						<th>Id: </th>
-						<th><input type="number" name="chid" value="${ch.getId()}" /> </th>
+						<th><input type="number" name="chid" value="${ch.getId()}" readonly/> </th>
 						<th>Cliente:</th>
 						<th><input type="number" name="chidclinete"  value="${ch.getIdCliente()}"/></th>
 

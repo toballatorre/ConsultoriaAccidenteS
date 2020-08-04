@@ -28,11 +28,11 @@
 				<tr>
 				
 					<td><strong>Fecha Emision</strong><td>
-					<td> <input type="text" value="${fecha}" name="fechaEmision"> </td>
+					<td> <input type="date" value="${fecha}" name="fechaEmision"> </td>
 				</tr>
 				<tr>
 					<td><strong>Fecha Vencimiento</strong><td>
-					<td> <input type="text" value="${fecha}" name="fechaVencimiento"> </td>
+					<td> <input type="date" value="${fecha}" name="fechaVencimiento"> </td>
 				</tr>
 				<tr>
 					<td><strong>Cliente</strong><td>

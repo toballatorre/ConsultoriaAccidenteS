@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 import cl.tinyprro.beans.Capacitacion;
+import cl.tinyprro.beans.Utilidades;
 
 public class DAOcapacitacion {
 
@@ -55,7 +56,7 @@ public class DAOcapacitacion {
 									rs.getString("objetivos"),
 									rs.getString("contenidos"),
 									rs.getString("recursos"),
-									rs.getString("fecha"),
+									Utilidades.AjustaFecha(rs.getString("fecha")),
 									rs.getInt("idusuariopro"));
 		}
 	}

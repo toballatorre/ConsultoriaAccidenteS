@@ -11,7 +11,7 @@ public class Utilidades {
 	 * @param fecha
 	 * @return
 	 */
-	static Date AjustaFecha (String fecha) {
+	public static Date AjustaFecha (String fecha) {
 		System.out.println(fecha);
 		String f[] = fecha.split("/");
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");

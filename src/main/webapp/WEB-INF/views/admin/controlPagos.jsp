@@ -47,7 +47,18 @@
 					</td>
 					<td>
 						<fmt:formatDate value="${factura.getFechaPago()}" pattern="dd/MM/yyyy" var="fechaP"/>
-						<c:out value="${fechaP}"/>
+						<c:choose>
+							<c:when test="${factura.getFechaPago() == null}">
+								<form action="fechaPago" method="POST">
+									<input type="date" name="fPago"> 
+									<input type="submit" value="Actualizar">
+									<input type="hidden" value="${factura.getIdFactura()}" name="idFactura">
+								</form>
+							</c:when>
+							<c:otherwise>
+								<c:out value="${fechaP}"/>
+							</c:otherwise>
+						</c:choose>
 					</td>
 					<c:choose>
 						<c:when test="${factura.getFechaPago() == null}">

@@ -1,5 +1,8 @@
 <div class="btn-group" role="group">
 	<button
+		onclick="window.location.href='${pageContext.request.contextPath}/CasoAsesoria';"
+		type="button" class="btn btn-outline-info">Caso Asesoria</button>
+	<button
 		onclick="window.location.href='${pageContext.request.contextPath}/capacitacion';"
 		type="button" class="btn btn-outline-info">Capacitación</button>
 	<button
@@ -10,5 +13,8 @@
 		type="button" class="btn btn-outline-info">Revisar actividad de mejora</button>
 	<button
 		onclick="window.location.href='${pageContext.request.contextPath}/checklist/listar';"
-		type="button" class="btn btn-outline-info">Checklist</button>
+		type="button" class="btn btn-outline-info">Checklists</button>
+	<button
+		onclick="window.location.href='${pageContext.request.contextPath}/ProSolicitudAsesoria';"
+		type="button" class="btn btn-outline-info">Planificar Visita</button>
 </div><br>

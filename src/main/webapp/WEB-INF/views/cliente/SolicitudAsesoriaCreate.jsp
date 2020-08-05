@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Reporte Accidente</title>
+<title>Crear Solicitud Asesoria</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
@@ -33,17 +34,18 @@
 					</td>
 				</tr>
 				<tr>
-					<td>Fecha</td>
-					<td colspan="2"><input type="text" name="fecha" id="fecha"	required></td>
+					<fmt:formatDate value="${date}" pattern="dd/MM/yyyy" var="fecha"/>
+					<td>Fecha:</td>
+					<td colspan="2"><input type="datetime" name="fechasolicitud" id="fecha"	required value="${fecha}"></td>
 				</tr>
 				<tr>
-					<td>Motivo</td>
-					<td colspan="2"><input type="text" name="motivo" id="motivo" required></td>
+					<td>Motivo:</td>
+					<td colspan="2"><textarea rows = "6" cols = "70" name = "motivo" id="motivo" required maxlength="1000"></textarea></td>
 				</tr>
 				
 				<tr>
 					<td colspan="3" align="center">
-					<input type="number" name="idCliente" value="1" hidden="true" required> 
+					<input type="number" name="idCliente" value="${idcliente}" hidden="true"> 
 						<input type="submit" value="Registrar">
 					</td>
 				</tr>

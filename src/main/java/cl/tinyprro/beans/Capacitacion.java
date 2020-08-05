@@ -1,5 +1,7 @@
 package cl.tinyprro.beans;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="capacitacion")
@@ -16,7 +20,7 @@ public class Capacitacion {
 	@Id
 	@Column(name="IDCAPACITACION")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Cap_seq")
-	@SequenceGenerator(name = "Cap_seq", sequenceName = "CAPACITACION_SEQ1")
+	@SequenceGenerator(name = "Cap_seq", sequenceName = "CAPACITACION_IDCAPACITACION")
 	private int id;
 	@Column(name="CLIENTE_IDCLIENTE")
 	private int idCliente;
@@ -28,8 +32,9 @@ public class Capacitacion {
 	private String contenidos;
 	@Column(name="RECURSOS")
 	private String recursos;
+	@Temporal(TemporalType.DATE)
 	@Column(name="FECHA")
-	private String fecha;
+	private Date fecha;
 	@Column(name="IDUSUARIOPRO")
 	private int idUsuarioPro;
 	
@@ -39,7 +44,7 @@ public class Capacitacion {
 	
 	// Todos los atributos
 	public Capacitacion(int id, int idCliente, String tema, String objetivos, String contenidos, String recursos,
-			String fecha, int idUsuarioPro) {
+			Date fecha, int idUsuarioPro) {
 		this.id = id;
 		this.idCliente = idCliente;
 		this.tema = tema;
@@ -52,7 +57,7 @@ public class Capacitacion {
 	
 	// Sin su identificador	
 	public Capacitacion(int idCliente, String tema, String objetivos, String contenidos, String recursos,
-			String fecha, int idUsuarioPro) {
+			Date fecha, int idUsuarioPro) {
 		this.idCliente = idCliente;
 		this.tema = tema;
 		this.objetivos = objetivos;
@@ -99,17 +104,24 @@ public class Capacitacion {
 	public void setRecursos(String recursos) {
 		this.recursos = recursos;
 	}
-	public String getFecha() {
+	public Date getFecha() {
 		return fecha;
 	}
 	public void setFecha(String fecha) {
-		this.fecha = fecha;
+		this.fecha = Utilidades.AjustaFecha(fecha);
 	}
 	public int getIdUsuarioPro() {
 		return idUsuarioPro;
 	}
 	public void setIdUsuarioPro(int idUsuarioPro) {
 		this.idUsuarioPro = idUsuarioPro;
+	}
+
+	@Override
+	public String toString() {
+		return "Capacitacion [id=" + id + ", idCliente=" + idCliente + ", tema=" + tema + ", objetivos=" + objetivos
+				+ ", contenidos=" + contenidos + ", recursos=" + recursos + ", fecha=" + fecha + ", idUsuarioPro="
+				+ idUsuarioPro + "]";
 	}
 	
 	

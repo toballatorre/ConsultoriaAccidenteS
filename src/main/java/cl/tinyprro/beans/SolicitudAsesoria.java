@@ -26,8 +26,10 @@ public class SolicitudAsesoria {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Sol_seq")
 	@SequenceGenerator(name = "Sol_seq", sequenceName = "SOLICITUDASESORIA_IDSOLICITUD")
 	private int id;
+	//TObal
+	@Temporal(TemporalType.DATE)
 	@Column(name = "FECHASOLICITUD")
-	private String fechasolicitud;
+	private Date fechasolicitud;
 	@Column(name = "MOTIVO")
 	private String motivo;
 	@Column(name = "PREFERENCIAHORARIO")
@@ -36,8 +38,9 @@ public class SolicitudAsesoria {
 	private int idCliente;
 	@Column(name = "STATUS")
 	private String status;
+	@Temporal(TemporalType.DATE)
 	@Column(name = "FECHAAGENDADA")
-	private String fechaagenda;
+	private Date fechaagenda;
 	@Column(name = "LUGAR")
 	private String lugar;
 	@Column(name = "CONTACTO")
@@ -67,8 +70,8 @@ public class SolicitudAsesoria {
 	 * @param contacto
 	 * @param detalle
 	 */
-	public SolicitudAsesoria(int id, String fechasolicitud, String motivo, String preferenciaHorario, int idCliente,
-			String status, String fechaagenda, String lugar, String contacto, String detalle) {
+	public SolicitudAsesoria(int id, Date fechasolicitud, String motivo, String preferenciaHorario, int idCliente,
+			String status, Date fechaagenda, String lugar, String contacto, String detalle) {
 		super();
 		this.id = id;
 		this.fechasolicitud = fechasolicitud;
@@ -90,7 +93,7 @@ public class SolicitudAsesoria {
 	 * @param idCliente
 	 * @param status
 	 */
-	public SolicitudAsesoria(String fechasolicitud, String motivo, String preferenciaHorario, int idCliente,
+	public SolicitudAsesoria(Date fechasolicitud, String motivo, String preferenciaHorario, int idCliente,
 			String status) {
 		super();
 		this.fechasolicitud = fechasolicitud;
@@ -117,7 +120,7 @@ public class SolicitudAsesoria {
 	/**
 	 * @return the fechasolicitud
 	 */
-	public String getFechasolicitud() {
+	public Date getFechasolicitud() {
 		return fechasolicitud;
 	}
 
@@ -125,7 +128,7 @@ public class SolicitudAsesoria {
 	 * @param fechasolicitud the fechasolicitud to set
 	 */
 	public void setFechasolicitud(String fechasolicitud) {
-		this.fechasolicitud = fechasolicitud;
+		this.fechasolicitud = Utilidades.AjustaFecha(fechasolicitud);
 	}
 
 	/**
@@ -187,7 +190,7 @@ public class SolicitudAsesoria {
 	/**
 	 * @return the fechaagenda
 	 */
-	public String getFechaagenda() {
+	public Date getFechaagenda() {
 		return fechaagenda;
 	}
 
@@ -195,7 +198,7 @@ public class SolicitudAsesoria {
 	 * @param fechaagenda the fechaagenda to set
 	 */
 	public void setFechaagenda(String fechaagenda) {
-		this.fechaagenda = fechaagenda;
+		this.fechaagenda = Utilidades.AjustaFecha(fechaagenda);
 	}
 
 	/**
@@ -238,6 +241,14 @@ public class SolicitudAsesoria {
 	 */
 	public void setDetalle(String detalle) {
 		this.detalle = detalle;
+	}
+
+	@Override
+	public String toString() {
+		return "SolicitudAsesoria [id=" + id + ", fechasolicitud=" + fechasolicitud + ", motivo=" + motivo
+				+ ", preferenciaHorario=" + preferenciaHorario + ", idCliente=" + idCliente + ", status=" + status
+				+ ", fechaagenda=" + fechaagenda + ", lugar=" + lugar + ", contacto=" + contacto + ", detalle="
+				+ detalle + "]";
 	}
 
 	

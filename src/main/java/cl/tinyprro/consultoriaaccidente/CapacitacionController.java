@@ -16,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -111,23 +110,8 @@ public class CapacitacionController {
 	}
 	
 	@RequestMapping(value="/crear", method = RequestMethod.GET)
-	public ModelAndView crearCapacitacion() {
-	
-	    
-	    /*Controlador*/
-		
-		List<Cliente> listaCliente = cls.getAll();
-		List<Profesional> listaProf = ps.getAll();
-		
-		Map<String, Object> model = new HashMap<String, Object>();
-		model.put("listaClientes", listaCliente); model.put("listaProf", listaProf);
-		
-		return new ModelAndView("profesional/crearCapacitacion", "model", model);
-	}
-	
-	@RequestMapping(value="/ingresar", method = RequestMethod.POST)
-	public ModelAndView insertarCapacitacion(HttpServletRequest request, Locale locale,ModelMap model) {
-		/* Mostrar el nombre en el header */
+	public ModelAndView crearCapacitacion(Locale locale, ModelMap model) {
+		/* Rescata nombre usuario logeado y muestra en header y log4j*/
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String name = auth.getName(); //get logged in username
 	    model.addAttribute("username", name);
@@ -141,15 +125,34 @@ public class CapacitacionController {
 	    
 	    /*Controlador*/
 		
-		cs.add(new Capacitacion(
-				Integer.parseInt(request.getParameter("client")),
-				request.getParameter("tema"),
-				request.getParameter("objetivos"),
-				request.getParameter("contenidos"),
-				request.getParameter("recursos"),
-				request.getParameter("fecha"),
-				Integer.parseInt(request.getParameter("idProf"))));
-
+		List<Cliente> listaCliente = cls.getAll();
+		List<Profesional> listaProf = ps.getAll();
+		model.addAttribute("date", date);
+		model.addAttribute("c", new Capacitacion());
+		
+		Map<String, Object> modelo = new HashMap<String, Object>();
+		modelo.put("listaClientes", listaCliente); modelo.put("listaProf", listaProf);
+		
+		return new ModelAndView("profesional/crearCapacitacion", "model", modelo);
+	}
+	
+	@RequestMapping(value="/ingresar", method = RequestMethod.POST)
+	public ModelAndView insertarCapacitacion(HttpServletRequest request, Locale locale, ModelMap model, Capacitacion c) {
+		/* Mostrar el nombre en el header */
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName(); //get logged in username
+	    model.addAttribute("username", name);
+	    logger.info("Usuario {}.", name);
+	    
+	    /*Rescata fecha hora actual*/
+	    Date date = new Date();
+	    DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+	    String formattedDate = dateFormat.format(date);
+	    model.addAttribute("serverTime", formattedDate );
+	    
+	    /*Controlador*/
+	    cs.add(c);
+		
 		return new ModelAndView("redirect:/capacitacion/listar");
 	}
 }

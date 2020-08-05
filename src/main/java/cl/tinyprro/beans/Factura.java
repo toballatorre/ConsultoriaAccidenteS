@@ -42,7 +42,7 @@ public class Factura {
 	private float IVA;
 	
 	/* DETALLE */
-	@OneToMany(mappedBy = "factura", cascade = {CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "factura", cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.REMOVE}, fetch = FetchType.EAGER)
 	private List<Item> listaItem;
 
 	/* CONSTRUCTORES */

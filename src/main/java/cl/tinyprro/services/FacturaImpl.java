@@ -24,6 +24,7 @@ public class FacturaImpl implements FacturaService {
 	public List<Factura> getAll() {
 		// TODO Auto-generated method stub
 		return (List<Factura>) fr.findAll();
+	
 	}
 
 	@Override

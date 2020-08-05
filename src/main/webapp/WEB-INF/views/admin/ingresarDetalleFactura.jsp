@@ -32,6 +32,28 @@
 				</tr>
 			</thead>
 		</table>
+		<form action="ingresarItem" method="POST">
+			<table class="table table-striped table-hover">
+				<thead class="thead-light">
+					<tr>
+						<th>#</th>
+						<th>Concepto</th>
+						<th>Precio Unitario</th>
+						<th>Cantidad</th>
+						<th colspan="2"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td> <input type="hidden" value="${f.getIdFactura()}" name="idFactura"> </td>
+						<td><input type="text" name="concepto"></td>
+						<td><input type="number" name="precioUnitario"></td>
+						<td><input type="number" name="cantidad"></td>
+						<td colspan="2"> <input type="submit" value="Ingresar">  </td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
 		<table class="table table-striped table-hover">
 			<thead class="thead-light">
 				<tr>
@@ -65,7 +87,6 @@
 			</tbody>
 		</table>
 	<a class="btn btn-primary" role="button" href="${pageContext.request.contextPath}/factura/listarFaturas"><i class="fas fa-undo-alt"></i> Volver</a>
-
 	</div>
 	<jsp:include page="../footer.jsp" />
 </body>

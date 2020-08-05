@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,7 +69,6 @@ public class FacturaController {
 		for (Factura factura : listaFacturas) {
 			logger.debug(factura.toString());
 		}
-
 
 		return new ModelAndView("admin/controlPagos", "listaFacturas", listaFacturas);
 	}
@@ -153,10 +154,51 @@ public class FacturaController {
 	    model.addAttribute("username", name);
 	    logger.info("Usuario {} en /formularioFacturaPOST a las {}", name, formattedDate);
 	    logger.info("FECHA E: {} FECHA V: {}", f.getFechaEmision(), f.getFechaVencimiento());
-		fs.add(f);
 		
-		return new ModelAndView("redirect: listarFaturas");
+	    fs.add(f);
+	    Item i = new Item();
+		model.addAttribute("i", i);
+		
+		return new ModelAndView("admin/ingresarDetalleFactura", "f", f);
 	}
+	
+	/**
+	 * Agrega un item a la factura
+	 * @param locale
+	 * @param model
+	 * @param f
+	 * @param i
+	 * @return
+	 */
+	@RequestMapping(value="/ingresarItem", method= RequestMethod.POST)
+	public ModelAndView ingresarItem(Locale locale, Model model, HttpServletRequest request, Item i) {
+		/*Rescata fecha hora actual*/
+	    Date date = new Date();
+	    DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+	    String formattedDate = dateFormat.format(date);
+	    model.addAttribute("serverTime", formattedDate );
+	    
+	    /* Mostrar el nombre en el header */
+	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String name = auth.getName(); //get logged in username
+	    model.addAttribute("username", name);
+	    logger.info("Usuario {} en /eliminarFactura a las {}", name, formattedDate);
+	    
+	    int id = Integer.parseInt(request.getParameter("idFactura"));
+	    Factura f = fs.getById(id);
+	    
+	    i.setFactura(f);
+	    f.getListaItem().add(i);
+	    
+	    System.out.println("ITEM: " + i.toString());
+	    System.out.println("FACTURA: " + f.toString());
+
+	    is.add(i);
+	    fs.edit(f);
+	    
+	    return new ModelAndView("admin/ingresarDetalleFactura", "f", f);
+	}
+	
 	/**
 	 * Eliminar una factura y sus items si los tiene
 	 * @param locale
@@ -179,15 +221,61 @@ public class FacturaController {
 	    logger.info("Usuario {} en /eliminarFactura a las {}", name, formattedDate);
 			    
 		Factura f = fs.getById(id);
+		List<Item> listaI = f.getListaItem();
+		System.out.println("LARGO LISTA ITEM: " + listaI.size());
 		
 		// Elimina los items si hay alguno relacionado con la factura
-		if(f.getListaItem().size() < 0) {
-			for (Item i : f.getListaItem()) {
-				is.delete(i);
+		if(listaI.size() > 0) {
+			for (Item item : listaI) {
+				System.out.println("ITEM A BORRAR: " + item.toString());
+				is.delete(item.getIdItem());
 			}
 		}
-		fs.delete(f);
+		fs.delete(f.getIdFactura());
 		
 		return new ModelAndView("redirect: /consultoriaaccidente/factura/listarFaturas");
 	}
+	
+	@RequestMapping(value="/fechaPago", method = RequestMethod.POST)
+	public ModelAndView actualizarPagoFactura(Locale locale, Model model, HttpServletRequest request) {
+		/*Rescata fecha hora actual*/
+	    Date date = new Date();
+	    DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+	    String formattedDate = dateFormat.format(date);
+	    model.addAttribute("serverTime", formattedDate );
+	    
+	    /* Mostrar el nombre en el header */
+	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    String name = auth.getName(); //get logged in username
+	    model.addAttribute("username", name);
+	    logger.info("Usuario {} en /eliminarFactura a las {}", name, formattedDate);
+	    
+	    int id = Integer.parseInt(request.getParameter("idFactura"));
+	    String fechaP = request.getParameter("fPago");
+	    
+		Factura f = fs.getById(id);
+		f.setFechaPago(fechaP);
+		
+		fs.edit(f);
+		
+		return new ModelAndView("redirect: /consultoriaaccidente/factura/listarFaturas");
+	}
+	/*
+	 * @RequestMapping("/prueba") public ModelAndView crearFacturaDummy() { 
+	 * 
+	 * Factura f = new Factura();
+	 * f.setFechaEmision("04/05/2020");
+	 * f.setFechaPago("15/06/2020");
+	 * f.setidCliente(1);
+	 * 
+	 * List<Item> listaItem = new ArrayList<Item>();
+	 * 
+	 * listaItem.add(new Item(122,"swfdsf", 15f, 8, f));
+	 * fs.add(f);
+	 * 
+	 * System.out.println("Factura recien creada: " + f.getIdFactura());
+	 * 
+	 * return new
+	 * ModelAndView("redirect: /consultoriaaccidente/factura/listarFaturas"); }
+	 */
 }

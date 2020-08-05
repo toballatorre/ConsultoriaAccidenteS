@@ -25,6 +25,9 @@
 				<th>Fecha solicitud</th>
 				<th>Motivo</th>
 				<th>Preferencia horario</th>
+				<th>Status</th>
+				<th>Fecha agendada</th>
+				<th>Contacto cliente</th>
 			</tr>
 	
 			<c:forEach items="${listaS}" var="s">
@@ -33,6 +36,9 @@
 					<td> <c:out value="${s.getFechasolicitud()}"/> </td>
 					<td> <c:out value="${s.getMotivo()}"/> </td>
 					<td> <c:out value="${s.getPreferenciaHorario()}"/> </td>
+					<td> <c:out value="${s.getStatus()}"/> </td>
+					<td> <c:out value="${s.getFechaagenda()}"/> </td>
+					<td> <c:out value="${s.getContacto()}"/> </td>
 				</tr>
 		</c:forEach>
 	

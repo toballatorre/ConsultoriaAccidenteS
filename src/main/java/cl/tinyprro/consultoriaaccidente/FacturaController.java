@@ -260,22 +260,4 @@ public class FacturaController {
 		
 		return new ModelAndView("redirect: /consultoriaaccidente/factura/listarFaturas");
 	}
-	/*
-	 * @RequestMapping("/prueba") public ModelAndView crearFacturaDummy() { 
-	 * 
-	 * Factura f = new Factura();
-	 * f.setFechaEmision("04/05/2020");
-	 * f.setFechaPago("15/06/2020");
-	 * f.setidCliente(1);
-	 * 
-	 * List<Item> listaItem = new ArrayList<Item>();
-	 * 
-	 * listaItem.add(new Item(122,"swfdsf", 15f, 8, f));
-	 * fs.add(f);
-	 * 
-	 * System.out.println("Factura recien creada: " + f.getIdFactura());
-	 * 
-	 * return new
-	 * ModelAndView("redirect: /consultoriaaccidente/factura/listarFaturas"); }
-	 */
 }

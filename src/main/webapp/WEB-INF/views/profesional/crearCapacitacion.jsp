@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,20 +19,20 @@
 	<jsp:include page="../MenuProfesional.jsp" />
 	<br><h1>Vista Profesional</h1>
 	<h2>Caso de uso</h2>
-	
+		<fmt:formatDate value="${date}" pattern="dd/MM/yyyy" var="fecha"/>
 		<form action="ingresar" method="post">
 			<table class="table table-striped table-hover">
 				<tbody>
 					<tr>
 <!-- 						<td>ID: </td><td><input type="number" id="idCap" name="idCap"></td> -->
-						<td>Fecha: </td><td><input type="date" id="fecha" name="fecha"></td>						
+						<td>Fecha: </td><td><input type="date" id="fecha" name="fecha" value="${fecha}"></td>						
 						<td colspan="2"></td>
 					</tr>
 					<tr>
 						<td>Tema: </td><td><input type="text" id="tema" name="tema"></td>
 						<td>Cliente: </td>
 						<td>
-							<select id="client" name="client">
+							<select id="client" name="idCliente">
 								<c:forEach items="${model.listaClientes}" var="cliente">
 									<option value="${cliente.getId()}"> <c:out value="${cliente.getNombreEmpresa()}"/> </option>									
 								</c:forEach>
@@ -50,7 +51,7 @@
 					<tr>
 						<td>ID Profesional: </td>
 						<td>
-							<select id="idProf" name="idProf">
+							<select id="idProf" name="idUsuarioPro">
 								<c:forEach items="${model.listaProf}" var="prof">
 									<option value="${prof.getId()}"> <c:out value="${prof.getNombre()}"/> </option>
 								</c:forEach>

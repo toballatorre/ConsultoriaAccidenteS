@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,15 +30,16 @@
 					</tr>
 					<tr>
 						<td>IdSolicitud: </td>
-						<td><input type="number" name="idsolicitud" value="${sa.getId()}"/> </td>
+						<td><input type="number" name="id" value="${sa.getId()}"/> </td>
 						<td>Cliente: </td>
-						<td><input type="number" name="idcliente" value="${sa.getIdCliente()}"/> </td>
+						<td><input type="number" name="idCliente" value="${sa.getIdCliente()}"/> </td>
 					</tr>
 					<tr>
 						<td>Fecha Solicitada: </td>
-						<td><input type="datetime" name="fechasolicitud" value="${sa.getFechasolicitud()}" /> </td>
+						<fmt:formatDate value="${sa.getFechasolicitud()}" pattern="dd/MM/yyyy" var="fechaS"/>
+						<td><input type="date" name="fechasolicitud" value="${fechaS}" /> </td>
 						<td>Preferencia horaria:</td>
-						<td><input type="text" name="preferenciahorario" value="${sa.getPreferenciaHorario()}" /> </td>
+						<td><input type="text" name="preferenciaHorario" value="${sa.getPreferenciaHorario()}" /> </td>
 					</tr>
 					<tr>
 						<td>Motivo</td>
@@ -48,7 +50,8 @@
 					</tr>
 					<tr>
 						<td>Agenda</td>
-						<td><input type="text" name="fechaagenda" value="${sa.getFechaagenda()}"/> </td>
+						<fmt:formatDate value="${sa.getFechaagenda()}" pattern="dd/MM/yyyy" var="fechaA"/>
+						<td><input type="date" name="fechaagenda" value="${fechaA}"/> </td>
 						<td>Contacto cliente</td>
 						<td><input type="text" name="contacto" value="${sa.getContacto()}"/> </td>
 					</tr>

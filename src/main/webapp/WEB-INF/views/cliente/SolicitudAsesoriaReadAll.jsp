@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,12 +33,14 @@
 	
 			<c:forEach items="${listaS}" var="s">
 				<tr>
+					<fmt:formatDate value="${s.getFechasolicitud()}" pattern="dd/MM/yyyy" var="fecha"/>
 					<td> <c:out value="${s.getId()}"/> </td>
-					<td> <c:out value="${s.getFechasolicitud()}"/> </td>
+					<td> <c:out value="${fecha}"/> </td>
 					<td> <c:out value="${s.getMotivo()}"/> </td>
 					<td> <c:out value="${s.getPreferenciaHorario()}"/> </td>
 					<td> <c:out value="${s.getStatus()}"/> </td>
-					<td> <c:out value="${s.getFechaagenda()}"/> </td>
+					<fmt:formatDate value="${s.getFechaagenda()}" pattern="dd/MM/yyyy" var="fecha2"/>
+					<td> <c:out value="${fecha2}"/> </td>
 					<td> <c:out value="${s.getContacto()}"/> </td>
 				</tr>
 		</c:forEach>

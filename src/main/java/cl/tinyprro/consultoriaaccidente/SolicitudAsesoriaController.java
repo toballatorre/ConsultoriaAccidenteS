@@ -110,13 +110,14 @@ public class SolicitudAsesoriaController {
 		logger.info("idCliente {}", idcliente );
 		
 		model.addAttribute("idcliente",idcliente);
-			
+		model.addAttribute("sa", new SolicitudAsesoria());	
+		model.addAttribute("date", date);
 		
 		return new ModelAndView("cliente/SolicitudAsesoriaCreate");
 	}
 	
 	@RequestMapping(value = "/ingresarAsesoria", method = RequestMethod.POST)
-	public ModelAndView ingresarSolicitud(HttpServletRequest request, ModelMap model, Locale locale) {
+	public ModelAndView ingresarSolicitud(HttpServletRequest request, ModelMap model, Locale locale, SolicitudAsesoria sa) {
 		/*Rescata fecha hora actual*/
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
@@ -133,14 +134,9 @@ public class SolicitudAsesoriaController {
 	    /*Controlador*/
 		logger.info("/SolicitudAsesoriaCreate estamos en SolicitudAsesoriaController Ingresar Asesoria");
 		
-		sas.add(new SolicitudAsesoria( 
-				request.getParameter("fechasolicitud"),
-				request.getParameter("motivo"),
-				request.getParameter("preferenciaHorario"),
-				Integer.parseInt(request.getParameter("idCliente")),
-				"Pendiente"
-				));
-				
+		sas.add(sa);
+		System.out.println(sa.toString());
+					
 		return new ModelAndView("redirect:/SolicitudAsesoria");
 	}
 
@@ -177,7 +173,7 @@ public class SolicitudAsesoriaController {
 	}
 	
 	@RequestMapping(value="/ProAgendarEdit/{id}", method = RequestMethod.GET)
-	public ModelAndView proAgendarEdit(@PathVariable int id,Locale locale, ModelMap model,HttpServletRequest request) {
+	public ModelAndView proAgendarEdit(@PathVariable int id, Locale locale, ModelMap model, HttpServletRequest request) {
 		/*Rescata fecha hora actual*/
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
@@ -200,7 +196,7 @@ public class SolicitudAsesoriaController {
 	}
 	
 	@RequestMapping(value="/ProAgendarSave", method = RequestMethod.POST)
-	public ModelAndView proAgendarSave(HttpServletRequest request,Locale locale, Model model) {
+	public ModelAndView proAgendarSave(HttpServletRequest request, Locale locale, Model model, SolicitudAsesoria sa) {
 		/*Rescata fecha hora actual*/
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
@@ -225,30 +221,30 @@ public class SolicitudAsesoriaController {
 		 * request.getParameter("lugar"), request.getParameter("contacto"),
 		 * request.getParameter("detalle") );
 		 */
-	    SolicitudAsesoria s = sas.getById(Integer.parseInt(request.getParameter("idsolicitud")));
-	    s.setFechaagenda(request.getParameter("fechaagenda"));
-	    s.setContacto(request.getParameter("contacto"));
-	    s.setLugar(request.getParameter("lugar"));
-	    s.setDetalle(request.getParameter("detalle"));
-	    s.setStatus(request.getParameter("status"));
+		/*
+		 * SolicitudAsesoria s =
+		 * sas.getById(Integer.parseInt(request.getParameter("idsolicitud")));
+		 * s.setFechaagenda(request.getParameter("fechaagenda"));
+		 * s.setContacto(request.getParameter("contacto"));
+		 * s.setLugar(request.getParameter("lugar"));
+		 * s.setDetalle(request.getParameter("detalle"));
+		 * s.setStatus(request.getParameter("status"));
+		 * 
+		 * System.out.println(s.getId()); System.out.println(s.getFechasolicitud());
+		 * System.out.println(s.getMotivo());
+		 * System.out.println(s.getPreferenciaHorario());
+		 * System.out.println(s.getIdCliente()); System.out.println(s.getStatus());
+		 * System.out.println(s.getFechaagenda()); System.out.println(s.getLugar());
+		 * System.out.println(s.getContacto()); System.out.println(s.getDetalle());
+		 * sas.edit(s);
+		 */
 	    
-		System.out.println(s.getId());
-		System.out.println(s.getFechasolicitud());
-		System.out.println(s.getMotivo());
-		System.out.println(s.getPreferenciaHorario());
-		System.out.println(s.getIdCliente());
-		System.out.println(s.getStatus());
-		System.out.println(s.getFechaagenda());
-		System.out.println(s.getLugar());
-		System.out.println(s.getContacto());
-		System.out.println(s.getDetalle());
-		sas.edit(s);
-	
+	    System.out.println("EL EDITADO: " + sa.toString());
+		sas.edit(sa);
+		//List<SolicitudAsesoria> listaS = sas.getAll();
 		
-		List<SolicitudAsesoria> listaS = sas.getAll();
-
-		
-		return new ModelAndView("profesional/PlanVisitaVerTodas", "listaS", listaS);
+		//return new ModelAndView("redirect:/profesional/ProSolicitudAsesoria", "listaS", listaS);
+	    return new ModelAndView("redirect: ProSolicitudAsesoria");
 	}
 	
 	

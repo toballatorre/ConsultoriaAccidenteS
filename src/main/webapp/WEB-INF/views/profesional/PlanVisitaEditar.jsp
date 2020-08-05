@@ -50,7 +50,14 @@
 					</tr>
 					<tr>
 						<td>Agenda</td>
-						<fmt:formatDate value="${sa.getFechaagenda()}" pattern="dd/MM/yyyy" var="fechaA"/>
+						<c:choose>
+							<c:when test="${sa.getFechaagenda() == null}">
+								<fmt:formatDate value="${date}" pattern="dd/MM/yyyy" var="fechaA"/>
+							</c:when>
+							<c:otherwise>
+								<fmt:formatDate value="${sa.getFechaagenda()}" pattern="dd/MM/yyyy" var="fechaA"/>							
+							</c:otherwise>
+						</c:choose>
 						<td><input type="date" name="fechaagenda" value="${fechaA}"/> </td>
 						<td>Contacto cliente</td>
 						<td><input type="text" name="contacto" value="${sa.getContacto()}"/> </td>

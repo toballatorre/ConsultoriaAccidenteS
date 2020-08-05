@@ -163,12 +163,8 @@ public class SolicitudAsesoriaController {
 			
 		logger.info("idUsuario {}", idusuario );
 
-		
-
-		
 		List<SolicitudAsesoria> listaS = sas.getAll();
 
-		
 		return new ModelAndView("profesional/PlanVisitaVerTodas", "listaS", listaS);
 	}
 	
@@ -189,7 +185,7 @@ public class SolicitudAsesoriaController {
 	    
 	    
 	    /*Controlador*/
-		
+		model.addAttribute("date", date);
 		SolicitudAsesoria sa = sas.getById(id);
 		
 		return new ModelAndView("/profesional/PlanVisitaEditar", "sa", sa);
@@ -211,39 +207,10 @@ public class SolicitudAsesoriaController {
 	    logger.info("Usuario {} en {}", name, url);
 	    
 	    /*Controlador*/
-		/*
-		 * SolicitudAsesoria s = new SolicitudAsesoria(
-		 * Integer.parseInt(request.getParameter("idsolicitud")),
-		 * request.getParameter("fechasolicitud"), request.getParameter("motivo"),
-		 * request.getParameter("preferenciahorario"),
-		 * Integer.parseInt(request.getParameter("idcliente")),
-		 * request.getParameter("status"), request.getParameter("fechaagenda"),
-		 * request.getParameter("lugar"), request.getParameter("contacto"),
-		 * request.getParameter("detalle") );
-		 */
-		/*
-		 * SolicitudAsesoria s =
-		 * sas.getById(Integer.parseInt(request.getParameter("idsolicitud")));
-		 * s.setFechaagenda(request.getParameter("fechaagenda"));
-		 * s.setContacto(request.getParameter("contacto"));
-		 * s.setLugar(request.getParameter("lugar"));
-		 * s.setDetalle(request.getParameter("detalle"));
-		 * s.setStatus(request.getParameter("status"));
-		 * 
-		 * System.out.println(s.getId()); System.out.println(s.getFechasolicitud());
-		 * System.out.println(s.getMotivo());
-		 * System.out.println(s.getPreferenciaHorario());
-		 * System.out.println(s.getIdCliente()); System.out.println(s.getStatus());
-		 * System.out.println(s.getFechaagenda()); System.out.println(s.getLugar());
-		 * System.out.println(s.getContacto()); System.out.println(s.getDetalle());
-		 * sas.edit(s);
-		 */
-	    
+			    
 	    System.out.println("EL EDITADO: " + sa.toString());
 		sas.edit(sa);
-		//List<SolicitudAsesoria> listaS = sas.getAll();
-		
-		//return new ModelAndView("redirect:/profesional/ProSolicitudAsesoria", "listaS", listaS);
+	
 	    return new ModelAndView("redirect: ProSolicitudAsesoria");
 	}
 	

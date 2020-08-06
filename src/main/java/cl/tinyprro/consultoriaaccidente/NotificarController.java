@@ -2,8 +2,10 @@ package cl.tinyprro.consultoriaaccidente;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Set;
 
 import org.slf4j.Logger;
@@ -15,30 +17,25 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import cl.tinyprro.beans.Capacitacion;
 import cl.tinyprro.beans.Cliente;
-import cl.tinyprro.beans.Factura;
-import cl.tinyprro.beans.ReporteAccidente;
-import cl.tinyprro.beans.SolicitudAsesoria;
 import cl.tinyprro.services.ClienteService;
 
-/**
- * Para el Caso de uso de generar reporte cliente
- * @author Cristobal L
- *
- */
 @Controller
-public class ReporteClienteController {
-	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+public class NotificarController {
 	
 	@Autowired
 	ClienteService cs;
 	
-	@RequestMapping("/ReporteCliente/{id}")
-	public ModelAndView muestraReporteCliente(@PathVariable int id, Locale locale, Model model) {
+	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	
+	Map<Integer, Cliente> cliData = new HashMap<Integer, Cliente>();
+	
+	@RequestMapping(value="/notificarAtrasos",method=RequestMethod.GET)
+	public @ResponseBody List<Cliente> notificarAtrasos(Locale locale, Model model) {
 		
 		/*Rescata nombre de usuario*/
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -53,11 +50,14 @@ public class ReporteClienteController {
 	    model.addAttribute("serverTime", formattedDate );
 		
 	    /* CONTROLLER */
-	    Cliente c = cs.getById(id);
-	    logger.info("Reporte Cliente Nº: {}", c.getId());
+	    List<Cliente> listaC = cs.getAll();
+	    Set<Integer> listaKeys = cliData.keySet();
 	    
-	    model.addAttribute("date", date);
+	    for(Integer i: listaKeys) {
+			listaC.add(cliData.get(i));
+		}
 	    
-		return new ModelAndView("admin/ReporteCliente", "c", c);
+		return listaC;
 	}
+	
 }

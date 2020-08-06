@@ -26,6 +26,7 @@
 				<th>Nombre Empresa</th>
 				<th>Información</th>
 				<th>Accidentabilidad</th>
+				<th></th>
 				
 			</tr>
 		</thead>
@@ -35,6 +36,7 @@
 				<td><c:out value="${cliente.getNombreEmpresa()}"/></td>
 				<td><a href="ClienteUpdate/${cliente.getId()}"><i class="fab fa-wpforms"></i></a></td>
 				<td><a href="ReportesAccidentes/${cliente.getId()}"><i class="fas fa-user-injured"></i></a></td>
+				<td><a class="btn btn-outline-info" href="ReporteCliente/${cliente.getId()}">Generar Reporte</a></td>
 			</tr>
 		</c:forEach>		
 		

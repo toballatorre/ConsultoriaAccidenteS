@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta charset="ISO-8859-1">
-	<title>Crear Checklist - Vista Profesional</title>
+	<title>Listar Clientes - Vista Profesional</title>
 	<link rel="stylesheet"
 		href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
@@ -17,29 +17,30 @@
 	<div class="contenido">
 	<jsp:include page="../MenuProfesional.jsp" />
 	<br><h1>Vista Profesional</h1>
-	<h2>Crear Checklist</h2>
-	
-	<form action="guardarChecklist" method="post">
-			<table class="table">
+	<h2>Listar Clientes</h2>
+
+		<table class="table table-striped table-hover">
+			<thead class="thead-light">
 				<tr>
-					<td>Cliente:</td>
-					<td><input type="number" name="idcliente" /></td>
+					<th>ID</th>
+					<th>Nombre Empresa</th>
+					<th>Información</th>
+					<th>Accidentabilidad</th>
+					<th></th>
+
 				</tr>
+			</thead>
+			<c:forEach items="${listaClientes}" var="cliente">
 				<tr>
-					<td>Descripción:</td>
-					<td><textarea rows = "3" cols = "70" name = "descripcion" maxlength="1000" ></textarea></td>
+					<td><c:out value="${cliente.getId()}" /></td>
+					<td><c:out value="${cliente.getNombreEmpresa()}" /></td>
+					<td><a href="ClienteUpdate/${cliente.getId()}"><i class="fab fa-wpforms"></i></a></td>
+					<td><a href="ReportesAccidentes/${cliente.getId()}"><i class="fas fa-user-injured"></i></a></td>
+					<td><a class="btn btn-outline-info" href="detalle/${cliente.getId()}">Detalle</a></td>
 				</tr>
-				<tr>
-					<td>Comentarios:</td>
-					<td><textarea rows = "6" cols = "70" name = "comentarioschk" maxlength="1000"></textarea></td>
-				</tr>
-				
-				<tr>
-					<td colspan="2"><input type="submit" value="Agregar Checklist" class="btn btn-danger"/> <a class="btn btn-primary" role="button" href="leer"><i class="fas fa-undo-alt"></i> Volver</a></td>
-				</tr>
-			</table>
-	</form>
-	
+			</c:forEach>
+		</table>
+
 	</div>
 	<jsp:include page="../footer.jsp" />
 </body>

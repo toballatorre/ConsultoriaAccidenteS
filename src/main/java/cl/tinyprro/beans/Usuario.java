@@ -25,6 +25,7 @@ public class Usuario {
 	@Column(name="ACTIVO")
 	private String activo;
 
+	
 /*bob el CONSTRUCTOR */
 	public Usuario() {
 		super();
@@ -98,6 +99,13 @@ public class Usuario {
 	public void setActivo(String activo) {
 		this.activo = activo;
 	}
+
+	@Override
+	public String toString() {
+		return "Usuario [id=" + id + ", usuario=" + usuario + ", tipousuario=" + tipousuario + ", mail=" + mail
+				+ ", activo=" + activo + "]";
+	}
+
 
 }
 

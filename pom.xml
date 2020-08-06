@@ -18,6 +18,7 @@
 		<dbcp-version>1.4</dbcp-version>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
+		<jackson.databind-version>2.9.4</jackson.databind-version>	
 	</properties>
 	<dependencies>
 
@@ -128,6 +129,16 @@
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
+
+
+	<!-- API JSON -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.databind-version}</version>
+		</dependency>
+
+
 
 
 		<!-- AspectJ -->

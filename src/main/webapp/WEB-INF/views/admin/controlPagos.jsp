@@ -64,7 +64,7 @@
 						<c:when test="${factura.getFechaPago() == null}">
 							<c:choose>
 								<c:when test="${date.compareTo(factura.getFechaVencimiento()) > 0 }">
-									<td> <a class="btn btn-outline-info" href="#/${c.getId()}">Notificar Atraso</a> </td>
+									<td> <a class="btn btn-outline-info" href="../notificarAtrasos/MailAPI/${factura.getIdFactura()}">Notificar Atraso</a> </td>
 								</c:when>
 								<c:otherwise>
 									<td> Sin Pagar </td>							

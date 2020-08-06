@@ -19,9 +19,6 @@
 		onclick="window.location.href='${pageContext.request.contextPath}/ReportesAccidentesAll';"
 		type="button" class="btn btn-outline-info">Ver Accidentabilidad</button>
 	<button
-		onclick="window.location.href='${pageContext.request.contextPath}/ReporteCliente';"
-		type="button" class="btn btn-outline-info">Reporte Cliente</button>
-	<button
 		onclick="window.location.href='${pageContext.request.contextPath}/ReporteGlobal';"
 		type="button" class="btn btn-outline-info">Reporte Global</button>
 

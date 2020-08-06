@@ -190,7 +190,8 @@ public class FacturaController {
 	    int id = Integer.parseInt(request.getParameter("idFactura"));
 	    Factura f = fs.getById(id);
 	    
-	    i.setFactura(f);
+	    i.setFactura(f.getIdFactura());
+	    //i.setFactura(f);
 	    f.getListaItem().add(i);
 	    
 	    System.out.println("ITEM: " + i.toString());

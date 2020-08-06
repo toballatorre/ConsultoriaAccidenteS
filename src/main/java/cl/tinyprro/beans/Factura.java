@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -42,7 +43,11 @@ public class Factura {
 	private float IVA;
 	
 	/* DETALLE */
-	@OneToMany(mappedBy = "factura", cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.REMOVE}, fetch = FetchType.EAGER)
+//	@OneToMany(mappedBy = "factura", cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.REMOVE}, fetch = FetchType.EAGER)
+//	private List<Item> listaItem;
+//	
+	@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.REMOVE}, fetch = FetchType.EAGER)
+	@JoinColumn(name = "FACTURA_IDFACTURA", referencedColumnName = "IDFACTURA")
 	private List<Item> listaItem;
 
 	/* CONSTRUCTORES */

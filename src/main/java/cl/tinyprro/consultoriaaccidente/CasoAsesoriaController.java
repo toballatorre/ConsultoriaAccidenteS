@@ -18,8 +18,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import cl.tinyprro.beans.Asesoria;
@@ -183,4 +185,23 @@ public class CasoAsesoriaController {
 
 	}
 		
+	@RequestMapping(value="/leerAsesoriaAPI/{id}", method = RequestMethod.GET)
+	public @ResponseBody Asesoria leerAsesoriaAPI (@PathVariable int id) {
+		
+		Asesoria a = as.getById(id);
+		
+		return a;
+	}
+	@RequestMapping(value="/saveAsesoriaAPI", method = RequestMethod.POST)
+	public @ResponseBody Asesoria guardarAsesoriaAPI (@RequestBody Asesoria a) {
+		
+		Map<Integer, Asesoria> asData = new HashMap<Integer, Asesoria>();
+		
+		asData.put(a.getIdasesoria(), a);
+		
+		as.add(a);
+		
+		return a;
+	}
+	
 }

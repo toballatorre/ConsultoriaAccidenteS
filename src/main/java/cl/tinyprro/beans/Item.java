@@ -26,15 +26,18 @@ public class Item {
 	private float precioUnitario;
 	private int cantidad;
 	
-	@JoinColumn(name="FACTURA_IDFACTURA", referencedColumnName = "IDFACTURA")
-	@ManyToOne(optional = false, fetch = FetchType.LAZY)
-	private Factura factura;
+	@Column(name="FACTURA_IDFACTURA")
+	int factura;
+	
+//	@JoinColumn(name="FACTURA_IDFACTURA", referencedColumnName = "IDFACTURA")
+//	@ManyToOne(optional = false, fetch = FetchType.LAZY)
+//	private Factura factura;
 
 	public Item() {
 		
 	}
 	
-	public Item(int idItem, String concepto, float precioUnitario, int cantidad, Factura factura) {
+	public Item(int idItem, String concepto, float precioUnitario, int cantidad, int factura) {
 		this.idItem = idItem;
 		this.concepto = concepto;
 		this.precioUnitario = precioUnitario;
@@ -74,19 +77,24 @@ public class Item {
 		this.cantidad = cantidad;
 	}
 
-	public Factura getFactura() {
+	public int getFactura() {
 		return factura;
 	}
 
-	public void setFactura(Factura factura) {
+	public void setFactura(int factura) {
 		this.factura = factura;
 	}
 
 	@Override
 	public String toString() {
 		return "Item [idItem=" + idItem + ", concepto=" + concepto + ", precioUnitario=" + precioUnitario
-				+ ", cantidad=" + cantidad + ", factura=" + factura.getIdFactura() + "]";
+				+ ", cantidad=" + cantidad + ", factura=" + factura + "]";
 	}
+//	@Override
+//	public String toString() {
+//		return "Item [idItem=" + idItem + ", concepto=" + concepto + ", precioUnitario=" + precioUnitario
+//				+ ", cantidad=" + cantidad + ", factura=" + factura.getIdFactura() + "]";
+//	}
 	
 	
 }

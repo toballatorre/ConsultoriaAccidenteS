@@ -1,6 +1,6 @@
 <div class="btn-group" role="group">
 	<button
-		onclick="window.location.href='${pageContext.request.contextPath}/CasoAsesoria';"
+		onclick="window.location.href='${pageContext.request.contextPath}/CasoAsesoria/leer';"
 		type="button" class="btn btn-outline-info">Caso Asesoria</button>
 	<button
 		onclick="window.location.href='${pageContext.request.contextPath}/capacitacion';"

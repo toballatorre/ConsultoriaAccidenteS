@@ -35,13 +35,10 @@
 				</tr>
 				
 				<tr>
-					<td colspan="2"><input type="submit" value="Agregar Checklist" class="btn btn-danger"/> <a class="btn btn-primary" role="button" href="listar"><i class="fas fa-undo-alt"></i> Volver</a></td>
+					<td colspan="2"><input type="submit" value="Agregar Checklist" class="btn btn-danger"/> <a class="btn btn-primary" role="button" href="leer"><i class="fas fa-undo-alt"></i> Volver</a></td>
 				</tr>
 			</table>
 	</form>
-	
-	
-	
 	
 	</div>
 	<jsp:include page="../footer.jsp" />

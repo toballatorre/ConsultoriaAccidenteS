@@ -164,5 +164,11 @@ public class ReporteAccidente {
 	public void setIdCliente(int idCliente) {
 		this.idCliente = idCliente;
 	}
+	@Override
+	public String toString() {
+		return "ReporteAccidente [id=" + id + ", tipoAccidente=" + tipoAccidente + ", diasPerdidos=" + diasPerdidos
+				+ ", fechaAccidente=" + fechaAccidente + ", lugarAccidente=" + lugarAccidente + ", descripcion="
+				+ descripcion + ", idCliente=" + idCliente + "]";
+	}
 		
 }

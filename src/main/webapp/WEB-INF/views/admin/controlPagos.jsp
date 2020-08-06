@@ -61,11 +61,18 @@
 						</c:choose>
 					</td>
 					<c:choose>
-						<c:when test="${factura.getFechaPago() == null}">
-							<td> SIN PAGAR </td>
+						<c:when test="${f.getFechaPago() == null}">
+							<c:choose>
+								<c:when test="${date.compareTo(f.getFechaVencimiento()) > 0 }">
+									<td> Atrasado </td>
+								</c:when>
+								<c:otherwise>
+									<td> Sin Pagar </td>							
+								</c:otherwise>
+							</c:choose>
 						</c:when>
 						<c:otherwise>
-							<td> PAGADO </td>
+							<td> Pagado </td>
 						</c:otherwise>
 					</c:choose>
 					<td> <a href="${pageContext.request.contextPath}/factura/detalle/${factura.getIdFactura()}">Detalle</a> | <a href="${pageContext.request.contextPath}/factura/eliminar/${factura.getIdFactura()}">Eliminar</a> </td>

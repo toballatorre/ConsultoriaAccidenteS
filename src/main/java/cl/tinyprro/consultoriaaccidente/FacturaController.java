@@ -69,7 +69,9 @@ public class FacturaController {
 		for (Factura factura : listaFacturas) {
 			logger.debug(factura.toString());
 		}
-
+		
+		model.addAttribute("date", date);
+		
 		return new ModelAndView("admin/controlPagos", "listaFacturas", listaFacturas);
 	}
 	
@@ -99,6 +101,7 @@ public class FacturaController {
 		for (Item i : li) {
 			logger.info("ITEM: {}",i.toString());
 		}
+		model.addAttribute("date", date);
 		
 		return new ModelAndView("/admin/detalleFactura", "f", f);
 	}

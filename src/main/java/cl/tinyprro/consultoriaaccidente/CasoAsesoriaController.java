@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import cl.tinyprro.beans.Asesoria;
 import cl.tinyprro.beans.CasoAsesoria;
 import cl.tinyprro.beans.Checklist;
 import cl.tinyprro.services.AsesoriaService;
@@ -39,7 +40,7 @@ public class CasoAsesoriaController {
 	@Autowired
 	AsesoriaService as;
 	
-	
+		
 	@RequestMapping(value="/leer", method = RequestMethod.GET)
 	public ModelAndView leerCasosAsesoriaTodos(Locale locale, Model model) {
 		/*Rescata fecha hora actual*/
@@ -52,7 +53,7 @@ public class CasoAsesoriaController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String name = auth.getName();
 		model.addAttribute("username", name);
-		logger.info("Usuario {}. /guardarChecklist {}", name, formattedDate);
+		logger.info("Usuario {}. /CasoAsesoria/leer {}", name, formattedDate);
 		
 		List<CasoAsesoria> listaCA = cas.getAll();
 		
@@ -72,7 +73,7 @@ public class CasoAsesoriaController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String name = auth.getName();
 		model.addAttribute("username", name);
-		logger.info("Usuario {}. /guardarChecklist {}", name, formattedDate);
+		logger.info("Usuario {}. /CasoAsesoria/crear {}", name, formattedDate);
 		
 			
 		return new ModelAndView("/profesional/CasoAsesoriaCreate");
@@ -91,7 +92,7 @@ public class CasoAsesoriaController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String name = auth.getName(); //get logged in username
 		model.addAttribute("username", name);
-		logger.info("Usuario {}. /guardarChecklist {}", name, formattedDate);
+		logger.info("Usuario {}. /CasoAsesoria/saveCaso {}", name, formattedDate);
 		
 		
 		CasoAsesoria ca = new CasoAsesoria(
@@ -119,17 +120,67 @@ public class CasoAsesoriaController {
 		
 		/* Mostrar el nombre en el header */
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		String name = auth.getName(); //get logged in username
+		String name = auth.getName();
 		model.addAttribute("username", name);
-		logger.info("Usuario {}. /guardarChecklist {}", name, formattedDate);
+		logger.info("Usuario {}. /CasoAsesoria/leer/id  - {}", name, formattedDate);
 		
 		CasoAsesoria ca = cas.getById(id);
-		
-		
+		List<Asesoria> la = ca.getListaAs();
+
 		Map<String, Object> modelo = new HashMap<String, Object>();
 		modelo.put("caso", ca);
+		modelo.put("asesorias", la);
 				
 		return new ModelAndView("/profesional/AsesoriasReadById", "modelo", modelo);
 	}
 	
+	@RequestMapping(value="/crearasesoria/{id}", method = RequestMethod.GET)
+	public ModelAndView crearAsesoriaForm(@PathVariable int id,Locale locale, ModelMap model) {
+		/*Rescata fecha hora actual*/
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		String formattedDate = dateFormat.format(date);
+		model.addAttribute("serverTime", formattedDate );
+		
+		/* Mostrar el nombre en el header */
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName();
+		model.addAttribute("username", name);
+		logger.info("Usuario {}. /CasoAsesoria/crearasesoria/  - {}", name, formattedDate);
+		
+		model.addAttribute("idcaso", id);
+		
+		return new ModelAndView("/profesional/AsesoriasCreate");
+	}
+	@RequestMapping(value="/saveAsesoria", method = RequestMethod.POST)
+	public ModelAndView guardarAsesoria(HttpServletRequest request,Locale locale, Model model) {
+		/*Rescata fecha hora actual*/
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		String formattedDate = dateFormat.format(date);
+		model.addAttribute("serverTime", formattedDate );
+		
+		/* Mostrar el nombre en el header */
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String name = auth.getName();
+		model.addAttribute("username", name);
+		logger.info("Usuario {}. /CasoAsesoria/saveAsesoria  - {}", name, formattedDate);
+		
+		
+		Asesoria a = new Asesoria(
+				Integer.parseInt(request.getParameter("idcaso")),
+				request.getParameter("fecha"),
+				request.getParameter("idempleado"),
+				request.getParameter("lugar"),
+				request.getParameter("comentarios")
+				);
+		
+		as.add(a);
+		
+		model.addAttribute("id", a.getIdcaso());
+		
+		return new ModelAndView("redirect:/CasoAsesoria/leer/{id}");
+
+	}
+		
 }

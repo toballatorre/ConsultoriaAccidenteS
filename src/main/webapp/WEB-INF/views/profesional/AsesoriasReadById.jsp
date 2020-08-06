@@ -22,14 +22,45 @@
 	
 	<table class="table">
 		<tr>
+			<td>Caso:</td>
 			<td><c:out value="${modelo.caso.getIdcaso()}"/></td>
+			<td>Cliente:</td>
 			<td><c:out value="${modelo.caso.getIdcliente()}"/></td>
+			<td>Codigo contrato:</td>
 			<td><c:out value="${modelo.caso.getCodigocontrato()}"/></td>
+		</tr>
+		<tr>
+			<td>Plan:</td>
+			<td><c:out value="${modelo.caso.getPlan()}"/></td>
+			<td>Contacto Cliente:</td>
+			<td><c:out value="${modelo.caso.getContacto()}"/></td>
+			<td>Activo:</td>
+			<td><c:out value="${modelo.caso.getCasoactivo()}"/></td>
 		</tr>
 	</table>
 	
-	
-	
+	<table class="table table-striped table-hover">
+		<tr>
+			<th colspan="4">Asesorias</th>
+			<th><a href="../crearasesoria/${modelo.caso.getIdcaso()}" class="btn btn-primary" role="button"><i class="far fa-plus-square"></i> Ingresar Asesoria</a></th>
+		</tr>
+		<tr>
+			<th>Id</th>
+			<th>Fecha:</th>
+			<th>Profesional:</th>
+			<th>Lugar:</th>
+			<th>Comentarios:</th>
+		</tr>
+	<c:forEach items="${modelo.asesorias}" var="as">
+		<tr>
+			<td><c:out value="${as.getIdasesoria()}"/></td>
+			<td><c:out value="${as.getFechaasesoria()}"/></td>
+			<td><c:out value="${as.getProfesional()}"/></td>
+			<td><c:out value="${as.getLugar()}"/></td>
+			<td><c:out value="${as.getComentarios()}"/></td>
+		</tr>
+	</c:forEach>
+	</table>
 	
 	</div>
 	<jsp:include page="../footer.jsp" />

@@ -20,8 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import cl.tinyprro.beans.Checklist;
-import cl.tinyprro.beans.Pregunta;
 import cl.tinyprro.beans.SolicitudAsesoria;
 import cl.tinyprro.services.ClienteService;
 import cl.tinyprro.services.SolicitudAsesoriaService;
@@ -158,7 +156,7 @@ public class SolicitudAsesoriaController {
 	    
 	    
 	    /*Controlador*/
-		
+		System.out.println("Usuario ID");
 		int idusuario =us.getByUsuario(name).getId();
 			
 		logger.info("idUsuario {}", idusuario );

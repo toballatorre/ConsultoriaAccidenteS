@@ -61,10 +61,10 @@
 						</c:choose>
 					</td>
 					<c:choose>
-						<c:when test="${f.getFechaPago() == null}">
+						<c:when test="${factura.getFechaPago() == null}">
 							<c:choose>
-								<c:when test="${date.compareTo(f.getFechaVencimiento()) > 0 }">
-									<td> Atrasado </td>
+								<c:when test="${date.compareTo(factura.getFechaVencimiento()) > 0 }">
+									<td> <a class="btn btn-outline-info" href="#/${c.getId()}">Notificar Atraso</a> </td>
 								</c:when>
 								<c:otherwise>
 									<td> Sin Pagar </td>							

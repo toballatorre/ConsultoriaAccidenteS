@@ -3,6 +3,9 @@
 		onclick="window.location.href='${pageContext.request.contextPath}/CasoAsesoria/leer';"
 		type="button" class="btn btn-outline-info">Caso Asesoria</button>
 	<button
+		onclick="window.location.href='${pageContext.request.contextPath}/revisarCliente/listar';"
+		type="button" class="btn btn-outline-info">Revisar Cliente</button>
+	<button
 		onclick="window.location.href='${pageContext.request.contextPath}/capacitacion';"
 		type="button" class="btn btn-outline-info">Capacitación</button>
 	<button

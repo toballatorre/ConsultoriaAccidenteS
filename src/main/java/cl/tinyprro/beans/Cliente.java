@@ -41,6 +41,7 @@ public class Cliente {
 	@OneToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name = "CLIENTE_IDCLIENTE", referencedColumnName = "IDCLIENTE")
 	private Set<Factura> listaFacturas;
+
 	
 	/**
 	 * Contructor vacio
@@ -174,5 +175,6 @@ public class Cliente {
 		return "Cliente [id=" + id + ", nombreEmpresa=" + nombreEmpresa + ", rutEmpresa=" + rutEmpresa + ", idUsuario="
 				+ idUsuario + "]";
 	}
+
 		
 }

@@ -184,7 +184,7 @@ public class CasoAsesoriaController {
 		return new ModelAndView("redirect:/CasoAsesoria/leer/{id}");
 
 	}
-		
+	/*Endpoint JSON retorna una Asesoria*/	
 	@RequestMapping(value="/leerAsesoriaAPI/{id}", method = RequestMethod.GET)
 	public @ResponseBody Asesoria leerAsesoriaAPI (@PathVariable int id) {
 		
@@ -192,6 +192,8 @@ public class CasoAsesoriaController {
 		
 		return a;
 	}
+	
+	/*Recibe un objeto Asesoria por POST y lo guarda*/
 	@RequestMapping(value="/saveAsesoriaAPI", method = RequestMethod.POST)
 	public @ResponseBody Asesoria guardarAsesoriaAPI (@RequestBody Asesoria a) {
 		

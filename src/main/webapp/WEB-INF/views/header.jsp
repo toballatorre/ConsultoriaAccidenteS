@@ -6,17 +6,10 @@
 	</div>
 	
 	<div class="areaLogin">
-		<!-- jsp:include page="ValidaUsuario.jsp" /> -->
-		<a href="/consultoriaaccidente"><i class="fas fa-home"></i></a>
 		
-		Hola ${username} ${tipoUsuario}! -  Es ${serverTime}
-		<!-- 
-		<form action="${pageContext.request.contextPath}/haceLogin" method="post">
-			<input type="text" id="Usuario" name="Usuario" placeholder="Usuario">
-			<input type="text" id="Password" name="Password" placeholder="Password">
-			<input type="submit" value="Login">
-		</form>
-		 -->
+		<a href="/consultoriaaccidente"><i class="fas fa-home"></i></a>
+		Hola ${username} ${tipoUsuario}! -  ${serverTime}
+
 		 <button onclick="window.location.href='${pageContext.request.contextPath}/logout';" type="button">Logout</button>
 	</div>
 </header>

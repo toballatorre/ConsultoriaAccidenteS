@@ -11,6 +11,11 @@
 		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
 		crossorigin="anonymous">
 	<link rel="stylesheet" href="<c:url value="/resources/css/estilo.css"></c:url>">
+	<!-- JQuery Styles -->
+	<link rel="stylesheet" href="<c:url value="/resources/js/jquery_ui/jquery-ui.css"></c:url>">
+	<link rel="stylesheet" href="<c:url value="/resources/js/jquery_ui/jquery-ui.structure.css"></c:url>">
+	<link rel="stylesheet" href="<c:url value="/resources/js/jquery_ui/jquery-ui.theme.css"></c:url>">
+	
 </head>
 <body>
 	<jsp:include page="../header.jsp" />
@@ -27,7 +32,7 @@
 						<!-- <td>ID: </td><td><input type="number" id="idAct" name="idAct"></td> -->
 						<td></td><td></td>
 						<td>Titulo: </td><td><input type="text" id="titulo" name="titulo"></td>
-						<td>Fecha Plazo: </td><td><input type="date" id="fechaP" name="fechaP"></td>
+						<td>Fecha Plazo: </td><td><input type="text" id="fechaP" name="fechaP" readonly="readonly"></td>
 					</tr>
 					<tr>
 						<td>Descripción: </td>
@@ -59,5 +64,17 @@
 
 	</div>
 	<jsp:include page="../footer.jsp" />
+	
+	<!-- JQuery Date Picker -->
+	<script type="text/javascript" src="<c:url value="/resources/js/jquery_ui/external/jquery/jquery.js"></c:url>"></script>
+	<script type="text/javascript" src="<c:url value="/resources/js/jquery_ui/jquery-ui.js"></c:url>"></script>
+	
+	<script type="text/javascript">
+	$( function() {
+	    $( "#fechaP" ).datepicker({
+	    	dateFormat: 'dd/mm/yy'
+	    });
+	  } );
+	</script>
 </body>
 </html>

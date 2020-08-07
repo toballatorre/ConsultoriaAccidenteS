@@ -11,8 +11,11 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
 	crossorigin="anonymous">
-<link rel="stylesheet"
-	href="<c:url value="/resources/css/estilo.css"></c:url>">
+	<link rel="stylesheet" href="<c:url value="/resources/css/estilo.css"></c:url>">
+	<!-- JQuery Styles -->
+	<link rel="stylesheet" href="<c:url value="/resources/js/jquery_ui/jquery-ui.css"></c:url>">
+	<link rel="stylesheet" href="<c:url value="/resources/js/jquery_ui/jquery-ui.structure.css"></c:url>">
+	<link rel="stylesheet" href="<c:url value="/resources/js/jquery_ui/jquery-ui.theme.css"></c:url>">
 </head>
 <body>
 	<jsp:include page="../header.jsp" />
@@ -40,7 +43,10 @@
 				</tr>
 				<tr>
 					<td>Motivo:</td>
-					<td colspan="2"><textarea rows = "6" cols = "70" name = "motivo" id="motivo" required maxlength="1000"></textarea></td>
+					<td colspan="2"><textarea rows = "6" cols = "70" name = "motivo" id="motivo" required maxlength="1000"></textarea>
+					<input type="hidden" name="status" value="Pendiente">
+					
+					</td>
 				</tr>
 				
 				<tr>
@@ -57,5 +63,17 @@
 
 	</div>
 	<jsp:include page="../footer.jsp" />
+	<!-- JQuery Date Picker -->
+	<script type="text/javascript" src="<c:url value="/resources/js/jquery_ui/external/jquery/jquery.js"></c:url>"></script>
+	<script type="text/javascript" src="<c:url value="/resources/js/jquery_ui/jquery-ui.js"></c:url>"></script>
+	
+	
+	<script type="text/javascript">
+	$( function() {
+	    $( "#fecha" ).datepicker({
+	    	dateFormat: 'dd/mm/yy'
+	    });
+	  } );
+	</script>
 </body>
 </html>

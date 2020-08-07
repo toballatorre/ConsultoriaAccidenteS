@@ -39,6 +39,7 @@ public class HomeController {
 	    model.addAttribute("serverTime", formattedDate );
 		
 		if (name.contentEquals("anonymousUser")) {
+			model.addAttribute("username", "" );
 			return "login";
 		} else {
 			return "home";

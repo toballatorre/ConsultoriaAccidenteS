@@ -12,6 +12,10 @@
 		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
 		crossorigin="anonymous">
 	<link rel="stylesheet" href="<c:url value="/resources/css/estilo.css"></c:url>">
+	<!-- JQuery Styles -->
+	<link rel="stylesheet" href="<c:url value="/resources/js/jquery_ui/jquery-ui.css"></c:url>">
+	<link rel="stylesheet" href="<c:url value="/resources/js/jquery_ui/jquery-ui.structure.css"></c:url>">
+	<link rel="stylesheet" href="<c:url value="/resources/js/jquery_ui/jquery-ui.theme.css"></c:url>">
 </head>
 <body>
 	<jsp:include page="../header.jsp" />
@@ -25,7 +29,7 @@
 				<tbody>
 					<tr>
 <!-- 						<td>ID: </td><td><input type="number" id="idCap" name="idCap"></td> -->
-						<td>Fecha: </td><td><input type="date" id="fecha" name="fecha" value="${fecha}"></td>						
+						<td>Fecha: </td><td><input type="text" id="fecha" name="fecha" value="${fecha}" readonly="readonly"></td>						
 						<td colspan="2"></td>
 					</tr>
 					<tr>
@@ -66,5 +70,16 @@
 		
 	</div>
 	<jsp:include page="../footer.jsp" />
+	<!-- JQuery Date Picker -->
+	<script type="text/javascript" src="<c:url value="/resources/js/jquery_ui/external/jquery/jquery.js"></c:url>"></script>
+	<script type="text/javascript" src="<c:url value="/resources/js/jquery_ui/jquery-ui.js"></c:url>"></script>
+	
+	<script type="text/javascript">
+	$( function() {
+	    $( "#fecha" ).datepicker({
+	    	dateFormat: 'dd/mm/yy'
+	    });
+	  } );
+	</script>
 </body>
 </html>

@@ -15,7 +15,7 @@ import cl.tinyprro.beans.Usuario;
 import cl.tinyprro.services.UsuarioService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml"})
+@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context-test.xml"})
 public class UsuarioControllerTest {
 	
 

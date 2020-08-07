@@ -12,6 +12,10 @@
 		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
 		crossorigin="anonymous">
 	<link rel="stylesheet" href="<c:url value="/resources/css/estilo.css"></c:url>"><link rel="stylesheet" href="<c:url value="/resources/css/estilo.css"></c:url>">
+	<!-- JQuery Styles -->
+	<link rel="stylesheet" href="<c:url value="/resources/js/jquery_ui/jquery-ui.css"></c:url>">
+	<link rel="stylesheet" href="<c:url value="/resources/js/jquery_ui/jquery-ui.structure.css"></c:url>">
+	<link rel="stylesheet" href="<c:url value="/resources/js/jquery_ui/jquery-ui.theme.css"></c:url>">
 </head>
 <body>
 	<jsp:include page="../header.jsp" />
@@ -28,11 +32,11 @@
 				<tr>
 				
 					<td><strong>Fecha Emision</strong><td>
-					<td> <input type="date" value="${fecha}" name="fechaEmision"> </td>
+					<td> <input type="text" value="${fecha}" id="fechaEmision" name="fechaEmision" readonly="readonly"> </td>
 				</tr>
 				<tr>
 					<td><strong>Fecha Vencimiento</strong><td>
-					<td> <input type="date" value="${fecha}" name="fechaVencimiento"> </td>
+					<td> <input type="text" value="${fecha}" id="fechaVencimiento" name="fechaVencimiento" readonly="readonly"> </td>
 				</tr>
 				<tr>
 					<td><strong>Cliente</strong><td>
@@ -51,5 +55,19 @@
 		
 	</div>
 	<jsp:include page="../footer.jsp" />
+	<!-- JQuery Date Picker -->
+	<script type="text/javascript" src="<c:url value="/resources/js/jquery_ui/external/jquery/jquery.js"></c:url>"></script>
+	<script type="text/javascript" src="<c:url value="/resources/js/jquery_ui/jquery-ui.js"></c:url>"></script>
+	
+	<script type="text/javascript">
+	$( function() {
+	    $( "#fechaEmision" ).datepicker({
+	    	dateFormat: 'dd/mm/yy'
+	    });
+	    $( "#fechaVencimiento" ).datepicker({
+	    	dateFormat: 'dd/mm/yy'
+	    });
+	  } );
+	</script>
 </body>
 </html>

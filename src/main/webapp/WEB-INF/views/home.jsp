@@ -58,6 +58,82 @@
 		<img src="resources/img/DiagramasModelos/SecuanciaAdmin.jpg" width="90%">
 		<img src="resources/img/DiagramasModelos/SecuenciaCliente.jpg" width="90%">
 		<img src="resources/img/DiagramasModelos/SecuenciaProfesional.jpg" width="90%">
+	<h3>REST endpoints</h3>
+
+		<h4>Ver detalles de una Factura por su id</h4>
+			
+		<p>GET: <code>http://localhost:8081/consultoriaaccidente/notificarAtrasos/12</code></p>
+		
+		<p>BODY: <code>{
+    "idFactura": 12,
+    "idCliente": 4,
+    "listaItem": [
+        {
+            "idItem": 22,
+            "concepto": "Mensualidad",
+            "precioUnitario": 1000.0,
+            "cantidad": 1,
+            "factura": 12
+        },
+        {
+            "idItem": 23,
+            "concepto": "Modificación checklist",
+            "precioUnitario": 500.0,
+            "cantidad": 1,
+            "factura": 12
+        }
+    ],
+    "fechaVencimiento": 1590897600000,
+    "fechaEmision": 1588305600000,
+    "fechaPago": null,
+    "iva": 19.0
+}</code></p>
+<hr width="50%">
+		<h4>Generar mail de aviso de atraso por id de factura</h4>
+		
+		<p>GET: <code>http://localhost:8081/consultoriaaccidente/notificarAtrasos/MailAPI/12</code></p>
+		
+		<p>BODY: <code>{
+    "From": "cobranza@consultoria.cl",
+    "Subject": "Nos debe plata",
+    "To": "cliente4@cliente4.com",
+    "Body": "Estimado Cliente Empresa Dorado , le informamos que la factura 12 está pendiente de pago(2020-05-31). Por favor dirigase al portal de pago."
+}</code></p>
+<hr width="50%">
+		<h4>Ver información de una Asesoria por su id</h4>
+		
+		<p>GET: <code>http://localhost:8081/consultoriaaccidente/CasoAsesoria/leerAsesoriaAPI/50</code></p>
+		
+		<p>BODY: <code>{
+    "idasesoria": 50,
+    "idcaso": 2,
+    "fechaasesoria": "2020-06-12 00:00:00",
+    "profesional": "6",
+    "lugar": "Oficina central Calipso",
+    "comentarios": "Sin hallazgos"
+}</code>
+</p>
+<hr width="50%">
+		<h4>Ingresa una asesoria recibiendo un objeto Asesoria y devuelve el objeto creado con su id</h4>
+		
+		<p>POST: <code>http://localhost:8081/consultoriaaccidente/CasoAsesoria/saveAsesoriaAPI</code></p>
+		
+		<p>POST BODY: <code>{
+    "comentarios": "Test API",
+    "fechaasesoria": "07/08/2020",
+    "idcaso": 1,
+    "lugar": "Av. costanera 5555 of 987",
+    "profesional": "4"
+}</code>
+</p>
+		<p>RESPONSE BODY: <code>{
+    "idasesoria": 4450,
+    "idcaso": 1,
+    "fechaasesoria": "07/08/2020",
+    "profesional": "4",
+    "lugar": "Av. costanera 5555 of 987",
+    "comentarios": "Test API"
+}</code>
 	
 		
 </div>

@@ -17,7 +17,7 @@ import cl.tinyprro.beans.Item;
 import cl.tinyprro.services.ItemService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml"})
+@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context-test.xml"})
 @FixMethodOrder(MethodSorters.NAME_ASCENDING) //Forzar a hacer las pruebas unitarias en orden según el nombre de los test
 public class ItemServiceTest {
 
